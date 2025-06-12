@@ -6,7 +6,7 @@ import arrow from '../assets/dropdown.png'
 const Navbar = () => {
   return (
     <header className="w-full z-50">
-      <div className="max-w-[1280px] mx-auto px-4">
+      <div className="mx-[100px] px-4">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="text-[#220239] font-bold text-xl no-underline flex items-center">
@@ -37,10 +37,10 @@ const Navbar = () => {
             <Link to="/how-it-works" className="hover:text-purple-700">
               How it works
             </Link>
-            <Link to="/guidelines" className="hover:text-purple-700">
+            <Link to="/community-guidelines" className="hover:text-purple-700">
               Community Guidelines
             </Link>
-            <Link to="/contact" className="hover:text-purple-700">
+            <Link to="/contact-us" className="hover:text-purple-700">
               Contact Us
             </Link>
             <Link to="/download" className="bg-[#220239] text-white px-4 py-2 rounded-full hover:bg-purple-800">
