@@ -189,15 +189,15 @@ const TeamPage = () => {
                 COME<br />JOIN<br />US
               </motion.h1>
               <motion.a
-                href="https://peaktew/jobs"
+                href="https://www.linkedin.com/company/peaktew/jobs/"
                 target="_blank"
-                className="text-blue-500 underline text-sm hover:text-blue-700"
+                className="text-purple-500 underline text-sm hover:text-purple-700"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 3.5 }}
                 whileHover={{ scale: 1.05 }}
               >
-                peaktew/jobs/
+                Apply Now !
               </motion.a>
             </motion.div>
           </div>

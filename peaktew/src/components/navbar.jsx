@@ -21,18 +21,19 @@ const Navbar = () => {
                 About <span className="text-xs"><img src={arrow} className='h-[7.64px] w-[12.54px]' alt="Dropdown arrow" /></span>
               </span>
 
-              <div className="absolute top-full left-0 mt-2 hidden group-hover:flex flex-col bg-white shadow-lg rounded-md overflow-hidden w-40 animate-fade-in z-50">
+              <div className="absolute top-full left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col bg-white shadow-lg rounded-md overflow-hidden w-40 z-50 hover:opacity-100 hover:visible">
                 {['About Us', 'Our Team', 'Our Story'].map((label, i) => (
                   <Link
                     key={label}
                     to={`/${label.toLowerCase().replace(/\s/g, '-')}`}
-                    className={`px-4 py-2 hover:bg-gray-100 transition-all duration-300 opacity-0 animate-fade-delay-${i + 1}`}
+                    className={`px-4 py-2 hover:bg-gray-100 transition-all duration-300`}
                   >
                     {label}
                   </Link>
                 ))}
               </div>
             </div>
+            {/* Links */}
 
             <Link to="/how-it-works" className="hover:text-purple-700">
               How it works

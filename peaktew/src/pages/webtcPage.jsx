@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { motion } from 'framer-motion';
 
 const WebtcPage = () => {
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -155,7 +159,7 @@ const WebtcPage = () => {
             </motion.p>
             
             <motion.p className='leading-none' variants={itemVariants}>
-              Please contact us if you have any questions or concerns. Our contact details are as follows: support@peaktew.com
+              Please contact us if you have any questions or concerns. Our contact details are as follows: <a href="mailto:support@peaktew.com" className="text-[#6D28B2] hover:underline">support@peaktew.com</a>
             </motion.p>
           </motion.div>
         </motion.div>

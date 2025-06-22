@@ -47,9 +47,29 @@ export default function Footer() {
         <div className="flex justify-between items-center text-sm text-gray-500 font-metro-300">
           <p>© COPYRIGHT ALL RIGHTS RESERVED</p>
           <div className="flex space-x-4 text-xl">
-            <a href="https://www.linkedin.com/company/peaktew/"><img className="w-[19px] h-[22px]" src={linkedin} alt="" /></a>
-            <a href="https://www.instagram.com/peaktew/"><img className="w-[19px] h-[22px]" src={insta} alt="" /></a>
-            <a href="https://www.youtube.com/channel/UCk0xTmbVjvjyzPXl38fC6vQ"><img className="w-[21px] h-[21px]" src={youtube} alt="" /></a>
+            <a
+              href="https://www.linkedin.com/company/peaktew/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="w-[19px] h-[22px]" src={linkedin} alt="" />
+            </a>
+
+            <a
+              href="https://www.instagram.com/peaktew/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="w-[19px] h-[22px]" src={insta} alt="" />
+            </a>
+
+            <a
+              href="https://www.youtube.com/channel/UCk0xTmbVjvjyzPXl38fC6vQ"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="w-[21px] h-[21px]" src={youtube} alt="" />
+            </a>
           </div>
         </div>
       </div>
