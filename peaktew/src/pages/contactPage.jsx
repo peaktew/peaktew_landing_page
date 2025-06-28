@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import full_ring from '../assets/full_big_ring.png';
+import full_ring from '../assets/full_big_ring.webp';
 
 const ContactPage = () => {
   // Animation variants
