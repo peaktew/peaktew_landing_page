@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import htw1 from '../assets/htw1.png';
-import htw2 from '../assets/htw2.png';
-import htw3 from '../assets/htw3.png';
+import htw1 from '../assets/htw1.webp';
+import htw2 from '../assets/htw2.webp';
+import htw3 from '../assets/htw3.webp';
 
 // Animation variants
 const containerVariants = {

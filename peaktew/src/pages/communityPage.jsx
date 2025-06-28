@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import ring from '../assets/full_big_ring.png'
+import ring from '../assets/full_big_ring.webp'
 import metal from '../assets/metal.png'
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 

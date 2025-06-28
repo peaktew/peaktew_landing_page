@@ -2,25 +2,25 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import person from '../assets/Landing_page/three_person.png';
+import person from '../assets/Landing_page/three_person.webp';
 import { GlobeDemo } from '../components/globe/Globle';
-import Ellipse2 from '../assets/Landing_page/Ellipse 2.png';
-import Ellipse3 from '../assets/Landing_page/Ellipse 3.png';
-import not1 from '../assets/Landing_page/not1.png';
-import not2 from '../assets/Landing_page/not2.png';
-import not3 from '../assets/Landing_page/not3.png';
-import not4 from '../assets/Landing_page/not4.png';
-import not5 from '../assets/Landing_page/not5.png';
-import welcome from '../assets/Landing_page/welcome.png';
-import gradient from '../assets/Landing_page/gradient.png';
+import Ellipse2 from '../assets/Landing_page/Ellipse 2.webp';
+import Ellipse3 from '../assets/Landing_page/Ellipse 3.webp';
+import not1 from '../assets/Landing_page/not1.webp';
+import not2 from '../assets/Landing_page/not2.webp';
+import not3 from '../assets/Landing_page/not3.webp';
+import not4 from '../assets/Landing_page/not4.webp';
+import not5 from '../assets/Landing_page/not5.webp';
+import welcome from '../assets/Landing_page/welcome.webp';
+import gradient from '../assets/Landing_page/gradient.webp';
 import anime from '../assets/Landing_page/Homepage Animation.mp4'
-import mascot from '../assets/Landing_page/mascot.png'
-import gradient3 from '../assets/Landing_page/gradient 3.png'
-import lines from '../assets/Landing_page/lines.png'
-import arrow from '../assets/Landing_page/Arrow.png'
-import alert from '../assets/Landing_page/alert.png'
-import pfp from '../assets/Landing_page/pfp.png'
-import arch from '../assets/Landing_page/arch.png'
+import mascot from '../assets/Landing_page/mascot.webp'
+import gradient3 from '../assets/Landing_page/gradient-3.webp'
+import lines from '../assets/Landing_page/lines.webp'
+import arrow from '../assets/Landing_page/Arrow.webp'
+import alert from '../assets/Landing_page/alert.webp'
+import pfp from '../assets/Landing_page/pfp.webp'
+import arch from '../assets/Landing_page/arch.webp'
 
 const AnimatedText = ({ text, delay = 0, className }) => {
   const controls = useAnimation();
