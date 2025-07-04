@@ -173,7 +173,7 @@ const AccountDeletionPage = () => {
                 className="text-[#220239] font-metro-600 text-[15px] mb-4"
                 variants={itemVariants}
               >
-                Enter your email and password to delete your account
+                Enter your email and password to delete your account. This removes all your data and cannot be reversed.
               </motion.p>
              </motion.div>
 
