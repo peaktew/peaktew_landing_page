@@ -123,13 +123,13 @@ const LandingPage = () => {
   const scrollProgress = Math.min(scrollY / maxScroll, 1);
 
   // Left Arrow (stops at left text position)
-  const leftArrowMaxY = 150;
+  const leftArrowMaxY = 100;
   const leftArrowY = Math.min(scrollY * 0.5, leftArrowMaxY);
   const leftArrowScale = 0.5 + Math.min(scrollY / 1000, 0.5);
   const leftArrowOpacity = scrollY < leftArrowMaxY * 2 ? 1 : 1 - (scrollY - leftArrowMaxY * 2) / 500;
 
   // Right Arrow (stops at right text position)
-  const rightArrowMaxY = 500;
+  const rightArrowMaxY = 250;
   const rightArrowY = Math.min(scrollY * 0.5, rightArrowMaxY);
   const rightArrowScale = 0.5 + Math.min(scrollY / 1000, 1.75);
   const rightArrowOpacity = scrollY < rightArrowMaxY * 1.5 ? 1 : 1 - (scrollY - rightArrowMaxY * 1.5) / 500;
