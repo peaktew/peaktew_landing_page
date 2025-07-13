@@ -5,11 +5,11 @@ import arrow from '../assets/dropdown.png'
 
 const Navbar = () => {
   return (
-    <header className="w-full z-50">
+    <header className="w-full z-50 bg-white border-b border-gray-200 transition-colors duration-300">
       <div className="mx-[100px] px-4">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="text-[#220239] font-bold text-xl no-underline flex items-center">
+          <Link to="/" className="text-[#220239] font-bold text-xl no-underline flex items-center transition-colors duration-300">
             <span role="img" aria-label="logo" className="text-3xl mr-2"><img src={logo} className='h-[30px] w-[30px]' alt="PeakTew Logo" /></span> <span>PeakTew</span>
           </Link>
 
@@ -21,7 +21,7 @@ const Navbar = () => {
                 About <span className="text-xs"><img src={arrow} className='h-[7.64px] w-[12.54px]' alt="Dropdown arrow" /></span>
               </span>
 
-              <div className="absolute top-full left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col bg-white shadow-lg rounded-md overflow-hidden w-40 z-50 hover:opacity-100 hover:visible">
+              <div className="absolute top-full left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col bg-white shadow-lg rounded-md overflow-hidden w-40 z-50 hover:opacity-100 hover:visible border border-gray-200">
                 {['About Us', 'Our Team', 'Our Story'].map((label, i) => (
                   <Link
                     key={label}
@@ -35,16 +35,17 @@ const Navbar = () => {
             </div>
             {/* Links */}
 
-            <Link to="/how-it-works" className="hover:text-purple-700">
+            <Link to="/how-it-works" className="hover:text-purple-700 transition-colors duration-300">
               How It Works
             </Link>
-            <Link to="/community-guidelines" className="hover:text-purple-700">
+            <Link to="/community-guidelines" className="hover:text-purple-700 transition-colors duration-300">
               Community Guidelines
             </Link>
-            <Link to="/contact-us" className="hover:text-purple-700">
+            <Link to="/contact-us" className="hover:text-purple-700 transition-colors duration-300">
               Contact Us
             </Link>
-            <Link to="/download" className="bg-[#220239] text-white px-4 py-2 rounded-full hover:bg-purple-800">
+            
+            <Link to="/download" className="bg-[#220239] text-white px-4 py-2 rounded-full hover:bg-purple-800 transition-colors duration-300">
               Download App
             </Link>
           </div>
