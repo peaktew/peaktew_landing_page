@@ -200,7 +200,7 @@ const StoryPage = () => {
   {/* Container for all milestones with horizontal scroll */}
   <motion.div 
     className="flex overflow-x-auto pb-8 snap-x snap-mandatory w-full hide-scrollbar"
-    style={{ scrollbarWidth: 'none' }}
+    style={{ scrollbarWidth: 'none', padding: '20px' }}
   >
     {/* First set of milestones (1-3) */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 min-w-full snap-center px-4 md:px-8">
