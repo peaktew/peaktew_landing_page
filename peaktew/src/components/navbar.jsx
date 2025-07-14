@@ -36,7 +36,7 @@ const Navbar = () => {
             {/* Links */}
 
             <Link to="/how-it-works" className="hover:text-purple-700">
-              How it works
+              How it Works
             </Link>
             <Link to="/community-guidelines" className="hover:text-purple-700">
               Community Guidelines
