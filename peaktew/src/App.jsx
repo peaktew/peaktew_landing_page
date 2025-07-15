@@ -6,6 +6,7 @@ import TeamPage from "./pages/teamPage"
 import FeaturesPage from "./pages/howitworksPage"
 import DownloadPage from "./pages/downloadPage"
 import ContactPage from "./pages/contactPage"
+import AccountDeletionPage from "./pages/accountDeletionPage"
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
 import StoryPage from "./pages/storypage"
@@ -26,6 +27,7 @@ function App() {
           <Route path="/download" element={<DownloadPage />} />
           <Route path="/how-it-works" element={<FeaturesPage />} />
           <Route path="/contact-us" element={<ContactPage />} />
+          <Route path="/account-repression" element={<AccountDeletionPage />} />
           <Route path="/our-team" element={<TeamPage />} />
           <Route path="/our-story" element={<StoryPage />} />
           <Route path="/web-terms-conditions" element={<WebtcPage />} />

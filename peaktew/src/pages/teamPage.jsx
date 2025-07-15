@@ -10,7 +10,7 @@ const TeamPage = () => {
   return (
     <>
       {/* Hero Section */}
-      <motion.div 
+      <motion.div
         className="relative w-full h-[80vh] bg-black flex items-center justify-center overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -24,8 +24,8 @@ const TeamPage = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
         />
-        <motion.h1 
-          className="relative text-white text-4xl md:text-6xl font-bold text-center z-10 px-4"
+        <motion.h1
+          className="relative text-white text-4xl md:text-6xl font-bold text-center z-10 px-4 font-metro-600"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -35,14 +35,14 @@ const TeamPage = () => {
       </motion.div>
 
       {/* Content Section */}
-      <motion.div 
+      <motion.div
         className="container mx-auto px-4 py-40 max-w-6xl"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
       >
         {/* Title */}
-        <motion.h1 
+        <motion.h1
           className="text-center text-5xl font-extrabold text-[#6D28B2] uppercase mb-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -54,20 +54,20 @@ const TeamPage = () => {
         {/* Content Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Left - Rocket + Text */}
-          <motion.div 
+          <motion.div
             className="flex flex-col items-center md:items-start md:w-1/2 space-y-6"
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            <motion.img 
-              src={rocketImage} 
-              alt="Rocket" 
+            <motion.img
+              src={rocketImage}
+              alt="Rocket"
               className="w-40 md:w-52"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />
-            <motion.p 
+            <motion.p
               className="text-center md:text-left text-gray-700 text-base md:text-lg max-w-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -78,7 +78,7 @@ const TeamPage = () => {
           </motion.div>
 
           {/* Right - Stats */}
-          <motion.div 
+          <motion.div
             className="md:w-1/2 flex flex-col justify-center space-y-10 text-center md:text-right"
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -129,16 +129,16 @@ const TeamPage = () => {
       <div className="px-6 sm:px-12 py-28 bg-white relative">
         {/* Our Team */}
         <OurTeam/>
-        
+
         {/* CTA Section */}
-        <motion.div 
+        <motion.div
           className="relative flex items-center justify-center min-h-screen bg-white overflow-visible"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 2.3 }}
         >
           {/* Gradient background */}
-          <motion.div 
+          <motion.div
             className="absolute left-0 top-0 w-full h-full -z-10 overflow-visible"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -151,7 +151,7 @@ const TeamPage = () => {
 
           <div className="relative w-full min-h-screen bg-white flex items-center justify-center overflow-visible">
             {/* Radial gradient */}
-            <motion.div 
+            <motion.div
               className="absolute inset-0 overflow-visible z-0 pointer-events-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -166,13 +166,13 @@ const TeamPage = () => {
             </motion.div>
 
             {/* Main content */}
-            <motion.div 
+            <motion.div
               className="relative z-10 text-center px-6 max-w-xl"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 2.9 }}
             >
-              <motion.p 
+              <motion.p
                 className="text-sm font-light mb-6 relative inline-block before:absolute before:-left-9 before:top-1/2 before:-translate-y-1/2 before:w-8 before:h-px before:bg-black"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -180,7 +180,7 @@ const TeamPage = () => {
               >
                 Apply Today
               </motion.p>
-              <motion.h1 
+              <motion.h1
                 className="text-6xl font-black leading-tight mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

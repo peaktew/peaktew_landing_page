@@ -127,10 +127,10 @@ const ContactPage = () => {
               Contact Us
             </motion.h2>
           </motion.div>
-
-          <div className="flex-1 flex flex-col md:flex-row">
-            <motion.div
-              className="flex-1 flex flex-col max-md:pb-4 pr-6"
+          
+          <div className='flex-1 flex flex-row px-5'>
+            <motion.div 
+              className='flex-1 flex flex-col pr-6'
               variants={containerVariants}
               initial="hidden"
               animate="visible"
