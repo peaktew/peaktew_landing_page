@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import full_ring from '../assets/full_big_ring.webp';
+import React from "react";
+import { motion } from "framer-motion";
+import full_ring from "../assets/full_big_ring.webp";
 
 const ContactPage = () => {
   // Animation variants
@@ -10,9 +10,9 @@ const ContactPage = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const itemVariants = {
@@ -21,11 +21,11 @@ const ContactPage = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: 'spring',
+        type: "spring",
         stiffness: 100,
-        damping: 10
-      }
-    }
+        damping: 10,
+      },
+    },
   };
 
   const ringVariants = {
@@ -35,9 +35,9 @@ const ContactPage = () => {
       transition: {
         duration: 60,
         repeat: Infinity,
-        ease: 'linear'
-      }
-    }
+        ease: "linear",
+      },
+    },
   };
 
   const cardVariants = {
@@ -46,11 +46,11 @@ const ContactPage = () => {
       scale: 1,
       opacity: 1,
       transition: {
-        type: 'spring',
+        type: "spring",
         stiffness: 100,
-        damping: 15
-      }
-    }
+        damping: 15,
+      },
+    },
   };
 
   const gradientVariants = {
@@ -60,18 +60,18 @@ const ContactPage = () => {
       transition: {
         duration: 2,
         repeat: Infinity,
-        repeatType: 'reverse'
-      }
-    }
+        repeatType: "reverse",
+      },
+    },
   };
 
   const hoverEffect = {
     scale: 1.02,
-    transition: { type: 'spring', stiffness: 300 }
+    transition: { type: "spring", stiffness: 300 },
   };
 
   const tapEffect = {
-    scale: 0.98
+    scale: 0.98,
   };
 
   return (
@@ -108,19 +108,20 @@ const ContactPage = () => {
           variants={cardVariants}
           initial="hidden"
           animate="visible"
-          whileHover={{ 
-            boxShadow: '0 20px 25px -5px rgba(109, 40, 178, 0.1), 0 10px 10px -5px rgba(109, 40, 178, 0.04)'
+          whileHover={{
+            boxShadow:
+              "0 20px 25px -5px rgba(109, 40, 178, 0.1), 0 10px 10px -5px rgba(109, 40, 178, 0.04)",
           }}
         >
           {/* Text */}
-          <motion.div 
+          <motion.div
             className="flex-1 text-left justify-items-center"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            <motion.h2 
-              className="text-[100px] font-metro-600 text-[#6D28B2] mb-0"
+            <motion.h2
+              className="text-[min(10vw,100px)] font-metro-600 text-[#6D28B2] mb-0"
               variants={itemVariants}
             >
               Contact Us
@@ -134,22 +135,30 @@ const ContactPage = () => {
               initial="hidden"
               animate="visible"
             >
-              <motion.p 
+              <motion.p
                 className="text-[#220239] font-metro-600 text-[15px] mb-4"
                 variants={itemVariants}
               >
-                Looking to expand your circle, meet amazing people, or find friends who share your passions? PeakTew is here to make connecting easier, more meaningful, and fun! Whether you're new in town, exploring new hobbies, or just want to grow your social network, PeakTew is your go-to app for building genuine connections.
+                Looking to expand your circle, meet amazing people, or find
+                friends who share your passions? PeakTew is here to make
+                connecting easier, more meaningful, and fun! Whether you're new
+                in town, exploring new hobbies, or just want to grow your social
+                network, PeakTew is your go-to app for building genuine
+                connections.
               </motion.p>
-              <motion.p 
+              <motion.p
                 className="text-[#220239] text-[15px] font-metro-600"
                 variants={itemVariants}
               >
-                Got questions, ideas, or feedback? We'd love to hear from you! At PeakTew, we're all about creating a safe, welcoming space for everyone to connect, and your voice helps us make it even better.
+                Got questions, ideas, or feedback? We'd love to hear from you!
+                At PeakTew, we're all about creating a safe, welcoming space for
+                everyone to connect, and your voice helps us make it even
+                better.
               </motion.p>
             </motion.div>
 
             {/* Form */}
-            <motion.form 
+            <motion.form
               className="flex-1 flex flex-col gap-4"
               variants={containerVariants}
               initial="hidden"
@@ -160,9 +169,9 @@ const ContactPage = () => {
                 placeholder="Name"
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
-                whileFocus={{ 
+                whileFocus={{
                   scale: 1.02,
-                  boxShadow: '0 0 0 2px rgba(109, 40, 178, 0.5)'
+                  boxShadow: "0 0 0 2px rgba(109, 40, 178, 0.5)",
                 }}
               />
               <motion.input
@@ -170,9 +179,9 @@ const ContactPage = () => {
                 placeholder="Email"
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
-                whileFocus={{ 
+                whileFocus={{
                   scale: 1.02,
-                  boxShadow: '0 0 0 2px rgba(109, 40, 178, 0.5)'
+                  boxShadow: "0 0 0 2px rgba(109, 40, 178, 0.5)",
                 }}
               />
               <motion.textarea
@@ -180,9 +189,9 @@ const ContactPage = () => {
                 rows="4"
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
-                whileFocus={{ 
+                whileFocus={{
                   scale: 1.02,
-                  boxShadow: '0 0 0 2px rgba(109, 40, 178, 0.5)'
+                  boxShadow: "0 0 0 2px rgba(109, 40, 178, 0.5)",
                 }}
               ></motion.textarea>
               <motion.button
@@ -198,7 +207,7 @@ const ContactPage = () => {
           </div>
 
           {/* Animated Gradient glow underneath */}
-          <motion.div 
+          <motion.div
             className="absolute -z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-peakPurple via-indigo-500 to-transparent blur-3xl opacity-40 rounded-full"
             variants={gradientVariants}
             initial="hidden"
