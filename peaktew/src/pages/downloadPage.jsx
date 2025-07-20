@@ -105,7 +105,7 @@ const DownloadPage = () => {
 
   return (
     <>
-      <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden">
+      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden">
         {/* Top Gradient */}
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/90 via-white/30 to-transparent z-20 pointer-events-none"></div>
 
@@ -116,16 +116,15 @@ const DownloadPage = () => {
         <motion.img
           src={full_ring}
           alt="ring"
-          className="absolute top-[50%] left-[40%] w-64 opacity-100 scale-[600%]"
+          className="absolute top-[50%] left-[40%] w-32 sm:w-48 md:w-64 opacity-100 scale-[300%] sm:scale-[400%] md:scale-[500%] lg:scale-[600%]"
           variants={ringVariants}
           initial="initial"
           animate="animate"
         />
         
-       
         {/* Contact Card with glassmorphism */}
         <motion.div
-          className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-white/30"
+          className="relative z-10 max-w-5xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
           variants={cardVariants}
           initial="hidden"
           animate="visible"
@@ -141,39 +140,39 @@ const DownloadPage = () => {
             animate="visible"
           >
             <motion.h2 
-              className="text-[100px] font-metro-600 text-[#6D28B2] mb-0"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-metro-600 text-[#6D28B2] mb-0"
               variants={itemVariants}
             >
               Download Now
             </motion.h2>
           </motion.div>
           
-          <div className='flex-1 flex flex-row'>
+          <div className='flex-1 flex flex-col lg:flex-row'>
             <motion.div 
-              className='flex-1 flex flex-col pr-6'
+              className='flex-1 flex flex-col lg:pr-6'
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
               <motion.p 
-                className="text-[#220239] font-metro-600 text-[15px] mb-4"
+                className="text-[#220239] font-metro-600 text-sm sm:text-base mb-4"
                 variants={itemVariants}
               >
                 Looking to expand your circle, meet amazing people, or find friends who share your passions? PeakTew is here to make connecting easier, more meaningful, and fun! Whether you're new in town, exploring new hobbies, or just want to grow your social network, PeakTew is your go-to app for building genuine connections.
               </motion.p>
               <motion.p 
-                className="text-[#220239] text-[15px] font-metro-600 mb-8"
+                className="text-[#220239] text-sm sm:text-base font-metro-600 mb-6 sm:mb-8"
                 variants={itemVariants}
               >
                 Got questions, ideas, or feedback? We'd love to hear from you! At PeakTew, we're all about creating a safe, welcoming space for everyone to connect, and your voice helps us make it even better.
               </motion.p>
               
               <motion.div 
-                className='flex flex-row mt-6 justify-center gap-6'
+                className='flex flex-col sm:flex-row mt-4 sm:mt-6 justify-center gap-4 sm:gap-6'
                 variants={containerVariants}
               >
                 <motion.button 
-                  className='h-[113.89px] w-[405px]' 
+                  className='h-auto w-full sm:w-[300px] md:w-[350px] lg:w-[405px]' 
                   whileHover={buttonHover}
                   whileTap={buttonTap}
                   variants={itemVariants}
@@ -181,12 +180,13 @@ const DownloadPage = () => {
                   <motion.img 
                     src={apple} 
                     alt="App Store"
+                    className="w-full h-auto"
                     whileHover={hoverEffect}
                     whileTap={tapEffect}
                   />
                 </motion.button>
                 <motion.button 
-                  className='h-[113.89px] w-[405px]'
+                  className='h-auto w-full sm:w-[300px] md:w-[350px] lg:w-[405px]'
                   whileHover={buttonHover}
                   whileTap={buttonTap}
                   variants={itemVariants}
@@ -194,6 +194,7 @@ const DownloadPage = () => {
                   <motion.img 
                     src={play} 
                     alt="Play Store"
+                    className="w-full h-auto"
                     whileHover={hoverEffect}
                     whileTap={tapEffect}
                   />
@@ -205,7 +206,7 @@ const DownloadPage = () => {
 
           {/* Animated Gradient glow underneath */}
           <motion.div 
-            className="absolute -z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br from-peakPurple via-indigo-500 to-transparent blur-3xl opacity-40 rounded-full"
+            className="absolute -z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-gradient-to-br from-peakPurple via-indigo-500 to-transparent blur-3xl opacity-40 rounded-full"
             variants={gradientVariants}
             initial="hidden"
             animate="visible"

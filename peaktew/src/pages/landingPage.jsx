@@ -89,7 +89,7 @@ const NotificationCard = ({ src, initialX, initialY, rotate, delay, top, left, r
     <motion.img
       src={src}
       alt="notification"
-      className={`absolute w-[700px] ${className}`}
+      className={`absolute w-[300px] sm:w-[400px] md:w-[500px] lg:w-[700px] ${className}`}
       style={{ top, left, right }}
       initial={{ x: initialX, y: initialY, opacity: 0, rotate }}
       whileInView={{ x: 0, y: 0, opacity: 1, rotate }}
@@ -140,13 +140,8 @@ const LandingPage = () => {
   const middleArrowScale = 0.5 + Math.min(scrollY / 800, 2.5);
   const middleArrowOpacity = scrollY < middleArrowMaxY * 1.2 ? 1 : 1 - (scrollY - middleArrowMaxY * 1.2) / 500;
 
-  // Animation variants for dark mode transition
-
-
   return (
     <div className="relative overflow-hidden transition-colors duration-500">
-      {/* Theme Toggle */}
-      
       {/* Globe Section */}
       <motion.div 
         className="mx-auto px-4 w-full h-screen overflow-hidden relative"
@@ -162,23 +157,23 @@ const LandingPage = () => {
         <div className='absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4'>
           <AnimatedText 
             text="Take the fun" 
-            className="text-5xl md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 text-[#220239] text-center leading-none" 
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[96px] font-metro-600 text-[#220239] text-center leading-none" 
           />
           <AnimatedText 
             text="to the real World" 
             delay={0.3}
-            className="text-6xl md:text-8xl lg:text-9xl xl:text-[100px] font-metro-600 text-center leading-none my-4 bg-gradient-to-br from-[#010101] to-[#B338DE] bg-clip-text text-transparent" 
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br from-[#010101] to-[#B338DE] bg-clip-text text-transparent" 
           />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mt-6"
+            className="mt-4 sm:mt-6"
           >
-            <p className="text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center">
               We connect you to what matters. Real people, real experiences,
             </p>
-            <p className="text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center">
               and the world just outside your door.
             </p>
           </motion.div>
@@ -188,7 +183,7 @@ const LandingPage = () => {
       <motion.img 
         src={mascot} 
         alt="mascot"
-        className="absolute top-[60vh] right-0 rotate-[40deg] w-full max-w-[400px] pointer-events-none z-0"
+        className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-0"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.8, duration: 0.8 }}
@@ -205,7 +200,7 @@ const LandingPage = () => {
 
       {/* Lines and Arrows Section */}
       <motion.section 
-        className="relative w-full h-[120vh] overflow-hidden"
+        className="relative w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -216,7 +211,7 @@ const LandingPage = () => {
         
         {/* Text - Left */}
         <motion.div 
-          className="absolute top-[15%] left-[10%] z-20 font-metro-600 text-[#220239] text-[38px] max-w-xs"
+          className="absolute top-[15%] left-[5%] sm:left-[10%] z-20 font-metro-600 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-xs"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -227,7 +222,7 @@ const LandingPage = () => {
         
         {/* Text - Right */}
         <motion.div 
-          className="absolute bottom-[50%] right-[10%] font-metro-600 z-20 text-[#220239] text-[38px] max-w-sm text-right"
+          className="absolute bottom-[50%] right-[5%] sm:right-[10%] font-metro-600 z-20 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-sm text-right"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -244,7 +239,7 @@ const LandingPage = () => {
         <motion.img 
           src={arrow} 
           alt="arrow" 
-          className="absolute top-[0%] left-[24.8%] w-[50px] z-20" 
+          className="absolute top-[0%] left-[20%] sm:left-[24.8%] w-[30px] sm:w-[40px] md:w-[50px] z-20" 
           style={{
             transform: `translateY(${leftArrowY}px) scale(${leftArrowScale})`,
             transition: 'transform 0.2s ease-out',
@@ -259,7 +254,7 @@ const LandingPage = () => {
         <motion.img 
           src={arrow} 
           alt="arrow" 
-          className="absolute top-[0%] right-[16%] w-[50px] z-20" 
+          className="absolute top-[0%] right-[10%] sm:right-[16%] w-[30px] sm:w-[40px] md:w-[50px] z-20" 
           style={{
             transform: `translateY(${rightArrowY}px) scale(${rightArrowScale})`,
             transition: 'transform 0.2s ease-out',
@@ -274,7 +269,7 @@ const LandingPage = () => {
         <motion.img 
           src={arrow} 
           alt="arrow" 
-          className="absolute top-[0%] left-[54.5%] w-[50px] z-30" 
+          className="absolute top-[0%] left-[50%] sm:left-[54.5%] w-[30px] sm:w-[40px] md:w-[50px] z-30" 
           style={{
             transform: `translate(-50%, ${middleArrowY}px) scale(${middleArrowScale})`,
             transition: 'transform 0.2s ease-out',
@@ -288,7 +283,7 @@ const LandingPage = () => {
       
       {/* What If Section */}
       <motion.div 
-        className='relative py-20 md:py-32 bg-white'
+        className='relative py-12 sm:py-20 md:py-32 bg-white'
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -298,7 +293,7 @@ const LandingPage = () => {
           <motion.img 
             src={alert} 
             alt="alert"
-            className='relative left-80 w-[118px]'
+            className='relative left-0 sm:left-80 w-[80px] sm:w-[118px] mx-auto sm:mx-0'
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -311,12 +306,12 @@ const LandingPage = () => {
           />
           <AnimatedText 
             text="But what if we could" 
-            className="text-4xl md:text-6xl lg:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent" 
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent" 
           />
           <AnimatedText 
             text="change this?" 
             delay={0.3}
-            className="text-5xl md:text-7xl lg:text-8xl font-metro-600 text-[#220239] leading-none mt-4" 
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] leading-none mt-2 sm:mt-4" 
           />
         </div>
       
@@ -330,13 +325,12 @@ const LandingPage = () => {
           <img 
             src={gradient} 
             alt="gradient"
-            className='relative top-[15%] left-0 z-0 w-[1000px] opacity-100'
+            className='relative top-[15%] left-0 z-0 w-[800px] sm:w-[1000px] opacity-100'
           />
         </motion.div>
         
         {/* Notification Cards Section */}
-        <div className="relative h-[1200px] md:h-[2000px] w-full overflow-hidden bg-white">
-          {/* Notification cards remain the same */}
+        <div className="relative h-[800px] sm:h-[1000px] md:h-[1200px] lg:h-[2000px] w-full overflow-hidden bg-white">
           <NotificationCard 
             src={not1} 
             initialX={-200} 
@@ -352,7 +346,7 @@ const LandingPage = () => {
             initialY={100} 
             rotate="8.51deg" 
             delay={0.2}
-            top="20%"
+            top="15%"
             right="0"
             className="z-10"
           />
@@ -362,8 +356,8 @@ const LandingPage = () => {
             initialY={100} 
             rotate="2.21deg" 
             delay={0.3}
-            top="23%"
-            left="35%"
+            top="18%"
+            left="20%"
             className="z-5"
           />
           <NotificationCard 
@@ -372,7 +366,7 @@ const LandingPage = () => {
             initialY={100} 
             rotate="0deg" 
             delay={0.4}
-            top="29%"
+            top="25%"
             right="10%"
             className="z-20"
           />
@@ -382,8 +376,8 @@ const LandingPage = () => {
             initialY={100} 
             rotate="-6deg" 
             delay={0.5}
-            top="40%"
-            left="25%"
+            top="35%"
+            left="15%"
             className="z-10"
           />
           
@@ -391,8 +385,8 @@ const LandingPage = () => {
           <motion.img 
             src={welcome} 
             alt="WELCOME" 
-            className="absolute w-[600px] md:w-[850px] z-5"
-            style={{ top: "41%", left: "25%", transform: "translateX(-50%)" }}
+            className="absolute w-[300px] sm:w-[400px] md:w-[600px] lg:w-[850px] z-5"
+            style={{ top: "35%", left: "25%", transform: "translateX(-50%)" }}
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -406,67 +400,67 @@ const LandingPage = () => {
 
           {/* Review Bubbles */}
           <motion.div 
-            className="absolute left-[30%] bottom-[40%] w-[260px] px-4 py-3 z-30 rounded-2xl border border-white/30 bg-white/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[10%] sm:left-[15%] md:left-[20%] lg:left-[30%] bottom-[30%] sm:bottom-[40%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.7 }}
           >
-            <div className="flex space-x-[2px] mb-2">
+            <div className="flex space-x-[2px] mb-1 sm:mb-2">
               {Array(5).fill(0).map((_, i) => (
-                <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                <svg key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
                   <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
                 </svg>
               ))}
             </div>
-            <div className="text-sm font-semibold text-[#220239] mb-1">Brilliant</div>
-            <div className="text-xs text-[#220239] mb-4">I love this app so much!!</div>
+            <div className="text-xs sm:text-sm font-semibold text-[#220239] mb-1">Brilliant</div>
+            <div className="text-xs text-[#220239] mb-2 sm:mb-4">I love this app so much!!</div>
             <div className="flex items-center space-x-2">
-              <img src={pfp} alt="Aananya J" className="w-6 h-6 rounded-full object-cover" />
+              <img src={pfp} alt="Aananya J" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover" />
               <span className="text-xs text-[#220239] font-medium">Aananya J</span>
             </div>
           </motion.div>
 
           <motion.div 
-            className="absolute left-[62%] bottom-[32%] w-[260px] px-4 py-3 z-30 rounded-2xl border border-white/30 bg-white/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[50%] sm:left-[55%] md:left-[60%] lg:left-[62%] bottom-[25%] sm:bottom-[32%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.8 }}
           >
-            <div className="flex space-x-[2px] mb-2">
+            <div className="flex space-x-[2px] mb-1 sm:mb-2">
               {Array(5).fill(0).map((_, i) => (
-                <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                <svg key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
                   <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
                 </svg>
               ))}
             </div>
-            <div className="text-sm font-semibold text-[#220239] mb-1">Brilliant</div>
-            <div className="text-xs text-[#220239] mb-4">I love this app so much!!</div>
+            <div className="text-xs sm:text-sm font-semibold text-[#220239] mb-1">Brilliant</div>
+            <div className="text-xs text-[#220239] mb-2 sm:mb-4">I love this app so much!!</div>
             <div className="flex items-center space-x-2">
-              <img src={pfp} alt="Aananya J" className="w-6 h-6 rounded-full object-cover" />
+              <img src={pfp} alt="Aananya J" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover" />
               <span className="text-xs text-[#220239] font-medium">Aananya J</span>
             </div>
           </motion.div>
 
           <motion.div 
-            className="absolute left-[22%] bottom-[15%] w-[260px] px-4 py-3 z-30 rounded-2xl border border-white/30 bg-white/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[5%] sm:left-[10%] md:left-[15%] lg:left-[22%] bottom-[10%] sm:bottom-[15%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.9 }}
           >
-            <div className="flex space-x-[2px] mb-2">
+            <div className="flex space-x-[2px] mb-1 sm:mb-2">
               {Array(5).fill(0).map((_, i) => (
-                <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                <svg key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
                   <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
                 </svg>
               ))}
             </div>
-            <div className="text-sm font-semibold text-[#220239] mb-1">Brilliant</div>
-            <div className="text-xs text-[#220239] mb-4">I love this app so much!!</div>
+            <div className="text-xs sm:text-sm font-semibold text-[#220239] mb-1">Brilliant</div>
+            <div className="text-xs text-[#220239] mb-2 sm:mb-4">I love this app so much!!</div>
             <div className="flex items-center space-x-2">
-              <img src={pfp} alt="Aananya J" className="w-6 h-6 rounded-full object-cover" />
+              <img src={pfp} alt="Aananya J" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover" />
               <span className="text-xs text-[#220239] font-medium">Aananya J</span>
             </div>
           </motion.div>
@@ -514,7 +508,7 @@ const LandingPage = () => {
 
       {/* Bringing Back Section */}
       <motion.div 
-        className='relative py-20 md:py-32 bg-white'
+        className='relative py-12 sm:py-20 md:py-32 bg-white'
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -523,16 +517,16 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText 
             text="Bringing Back" 
-            className="text-4xl md:text-6xl lg:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent" 
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent" 
           />
           <AnimatedText 
             text="Real-Time Connection" 
             delay={0.3}
-            className="text-5xl md:text-7xl lg:text-8xl font-metro-600 text-[#220239] leading-none mt-4" 
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] leading-none mt-2 sm:mt-4" 
           />
           <AnimatedText 
             text="Making Meaningful Friendships Starts Here!" 
-            className="text-m md:text-md lg:text-2xl font-metro-600 text-[#220239] leading-none mt-4" 
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] leading-none mt-2 sm:mt-4" 
           />
         </div>
       </motion.div>
@@ -548,7 +542,7 @@ const LandingPage = () => {
         <motion.img 
           src={mascot} 
           alt="mascot"
-          className='absolute w-[300px] z-10'
+          className='absolute w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] z-10'
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
@@ -557,6 +551,7 @@ const LandingPage = () => {
         <motion.img 
           src={person} 
           alt="people"
+          className="w-full"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -566,13 +561,13 @@ const LandingPage = () => {
 
       {/* YouTube Video Section */}
       <motion.div 
-        className="w-full flex flex-col items-center justify-center px-4 py-8 bg-white"
+        className="w-full flex flex-col items-center justify-center px-4 py-8 sm:py-12 bg-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="w-full mt-20 max-w-3xl aspect-video">
+        <div className="w-full mt-10 sm:mt-20 max-w-3xl aspect-video">
           <iframe
             className="w-full h-full rounded-lg shadow-lg"
             src="https://www.youtube.com/embed/Wo9qTKM_6oI"
@@ -584,7 +579,7 @@ const LandingPage = () => {
         </div>
 
         <motion.p 
-          className="text-center mt-8 text-xl text-[#220239] font-medium"
+          className="text-center mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-[#220239] font-medium"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
