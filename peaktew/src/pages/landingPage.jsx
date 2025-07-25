@@ -162,7 +162,7 @@ const LandingPage = () => {
   // Animation variants for dark mode transition
 
   return (
-    <div className="relative overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239]">
+    <div className="relative overflow-hidden transition-colors duration-500 bg-white">
       {/* Theme Toggle */}
 
       {/* Globe Section */}
@@ -206,8 +206,8 @@ const LandingPage = () => {
         <div className='absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10'>
           <AnimatedText 
             text="Take the fun" 
-            className="text-5xl md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 text-[#220239] dark:text-white text-center leading-none" 
-            style={{ color: isDarkMode ? '#f1f5f9' : '#220239' }}
+            className="text-5xl md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 text-[#220239] text-center leading-none" 
+            
           />
           <AnimatedText
             text="to the real World"
@@ -220,10 +220,10 @@ const LandingPage = () => {
             transition={{ delay: 1 }}
             className="mt-6"
           >
-            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] dark:text-white text-center" style={{ color: isDarkMode ? '#f1f5f9' : '#220239' }}>
+            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center" style={{ color: isDarkMode ? '#f1f5f9' : '#220239' }}>
               We connect you to what matters. Real people, real experiences,
             </p>
-            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] dark:text-white text-center" style={{ color: isDarkMode ? '#f1f5f9' : '#220239' }}>
+            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center" style={{ color: isDarkMode ? '#f1f5f9' : '#220239' }}>
               and the world just outside your door.
             </p>
           </motion.div>
@@ -232,14 +232,14 @@ const LandingPage = () => {
       <motion.img
         src={mascot}
         alt="mascot"
-        className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-0"
+        className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-3"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.8, duration: 0.8 }}
       />
 
       <motion.section
-        className="absolute top-[95vh] left-0 w-screen max-w-none pointer-events-none z-0 overflow-hidden"
+        className="absolute top-[95vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -258,9 +258,9 @@ const LandingPage = () => {
               x2="0%"
               y2="100%"
             >
-              <stop offset="0%" stopColor="#f0f0fd" />
+              <stop offset="0%" stopColor={isDarkMode ? "#220239" : "#f0f0fd"} />
               <stop offset="50%" stopColor="#cca9ed" />
-              <stop offset="100%" stopColor="#ffffff" />
+              <stop offset="100%" stopColor={isDarkMode ? "#220239" : "#ffffff"} />
             </linearGradient>
           </defs>
           <path
@@ -645,10 +645,9 @@ const LandingPage = () => {
           transition={{ delay: 0.2, duration: 0.8 }}
         />
         <motion.img
-        className="pb-30"
+        className="pb-30 w-full"
           src={person}
           alt="people"
-          className="w-full"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
