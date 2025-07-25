@@ -1,32 +1,32 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import person from '../assets/Landing_page/three_person.png';
-import { GlobeDemo } from '../components/globe/Globle';
-import Ellipse2 from '../assets/Landing_page/Ellipse 2.png';
-import Ellipse3 from '../assets/Landing_page/Ellipse 3.png';
-import not1 from '../assets/Landing_page/not1.png';
-import not2 from '../assets/Landing_page/not2.png';
-import not3 from '../assets/Landing_page/not3.png';
-import not4 from '../assets/Landing_page/not4.png';
-import not5 from '../assets/Landing_page/not5.png';
-import welcome from '../assets/Landing_page/welcome.png';
-import gradient from '../assets/Landing_page/gradient.png';
-import anime from '../assets/Landing_page/Homepage Animation.mp4'
-import mascot from '../assets/Landing_page/mascot.png'
-import gradient3 from '../assets/Landing_page/gradient 3.png'
-import lines from '../assets/Landing_page/lines.png'
-import arrow from '../assets/Landing_page/Arrow.png'
-import alert from '../assets/Landing_page/alert.png'
-import pfp from '../assets/Landing_page/pfp.png'
-import arch from '../assets/Landing_page/arch.png'
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import person from "../assets/Landing_page/three_person.webp";
+import { GlobeDemo } from "../components/globe/Globle";
+import Ellipse2 from "../assets/Landing_page/Ellipse 2.webp";
+import Ellipse3 from "../assets/Landing_page/Ellipse 3.webp";
+import not1 from "../assets/Landing_page/not1.webp";
+import not2 from "../assets/Landing_page/not2.webp";
+import not3 from "../assets/Landing_page/not3.webp";
+import not4 from "../assets/Landing_page/not4.webp";
+import not5 from "../assets/Landing_page/not5.webp";
+import welcome from "../assets/Landing_page/welcome.webp";
+import gradient from "../assets/Landing_page/gradient.webp";
+import anime from "../assets/Landing_page/Homepage Animation.mp4";
+import mascot from "../assets/Landing_page/mascot.webp";
+import gradient3 from "../assets/Landing_page/gradient-3.webp";
+import lines from "../assets/Landing_page/lines.webp";
+import arrow from "../assets/Landing_page/Arrow.webp";
+import alert from "../assets/Landing_page/alert.webp";
+import pfp from "../assets/Landing_page/pfp.webp";
+import arch from "../assets/Landing_page/arch.webp";
 
 const AnimatedText = ({ text, delay = 0, className }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.5,
-    triggerOnce: true
+    triggerOnce: true,
   });
 
   useEffect(() => {
@@ -41,8 +41,8 @@ const AnimatedText = ({ text, delay = 0, className }) => {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.03, delayChildren: 0.04 * i + delay }
-    })
+      transition: { staggerChildren: 0.03, delayChildren: 0.04 * i + delay },
+    }),
   };
 
   const child = {
@@ -52,8 +52,8 @@ const AnimatedText = ({ text, delay = 0, className }) => {
       transition: {
         type: "spring",
         damping: 12,
-        stiffness: 100
-      }
+        stiffness: 100,
+      },
     },
     hidden: {
       opacity: 0,
@@ -61,9 +61,9 @@ const AnimatedText = ({ text, delay = 0, className }) => {
       transition: {
         type: "spring",
         damping: 12,
-        stiffness: 100
-      }
-    }
+        stiffness: 100,
+      },
+    },
   };
 
   return (
@@ -84,7 +84,17 @@ const AnimatedText = ({ text, delay = 0, className }) => {
   );
 };
 
-const NotificationCard = ({ src, initialX, initialY, rotate, delay, top, left, right, className }) => {
+const NotificationCard = ({
+  src,
+  initialX,
+  initialY,
+  rotate,
+  delay,
+  top,
+  left,
+  right,
+  className,
+}) => {
   return (
     <motion.img
       src={src}
@@ -98,7 +108,7 @@ const NotificationCard = ({ src, initialX, initialY, rotate, delay, top, left, r
         type: "spring",
         stiffness: 50,
         damping: 15,
-        delay
+        delay,
       }}
     />
   );
@@ -111,39 +121,50 @@ const LandingPage = () => {
   useEffect(() => {
     const onScroll = () => {
       setScrollY(window.scrollY);
-      const section = document.querySelector('section');
+      const section = document.querySelector("section");
       setMaxScroll(section?.offsetHeight - window.innerHeight || 0);
     };
-    
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   // Calculate scroll progress (0 to 1)
   const scrollProgress = Math.min(scrollY / maxScroll, 1);
 
   // Left Arrow (stops at left text position)
-  const leftArrowMaxY = 150;
+  const leftArrowMaxY = 100;
   const leftArrowY = Math.min(scrollY * 0.5, leftArrowMaxY);
   const leftArrowScale = 0.5 + Math.min(scrollY / 1000, 0.5);
-  const leftArrowOpacity = scrollY < leftArrowMaxY * 2 ? 1 : 1 - (scrollY - leftArrowMaxY * 2) / 500;
+  const leftArrowOpacity =
+    scrollY < leftArrowMaxY * 2 ? 1 : 1 - (scrollY - leftArrowMaxY * 2) / 500;
 
   // Right Arrow (stops at right text position)
-  const rightArrowMaxY = 300;
+  const rightArrowMaxY = 250;
   const rightArrowY = Math.min(scrollY * 0.5, rightArrowMaxY);
   const rightArrowScale = 0.5 + Math.min(scrollY / 1000, 1.75);
-  const rightArrowOpacity = scrollY < rightArrowMaxY * 1.5 ? 1 : 1 - (scrollY - rightArrowMaxY * 1.5) / 500;
+  const rightArrowOpacity =
+    scrollY < rightArrowMaxY * 1.5
+      ? 1
+      : 1 - (scrollY - rightArrowMaxY * 1.5) / 500;
 
   // Middle Arrow (goes all the way down)
   const middleArrowMaxY = 3000;
   const middleArrowY = Math.min(scrollY * 0.5, middleArrowMaxY);
   const middleArrowScale = 0.5 + Math.min(scrollY / 800, 2.5);
-  const middleArrowOpacity = scrollY < middleArrowMaxY * 1.2 ? 1 : 1 - (scrollY - middleArrowMaxY * 1.2) / 500;
+  const middleArrowOpacity =
+    scrollY < middleArrowMaxY * 1.2
+      ? 1
+      : 1 - (scrollY - middleArrowMaxY * 1.2) / 500;
+
+  // Animation variants for dark mode transition
 
   return (
     <div className="relative overflow-hidden transition-colors duration-500">
+      {/* Theme Toggle */}
+
       {/* Globe Section */}
-      <motion.div 
+      <motion.div
         className="mx-auto px-4 w-full h-screen overflow-hidden relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -152,15 +173,15 @@ const LandingPage = () => {
         <section style={{ position: "relative", zIndex: -1 }}>
           <GlobeDemo />
         </section>
-        
+
         {/* Hero Text */}
         <div className='absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4'>
           <AnimatedText 
             text="Take the fun" 
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[96px] font-metro-600 text-[#220239] text-center leading-none" 
           />
-          <AnimatedText 
-            text="to the real World" 
+          <AnimatedText
+            text="to the real World"
             delay={0.3}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br from-[#010101] to-[#B338DE] bg-clip-text text-transparent" 
           />
@@ -178,26 +199,52 @@ const LandingPage = () => {
             </p>
           </motion.div>
         </div>
-      </motion.div>
-
-      <motion.img 
-        src={mascot} 
+        </motion.div>
+      <motion.img
+        src={mascot}
         alt="mascot"
         className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-0"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.8, duration: 0.8 }}
       />
-      
-      <motion.img 
-        src={arch} 
-        alt="arch"
-        className="absolute top-[65vh] left-0 w-full max-w-[1800px] pointer-events-none z-1"
+
+      <motion.section
+        className="absolute top-[95vh] left-0 w-screen max-w-none pointer-events-none z-0 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
-      />
-
+      >
+        <svg
+          className="w-[190vw] -ml-[15vw] h-[250px] sm:h-[300px] md:h-[400px]"
+          viewBox="0 0 2000 250"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient
+              id="ellipseGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor="#f0f0fd" />
+              <stop offset="50%" stopColor="#cca9ed" />
+              <stop offset="100%" stopColor="#ffffff" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,200
+         A720,200 0 0,1 1440,200
+         L1440,200
+         L0,200
+         Z"
+            fill="url(#ellipseGradient)"
+          />
+        </svg>
+      </motion.section>
+      <div className="h-[20vh]"></div>
       {/* Lines and Arrows Section */}
       <motion.section 
         className="relative w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
@@ -206,9 +253,24 @@ const LandingPage = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <img src={gradient3} alt="glow" className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] pointer-events-none z-3" />
-        <img src={lines} alt="lines" className="absolute inset-0 w-full h-full object-cover pointer-events-none z-10" />
-        
+
+        <img
+          src={gradient3}
+          alt="glow"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] pointer-events-none z-3"
+        />
+        <img
+          src={lines}
+          alt="lines"
+          className="absolute -top-30 left-1/2 -translate-x-1/2 w-full object-cover pointer-events-none z-10 mask-linear-fade"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
+          }}
+        />
+
         {/* Text - Left */}
         <motion.div 
           className="absolute top-[15%] left-[5%] sm:left-[10%] z-20 font-metro-600 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-xs"
@@ -217,9 +279,12 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <p>It's easy to feel <span className="text-[#6D28B2]">disconnected</span> in today's busy world</p>
+          <p className="w-[400px]">
+            It's easy to feel{" "}
+            <span className="text-[#6D28B2]">disconnected</span> in today's busy world
+          </p>
         </motion.div>
-        
+
         {/* Text - Right */}
         <motion.div 
           className="absolute bottom-[50%] right-[5%] sm:right-[10%] font-metro-600 z-20 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-sm text-right"
@@ -229,12 +294,14 @@ const LandingPage = () => {
           transition={{ delay: 0.4, duration: 0.6 }}
         >
           <p>
-            Especially when<br />
-            phones take priority<br />
+            Especially when
+            <br />
+            phones take priority
+            <br />
             over <span className="text-[#6D28B2]">real moments</span>
           </p>
         </motion.div>
-        
+
         {/* Left Arrow */}
         <motion.img 
           src={arrow} 
@@ -242,14 +309,14 @@ const LandingPage = () => {
           className="absolute top-[0%] left-[20%] sm:left-[24.8%] w-[30px] sm:w-[40px] md:w-[50px] z-20" 
           style={{
             transform: `translateY(${leftArrowY}px) scale(${leftArrowScale})`,
-            transition: 'transform 0.2s ease-out',
-            opacity: leftArrowOpacity
+            transition: "transform 0.2s ease-out",
+            opacity: leftArrowOpacity,
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         />
-        
+
         {/* Right Arrow */}
         <motion.img 
           src={arrow} 
@@ -257,14 +324,14 @@ const LandingPage = () => {
           className="absolute top-[0%] right-[10%] sm:right-[16%] w-[30px] sm:w-[40px] md:w-[50px] z-20" 
           style={{
             transform: `translateY(${rightArrowY}px) scale(${rightArrowScale})`,
-            transition: 'transform 0.2s ease-out',
-            opacity: rightArrowOpacity
+            transition: "transform 0.2s ease-out",
+            opacity: rightArrowOpacity,
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         />
-        
+
         {/* Middle Arrow */}
         <motion.img 
           src={arrow} 
@@ -272,15 +339,15 @@ const LandingPage = () => {
           className="absolute top-[0%] left-[50%] sm:left-[54.5%] w-[30px] sm:w-[40px] md:w-[50px] z-30" 
           style={{
             transform: `translate(-50%, ${middleArrowY}px) scale(${middleArrowScale})`,
-            transition: 'transform 0.2s ease-out',
-            opacity: middleArrowOpacity
+            transition: "transform 0.2s ease-out",
+            opacity: middleArrowOpacity,
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         />
       </motion.section>
-      
+
       {/* What If Section */}
       <motion.div 
         className='relative py-12 sm:py-20 md:py-32 bg-white'
@@ -290,45 +357,45 @@ const LandingPage = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-4 text-center justify-items-center">
-          <motion.img 
-            src={alert} 
+          <motion.img
+            src={alert}
             alt="alert"
             className='relative left-0 sm:left-80 w-[80px] sm:w-[118px] mx-auto sm:mx-0'
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
-            transition={{ 
+            transition={{
               type: "spring",
               stiffness: 500,
               damping: 15,
-              delay: 0.2
+              delay: 0.2,
             }}
           />
           <AnimatedText 
             text="But what if we could" 
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent" 
           />
-          <AnimatedText 
-            text="change this?" 
+          <AnimatedText
+            text="change this?"
             delay={0.3}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] leading-none mt-2 sm:mt-4" 
           />
         </div>
-      
-        <motion.div 
-          className='absolute top-[10%] left-0 z-3'
+
+        <motion.div
+          className="absolute top-[10%] left-0 z-3"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 0.5 }}
         >
-          <img 
-            src={gradient} 
+          <img
+            src={gradient}
             alt="gradient"
             className='relative top-[15%] left-0 z-0 w-[800px] sm:w-[1000px] opacity-100'
           />
         </motion.div>
-        
+
         {/* Notification Cards Section */}
         <div className="relative h-[800px] sm:h-[1000px] md:h-[1200px] lg:h-[2000px] w-full overflow-hidden bg-white">
           <NotificationCard 
@@ -340,47 +407,47 @@ const LandingPage = () => {
             top="5%"
             left="0"
           />
-          <NotificationCard 
-            src={not2} 
-            initialX={200} 
-            initialY={100} 
-            rotate="8.51deg" 
+          <NotificationCard
+            src={not2}
+            initialX={200}
+            initialY={100}
+            rotate="8.51deg"
             delay={0.2}
             top="15%"
             right="0"
             className="z-10"
           />
-          <NotificationCard 
-            src={not3} 
-            initialX={0} 
-            initialY={100} 
-            rotate="2.21deg" 
+          <NotificationCard
+            src={not3}
+            initialX={0}
+            initialY={100}
+            rotate="2.21deg"
             delay={0.3}
             top="18%"
             left="20%"
             className="z-5"
           />
-          <NotificationCard 
-            src={not4} 
-            initialX={100} 
-            initialY={100} 
-            rotate="0deg" 
+          <NotificationCard
+            src={not4}
+            initialX={100}
+            initialY={100}
+            rotate="0deg"
             delay={0.4}
             top="25%"
             right="10%"
             className="z-20"
           />
-          <NotificationCard 
+          <NotificationCard
             src={not5}
-            initialX={-100} 
-            initialY={100} 
-            rotate="-6deg" 
+            initialX={-100}
+            initialY={100}
+            rotate="-6deg"
             delay={0.5}
             top="35%"
             left="15%"
             className="z-10"
           />
-          
+
           {/* Welcome Message */}
           <motion.img 
             src={welcome} 
@@ -394,7 +461,7 @@ const LandingPage = () => {
               delay: 0.6,
               type: "spring",
               stiffness: 60,
-              damping: 15
+              damping: 15,
             }}
           />
 
@@ -468,8 +535,8 @@ const LandingPage = () => {
       </motion.div>
 
       {/* Video Section */}
-      <motion.div 
-        className='relative h-screen w-full overflow-hidden'
+      <motion.div
+        className="relative h-screen w-full overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -486,21 +553,21 @@ const LandingPage = () => {
             <source src={anime} type="video/mp4" />
           </video>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           className="absolute bottom-10 left-0 right-0 flex justify-center z-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          <motion.div 
+          <motion.div
             className="h-1 w-32 bg-white rounded-full"
             animate={{ scaleX: [1, 1.5, 1] }}
-            transition={{ 
+            transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
         </motion.div>
@@ -519,8 +586,8 @@ const LandingPage = () => {
             text="Bringing Back" 
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent" 
           />
-          <AnimatedText 
-            text="Real-Time Connection" 
+          <AnimatedText
+            text="Real-Time Connection"
             delay={0.3}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] leading-none mt-2 sm:mt-4" 
           />
@@ -539,8 +606,8 @@ const LandingPage = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <motion.img 
-          src={mascot} 
+        <motion.img
+          src={mascot}
           alt="mascot"
           className='absolute w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] z-10'
           initial={{ x: -100, opacity: 0 }}
@@ -548,8 +615,9 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.8 }}
         />
-        <motion.img 
-          src={person} 
+        <motion.img
+        className="pb-30"
+          src={person}
           alt="people"
           className="w-full"
           initial={{ opacity: 0 }}
@@ -560,8 +628,8 @@ const LandingPage = () => {
       </motion.div>
 
       {/* YouTube Video Section */}
-      <motion.div 
-        className="w-full flex flex-col items-center justify-center px-4 py-8 sm:py-12 bg-white"
+      <motion.div
+        className="w-full flex flex-col items-center justify-center px-4 py-8 sm:py-12 bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#ffffff]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -578,6 +646,7 @@ const LandingPage = () => {
           ></iframe>
         </div>
 
+
         <motion.p 
           className="text-center mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-[#220239] font-medium"
           initial={{ opacity: 0, y: 20 }}
@@ -585,7 +654,8 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          Want to know more?<br />
+          Want to know more?
+          <br />
           <span className="font-metro-600">
             Watch this video to learn more about us from the CEO!
           </span>

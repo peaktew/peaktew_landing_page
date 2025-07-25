@@ -7,7 +7,7 @@ export function FaqItem({ question, answer }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       className="w-full rounded-xl shadow-sm transition"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -28,10 +28,10 @@ export function FaqItem({ question, answer }) {
       </motion.div>
 
       {open && (
-        <motion.div 
+        <motion.div
           className="bg-white px-5 pb-5 pt-2 text-sm text-gray-700 rounded-b-xl"
           initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
+          animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.2 }}
         >
@@ -60,8 +60,8 @@ const CommunityPage = () => {
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
         />
-        
-        <motion.div 
+
+        <motion.div
           className="w-full max-w-6xl"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,8 +71,8 @@ const CommunityPage = () => {
             Respect, Safety, Connection
           </h1>
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className="w-full max-w-[95%] flex flex-col gap-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -85,7 +85,10 @@ const CommunityPage = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <p>
-              Welcome to PeakTew! Our mission is to create a safe, inclusive, and engaging space where people can build real-life friendships. To ensure a positive experience for everyone, we ask all users to follow these community guidelines.
+              Welcome to PeakTew! Our mission is to create a safe, inclusive,
+              and engaging space where people can build real-life friendships.
+              To ensure a positive experience for everyone, we ask all users to
+              follow these community guidelines.
             </p>
           </motion.div>
 

@@ -29,6 +29,7 @@ const Navbar = () => {
               <span className="cursor-pointer flex items-center gap-1">
                 About <img src={arrow} className="h-[7px] w-[12px]" alt="Dropdown arrow" />
               </span>
+
               <div className="absolute top-full left-0 mt-2 hidden group-hover:flex flex-col bg-white shadow-lg rounded-md w-40 z-50">
                 {['About Us', 'Our Team', 'Our Story'].map((label, i) => (
                   <Link
