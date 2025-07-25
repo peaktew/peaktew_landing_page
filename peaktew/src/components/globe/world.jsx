@@ -31,7 +31,7 @@ groupRef.current.rotation.x = 0.18;         // Optional tilt
     
     const gradientMaterial = new THREE.ShaderMaterial({
       uniforms: {
-        topColor: { value: new THREE.Color('#d4aae3') },  // Soft pink
+        topColor: { value: new THREE.Color('#f5e6fa') },  // Lighter soft pink
         bottomColor: { value: new THREE.Color(2, 2, 2) }, // SUPER WHITE (RGB > 1 for HDR effect)
         whiteBoost: { value: 0.7 } // Intensity multiplier
       },
@@ -83,7 +83,7 @@ export function WebGLRendererConfig() {
   useEffect(() => {
     gl.setPixelRatio(window.devicePixelRatio);
     gl.setSize(size.width, size.height);
-    gl.setClearColor(0xffffff, 1); // solid black background
+    gl.setClearColor(0x000000, 0); // Transparent background
   }, []);
   return null;
 }

@@ -26,6 +26,7 @@ export function GlobeDemo() {
         width: 'calc(100vw - 32px)',
         aspectRatio: '2 / 1.6',
         borderRadius: '30px',
+        minHeight: '400px',
       }}
     >
       <World globeConfig={globeConfig} />

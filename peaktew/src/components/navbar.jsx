@@ -7,13 +7,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full z-50 bg-white">
+    <header className="w-full z-50 bg-white border-b border-gray-200 transition-colors duration-300">
       <div className="px-4 sm:px-6 md:px-10 lg:px-24 xl:px-36 2xl:px-48">
         <nav className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <Link to="/" className="text-[#220239] font-bold text-lg sm:text-xl flex items-center">
-            <img src={logo} className="h-8 w-8 sm:h-[30px] sm:w-[30px] mr-2" alt="PeakTew Logo" />
-            <span>PeakTew</span>
+          <Link to="/" className="text-[#220239] font-bold text-lg sm:text-xl no-underline flex items-center transition-colors duration-300">
+             <span role="img" aria-label="logo" className="text-3xl mr-2"><img src={logo} className='h-8 w-8 sm:h-[30px] sm:w-[30px] mr-2' alt="PeakTew Logo" /></span> <span>PeakTew</span>
           </Link>
 
           {/* Mobile menu button */}
@@ -30,7 +29,7 @@ const Navbar = () => {
                 About <img src={arrow} className="h-[7px] w-[12px]" alt="Dropdown arrow" />
               </span>
 
-              <div className="absolute top-full left-0 mt-2 hidden group-hover:flex flex-col bg-white shadow-lg rounded-md w-40 z-50">
+              <div className="absolute top-full left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col bg-white shadow-lg rounded-md overflow-hidden w-40 z-50 hover:opacity-100 hover:visible border border-gray-200">
                 {['About Us', 'Our Team', 'Our Story'].map((label, i) => (
                   <Link
                     key={label}
@@ -42,10 +41,21 @@ const Navbar = () => {
                 ))}
               </div>
             </div>
-            <Link to="/how-it-works" className="hover:text-purple-700">How it works</Link>
-            <Link to="/community-guidelines" className="hover:text-purple-700">Community Guidelines</Link>
-            <Link to="/contact-us" className="hover:text-purple-700">Contact Us</Link>
-            <Link to="/download" className="bg-[#220239] text-white px-4 py-2 rounded-full hover:bg-purple-800">Download App</Link>
+            {/* Links */}
+
+            <Link to="/how-it-works" className="hover:text-purple-700 transition-colors duration-300">
+              How It Works
+            </Link>
+            <Link to="/community-guidelines" className="hover:text-purple-700 transition-colors duration-300">
+              Community Guidelines
+            </Link>
+            <Link to="/contact-us" className="hover:text-purple-700 transition-colors duration-300">
+              Contact Us
+            </Link>
+            
+            <Link to="/download" className="bg-[#220239] text-white px-4 py-2 rounded-full hover:bg-purple-800 transition-colors duration-300">
+              Download App
+            </Link>
           </div>
         </nav>
 
