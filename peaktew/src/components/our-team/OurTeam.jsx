@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const teamMembers = [
   {
@@ -138,28 +138,32 @@ const teamMembers = [
 ];
 
 const OurTeam = () => {
-  const [page, setPage] = useState(0)
-  const membersPerPage = 6
-  const maxPage = Math.floor(teamMembers.length / membersPerPage)
+  const [page, setPage] = useState(0);
+  const membersPerPage = 6;
+  const maxPage = Math.floor(teamMembers.length / membersPerPage);
 
-  const handleNext = () => setPage((prev) => (prev < maxPage ? prev + 1 : 0))
-  const handlePrev = () => setPage((prev) => (prev > 0 ? prev - 1 : maxPage))
+  const handleNext = () => setPage((prev) => (prev < maxPage ? prev + 1 : 0));
+  const handlePrev = () => setPage((prev) => (prev > 0 ? prev - 1 : maxPage));
 
   const visibleMembers = teamMembers.slice(
     page * membersPerPage,
     (page + 1) * membersPerPage
-  )
+  );
 
   return (
     <div className="px-6 sm:px-12 py-28 bg-white relative overflow-hidden">
       {/* Section Header */}
       <div className="max-w-6xl mx-auto mb-16">
-        <h2 className="text-6xl font-extrabold text-[#6D28B2] mb-6">Our Team</h2>
+        <h2 className="text-6xl font-extrabold text-[#6D28B2] mb-6">
+          Our Team
+        </h2>
         <div className="max-w-xl">
           <p className="text-xl font-semibold mb-3 text-gray-800">
             Meet the members who make it possible
           </p>
-          <p className="text-gray-500">Look through the members of each department</p>
+          <p className="text-gray-500">
+            Look through the members of each department
+          </p>
         </div>
       </div>
 
@@ -196,17 +200,18 @@ const OurTeam = () => {
             className="border border-gray-200 rounded-2xl p-6 bg-white shadow-md hover:shadow-lg transition duration-200"
           >
             <img
-              src={member.image}
+              src={`/src/assets/team_member/${member.image}`}
               alt={member.name}
-              className="w-full h-52 object-cover rounded-lg mb-4 bg-gray-100"
+              className="w-full h-52 object-cover object-center rounded-lg mb-4 bg-gray-100 transform hover:scale-95 transition-transform duration-200"
             />
-            <h3 className="text-lg font-bold mb-1">{member.name}</h3>
-            <p className="text-sm text-gray-600">{member.title}</p>
+            <h2 className="text-lg font-bold mb-1">{member.name}</h2>
+            <h3 className="text-m font-bold mb-1">{member.title}</h3>
+            <p className="text-sm text-gray-600">{member.description}</p>
           </motion.div>
         ))}
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default OurTeam
+export default OurTeam;

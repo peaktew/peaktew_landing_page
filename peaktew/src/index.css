@@ -20,6 +20,144 @@
   --font-metro-300: Metropolis-300, "san-serif";
 }
 
+/* Dark mode utility classes */
+.dark {
+  color-scheme: dark;
+}
+
+/* Comprehensive dark mode styles */
+.dark .bg-white {
+  background-color: #220239 !important;
+}
+
+.dark .text-black {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-\[#220239\] {
+  color: #f1f5f9 !important;
+}
+
+.dark .border-gray-200 {
+  border-color: #334155 !important;
+}
+
+.dark .border-gray-300 {
+  border-color: #475569 !important;
+}
+
+.dark .hover\:bg-gray-100:hover {
+  background-color: #334155 !important;
+}
+
+.dark .hover\:text-purple-700:hover {
+  color: #c084fc !important;
+}
+
+.dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-gray-600 {
+  color: #cbd5e1 !important;
+}
+
+.dark .bg-\[#220239\] {
+  background-color: #7c3aed !important;
+}
+
+.dark .hover\:bg-purple-800:hover {
+  background-color: #6d28d9 !important;
+}
+
+/* Additional dark mode styles for better coverage */
+.dark header {
+  background-color: #220239 !important;
+  border-bottom-color: #334155 !important;
+}
+
+.dark footer {
+  background-color: #220239 !important;
+}
+
+.dark hr {
+  border-color: #475569 !important;
+}
+
+/* Force dark mode text colors for all elements */
+.dark * {
+  color: inherit;
+}
+
+.dark .text-\[#220239\],
+.dark [class*="text-[#220239]"] {
+  color: #f1f5f9 !important;
+}
+
+.dark .dark\:text-white {
+  color: #f1f5f9 !important;
+}
+
+.dark .bg-slate-900 {
+  background-color: #220239 !important;
+}
+
+.dark .bg-slate-800 {
+  background-color: #1a1a2e !important;
+}
+
+.dark .bg-slate-700 {
+  background-color: #16213e !important;
+}
+
+.dark .border-slate-600 {
+  border-color: #475569 !important;
+}
+
+.dark .border-slate-700 {
+  border-color: #334155 !important;
+}
+
+.dark .hover\:bg-slate-700:hover {
+  background-color: #16213e !important;
+}
+
+.dark .hover\:text-purple-300:hover {
+  color: #c084fc !important;
+}
+
+.dark .text-slate-100 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+.dark .text-slate-500 {
+  color: #64748b !important;
+}
+
+.dark .text-slate-600 {
+  color: #475569 !important;
+}
+
+.dark .text-slate-700 {
+  color: #334155 !important;
+}
+
+.dark .text-slate-800 {
+  color: #1e293b !important;
+}
+
+.dark .text-slate-900 {
+  color: #0f172a !important;
+}
+
 @keyframes fadeIn {
     from {
       opacity: 0;

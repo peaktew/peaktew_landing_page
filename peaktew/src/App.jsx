@@ -6,6 +6,7 @@ import TeamPage from "./pages/teamPage"
 import FeaturesPage from "./pages/howitworksPage"
 import DownloadPage from "./pages/downloadPage"
 import ContactPage from "./pages/contactPage"
+import AccountDeletionPage from "./pages/accountDeletionPage"
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
 import StoryPage from "./pages/storypage"
@@ -14,18 +15,21 @@ import WebppPage from './pages/webppPage'
 import AppppPage from "./pages/appppPage"
 import ApptcPage from "./pages/apptcPages"
 import CommunityPage from "./pages/communityPage"
+import { DarkModeProvider } from "./components/DarkModeContext"
 
 function App() {
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />{/* pt-20 gives space for fixed navbar */}
+    <DarkModeProvider>
+      <div className="flex flex-col min-h-screen bg-white transition-colors duration-300">
+        <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/download" element={<DownloadPage />} />
           <Route path="/how-it-works" element={<FeaturesPage />} />
           <Route path="/contact-us" element={<ContactPage />} />
+          <Route path="/account-repression" element={<AccountDeletionPage />} />
           <Route path="/our-team" element={<TeamPage />} />
           <Route path="/our-story" element={<StoryPage />} />
           <Route path="/web-terms-conditions" element={<WebtcPage />} />
@@ -34,9 +38,9 @@ function App() {
           <Route path="/app-privacy-policy" element={<AppppPage />} />
           <Route path="/community-guidelines" element={<CommunityPage />} />
         </Routes>
-      <Footer />
-    </div>
-   
+        <Footer />
+      </div>
+    </DarkModeProvider>
   )
 }
 
