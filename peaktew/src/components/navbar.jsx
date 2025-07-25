@@ -34,7 +34,7 @@ const Navbar = () => {
                   <Link
                     key={label}
                     to={`/${label.toLowerCase().replace(/\s/g, '-')}`}
-                    className="px-4 py-2 hover:bg-gray-100 transition"
+                    className={`px-4 py-2 hover:bg-gray-100 transition-all duration-300`}
                   >
                     {label}
                   </Link>

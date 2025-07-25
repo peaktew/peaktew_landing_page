@@ -1,146 +1,140 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-// Fake members (extended)
 const teamMembers = [
   {
     name: "Lucas",
-    title: "Chief Executive Officer",
-    description: "The visionary behind Peaktew.",
-    image: "Lucas.png",
-  },
-  {
-    name: "Andrea",
-    title: "Chief Financial Officer",
-    description: "The financial powerhouse behind Peaktew.",
-    image: "Andrea.jpg",
-  },
-  {
-    name: "Jack",
-    title: "Chief Design Officer",
-    description: "The creative visionary behind Peaktew.",
-    image: "Jack.jpg",
+    title: "Chief Executive Officer (CEO)",
+    description: "Steering the company’s vision, growth, and strategic direction.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Mak",
-    title: "General Counsel",
-    description: "",
-    image: "Mak.jpeg",
+    title: "General Counsel (GC)",
+    description: "Providing legal expertise and ensuring compliance across all business activities.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Vivian",
-    title: "Talent Acquisition",
-    description: "",
-    image: "Vivian.jpg",
+    title: "Talent Acquisition Specialist",
+    description: "Finding and attracting top talent to grow PeakTew’s diverse team.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Aljun",
-    title: "Talent Acquisition",
-    description: "",
-    image: "Aljun.jpg",
+    title: "Talent Acquisition Specialist",
+    description: "Driving recruitment strategies to secure high-performing professionals.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
-    name: "Stefanniya",
-    title: "Talent Acquisition",
-    description: "",
-    image: "Stefaniya.jpg",
+    name: "Stefaniya",
+    title: "Talent Acquisition Specialist",
+    description: "Identifying key talent and nurturing long-term hiring pipelines.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
-    name: "Sahnnon",
-    title: "Talent Acquisition",
-    description: "",
-    image: "Shannon.jpeg",
+    name: "Shannon",
+    title: "Talent Acquisition Specialist",
+    description: "Ensuring effective hiring processes and cultural alignment.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
+  },
+  
+  {
+    name: "Andrea",
+    title: "Chief Financial Officer (CFO)",
+    description: "Overseeing financial strategy, planning, and long-term sustainability.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
+  },
+  {
+    name: "Jack",
+    title: "Chief Design Officer (CDO)",
+    description: "Leading the creative direction and brand aesthetics of PeakTew.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Hamida",
     title: "Senior UI Designer",
-    description: "",
-    image: "Hamida.png",
+    description: "Crafting visually engaging and intuitive user interfaces.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Yuting",
     title: "UI Designer",
-    description: "",
-    image: "Yuting.jpg",
+    description: "Designing clean, accessible, and functional interfaces for users.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Siluni",
     title: "UX Designer",
-    description: "",
-    image: "Siluni.jpeg",
+    description: "Improving user journeys and aligning design with user needs.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Erin",
     title: "Brand Designer",
-    description: "",
-    image: "Erin.jpeg",
+    description: "Maintaining brand consistency and crafting visual identity assets.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Krapanshu",
-    title: "Front End Manager Android",
-    description: "",
-    image: "Krapanshu.jpeg",
+    title: "Front-End Manager Android",
+    description: "Managing and guiding Android development teams with technical excellence.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Simon",
-    title: "Front End Developer Android",
-    description: "",
-    image: "Simon.jpeg",
+    title: "Front-End Developer",
+    description: "Developing responsive and interactive user-facing features.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Brice",
-    title: "Front End Developer Android",
-    description: "",
-    image: "Brice.jpeg",
+    title: "Front-End Developer",
+    description: "Transforming design mockups into high-performance code.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Chukwudi",
-    title: "Front End Developer Android",
-    description: "",
-    image: "Chukwudi.jpeg",
+    title: "Front-End Developer",
+    description: "Delivering smooth, scalable interfaces for modern web platforms.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Chima",
-    title: "Front End Manager iOS",
-    description: "",
-    image: "Chima.jpeg",
+    title: "Front-End Developer",
+    description: "Writing clean, maintainable code for engaging front-end experiences.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Caleb",
-    title: "Front End Developer iOS",
-    description: "",
-    image: "Caleb.jpeg",
+    title: "Front-End Developer",
+    description: "Implementing cutting-edge features for web and mobile apps.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Andi",
-    title: "Front End Developer iOS",
-    description: "",
-    image: "Andi.jpeg",
-  },
-  {
-    name: "Emmanuel",
-    title: "Back End Manager",
-    description: "",
-    image: "Emmrys.jpg",
-  },
-  {
-    name: "Chris",
-    title: "Senior Back End Developer 1",
-    description: "",
-    image: "Chris.jpeg",
+    title: "Front-End Developer",
+    description: "Building elegant and functional UI components.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Andy",
-    title: "Senior Back End Developer 1",
-    description: "",
-    image: "Andy.jpeg",
+    title: "Senior Back-End Developer",
+    description: "Designing scalable backend architecture and APIs.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
+  },
+  {
+    name: "Chris",
+    title: "Senior Back-End Developer",
+    description: "Ensuring robust performance and secure server-side operations.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
   },
   {
     name: "Deny",
-    title: "Back End Developer",
-    description: "",
-    image: "Deny.jpeg",
-  },
+    title: "Back-End Developer",
+    description: "Building APIs and backend logic to power the platform.",
+    image: "https://study.uq.edu.au/sites/default/files/styles/hero_banner_medium/public/2020-05/Architecture-and-planning-hero_1.jpg?itok=Ye_iltKo"
+  }
 ];
 
 const OurTeam = () => {

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { motion } from 'framer-motion';
 
 const WebppPage = () => {
   // Animation variants
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
