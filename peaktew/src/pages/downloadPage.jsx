@@ -105,7 +105,7 @@ const DownloadPage = () => {
 
   return (
     <>
-      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden">
+      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden mb-30">
         {/* Top Gradient */}
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/90 via-white/30 to-transparent z-20 pointer-events-none"></div>
 
@@ -121,6 +121,7 @@ const DownloadPage = () => {
           initial="initial"
           animate="animate"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
         
         {/* Contact Card with glassmorphism */}
         <motion.div
@@ -134,16 +135,16 @@ const DownloadPage = () => {
         >
           {/* Text */}
           <motion.div 
-            className="flex-1 text-left justify-items-center"
+            className="flex-1 text-left justify-items-left"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.h2 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-metro-600 text-[#6D28B2] mb-0"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-metro-600 text-[#6D28B2] mb-0 text-left"
               variants={itemVariants}
             >
-              Download Now
+              Where Social <br/> Meets Real Life
             </motion.h2>
           </motion.div>
           
@@ -171,7 +172,8 @@ const DownloadPage = () => {
                 className='flex flex-col sm:flex-row mt-4 sm:mt-6 justify-center gap-4 sm:gap-6'
                 variants={containerVariants}
               >
-                <motion.button 
+                <h1 className='text-[#6D28B2] text-7xl'>Coming Soon...</h1>
+                {/* <motion.button 
                   className='h-auto w-full sm:w-[300px] md:w-[350px] lg:w-[405px]' 
                   whileHover={buttonHover}
                   whileTap={buttonTap}
@@ -198,7 +200,7 @@ const DownloadPage = () => {
                     whileHover={hoverEffect}
                     whileTap={tapEffect}
                   />
-                </motion.button>
+                </motion.button> */}
               </motion.div>
               
             </motion.div>

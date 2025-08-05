@@ -67,13 +67,14 @@ const FeaturesPage = () => {
       >
         <motion.div className="w-full max-w-6xl" variants={itemVariants}>
           <motion.h1
-            className="text-[min(10vw,128px)] font-metro-600 text-[#6D28B2] mb-10 leading-none"
+            className="text-[min(10vw,128px)] font-metro-600 bg-clip-text text-transparent bg-gradient-to-b from-[#A62AD2] via-[#6E1CBF] to-[#470974] mb-10 leading-none"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            How PeakTew Works
+            Explore. <br/> Connect. Repeat
           </motion.h1>
+          <motion.p className="text-3xl text-[#6D28B2]">You guide to getting started with PeakTew</motion.p>
         </motion.div>
         <motion.div className="w-full max-w-[95%]" variants={itemVariants}>
           <div className="font-metro-600 text-[#220239] text-[16px] space-y-6">

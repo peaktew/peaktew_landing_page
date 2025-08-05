@@ -244,36 +244,15 @@ const LandingPage = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        <svg
-          className="w-[190vw] -ml-[15vw] h-[250px] sm:h-[300px] md:h-[400px]"
-          viewBox="0 0 2000 250"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient
-              id="ellipseGradient"
-              x1="0%"
-              y1="0%"
-              x2="0%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor={isDarkMode ? "#220239" : "#f0f0fd"} />
-              <stop offset="50%" stopColor="#cca9ed" />
-              <stop offset="100%" stopColor={isDarkMode ? "#220239" : "#ffffff"} />
-            </linearGradient>
-          </defs>
-          <path
-            d="M0,200
-         A720,200 0 0,1 1440,200
-         L1440,200
-         L0,200
-         Z"
-            fill="url(#ellipseGradient)"
-          />
-        </svg>
+        <div className="w-full h-full">
+          <img
+          src={gradient3}
+          alt="glow"
+          className=""
+        />
+        </div>
       </motion.section>
-      <div className="h-[20vh]"></div>
+      
       {/* Lines and Arrows Section */}
       <motion.section 
         className="relative w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
@@ -286,7 +265,7 @@ const LandingPage = () => {
         <img
           src={gradient3}
           alt="glow"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] pointer-events-none z-3"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[1500px] pointer-events-none z-3"
         />
         <img
           src={lines}
@@ -653,11 +632,12 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
       </motion.div>
 
       {/* YouTube Video Section */}
       <motion.div
-        className="w-full flex flex-col items-center justify-center px-4 py-8 sm:py-12 bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#ffffff] dark:bg-[#220239]"
+        className="w-full flex flex-col items-center justify-center px-4 py-8 sm:py-12 bg-gradient-to-t from-[#ffffff] via-[#ffffff] to-[#ffffff] dark:bg-[#220239]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}

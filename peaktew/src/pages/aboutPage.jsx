@@ -69,7 +69,7 @@ const AboutPage = () => {
         
         <motion.div className="w-full max-w-6xl" variants={itemVariants}>
           <motion.h1 
-            className="text-[128px] font-metro-600 text-[#6D28B2] mb-10 leading-none"
+            className="text-[min(10vw,128px)] font-metro-600 text-[#6D28B2] mb-10 leading-none"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -83,7 +83,7 @@ const AboutPage = () => {
           variants={containerVariants}
         >
           <motion.p 
-            className='font-metro-600 text-[#6D28B2] text-[70px]'
+            className='font-metro-600 text-[#6D28B2] text-[min(6vw,70px)]'
             variants={itemVariants}
           >
             What is PeakTew?
@@ -99,7 +99,7 @@ const AboutPage = () => {
           </motion.div>
           
           <motion.p 
-            className='font-metro-600 text-[#6D28B2] text-[70px]'
+            className='font-metro-600 text-[#6D28B2] text-[min(6vw,70px)]'
             variants={itemVariants}
           >
             What Does PeakTew Do?
@@ -126,7 +126,7 @@ const AboutPage = () => {
           </motion.div>
           
           <motion.p 
-            className='font-metro-600 text-[#6D28B2] text-[70px]'
+            className='font-metro-600 text-[#6D28B2] text-[min(6vw,70px)]'
             variants={itemVariants}
           >
             Why Choose PeakTew?
@@ -174,7 +174,7 @@ const AboutPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-[100px] font-metro-600 text-[#6D28B2] mb-10 leading-none">
+          <h1 className="text-[min(8vw,100px)] font-metro-600 text-[#6D28B2] mb-10 leading-none">
             Guided by Purpose, Focused on the Future
           </h1>
         </motion.div>

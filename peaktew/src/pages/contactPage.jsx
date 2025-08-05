@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import full_ring from "../assets/full_big_ring.webp";
+import { useState } from "react";
 
 const ContactPage = () => {
   // Animation variants
@@ -74,9 +75,11 @@ const ContactPage = () => {
     scale: 0.98,
   };
 
+  const [title, setTitle] = useState("");
+
   return (
     <>
-      <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden">
+      <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden mb-30">
         {/* Top Gradient */}
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/90 via-white/30 to-transparent z-20 pointer-events-none"></div>
 
@@ -101,6 +104,7 @@ const ContactPage = () => {
           animate="animate"
           style={{ rotate: 180 }} // Start with different rotation
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
 
         {/* Contact Card with glassmorphism */}
         <motion.div
@@ -115,20 +119,20 @@ const ContactPage = () => {
         >
           {/* Text */}
           <motion.div
-            className="flex-1 text-left justify-items-center"
+            className="flex-1 text-left justify-items-left"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.h2
-              className="text-[min(10vw,100px)] font-metro-600 text-[#6D28B2] mb-0"
+              className="text-[min(10vw,100px)] font-metro-600 text-[#6D28B2] mb-0 text-left"
               variants={itemVariants}
             >
-              Contact Us
+              Get In Touch
             </motion.h2>
           </motion.div>
           
-          <div className='flex-1 flex flex-row px-5'>
+          <div className='flex-1 flex flex-col md:flex-row gap- px-5'>
             <motion.div 
               className='flex-1 flex flex-col pr-6'
               variants={containerVariants}
@@ -163,10 +167,13 @@ const ContactPage = () => {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
+              action={"https://formsubmit.co/lathnog@gmail.com"}
+              method="POST"
             >
               <motion.input
                 type="text"
                 placeholder="Name"
+                name="name"
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
@@ -174,9 +181,29 @@ const ContactPage = () => {
                   boxShadow: "0 0 0 2px rgba(109, 40, 178, 0.5)",
                 }}
               />
+
+               <motion.select
+                placeholder="Title"
+                name="title"
+                onChange={(e) => setTitle(e.target.value)}
+                className={`p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2] ${title === "" ? "!text-[#8b7b9c]" : "text-[#220239]"}`}
+                variants={itemVariants}
+                whileFocus={{
+                  scale: 1.02,
+                  boxShadow: "0 0 0 2px rgba(109, 40, 178, 0.5)",
+                }}
+              >
+                <option value="" disabled selected hidden className=" !text-white/20">Title</option>
+                <option value="feedback">Feedback</option>
+                <option value="support">Customer Support</option>
+                <option value="inquiry">Inquiry</option>
+                <option value="report">Report</option>
+                <option value="others">Others</option>
+              </motion.select>
               <motion.input
                 type="email"
                 placeholder="Email"
+                name="email"
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
@@ -186,6 +213,7 @@ const ContactPage = () => {
               />
               <motion.textarea
                 placeholder="Message"
+                name="message"
                 rows="4"
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
@@ -195,6 +223,7 @@ const ContactPage = () => {
                 }}
               ></motion.textarea>
               <motion.button
+              
                 type="submit"
                 className="bg-black text-white py-2 rounded-md hover:bg-peakPurple transition-colors"
                 variants={itemVariants}

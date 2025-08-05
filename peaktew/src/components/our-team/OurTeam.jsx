@@ -21,12 +21,6 @@ const teamMembers = [
     image: "Jack.jpg",
   },
   {
-    name: "Mak",
-    title: "General Counsel",
-    description: "",
-    image: "Mak.jpeg",
-  },
-  {
     name: "Vivian",
     title: "Talent Acquisition",
     description: "",
@@ -81,12 +75,6 @@ const teamMembers = [
     image: "Krapanshu.jpeg",
   },
   {
-    name: "Simon",
-    title: "Front End Developer Android",
-    description: "",
-    image: "Simon.jpeg",
-  },
-  {
     name: "Brice",
     title: "Front End Developer Android",
     description: "",
@@ -121,18 +109,6 @@ const teamMembers = [
     title: "Back End Manager",
     description: "",
     image: "Emmrys.jpg",
-  },
-  {
-    name: "Chris",
-    title: "Senior Back End Developer 1",
-    description: "",
-    image: "Chris.jpeg",
-  },
-  {
-    name: "Andy",
-    title: "Senior Back End Developer 1",
-    description: "",
-    image: "Andy.jpeg",
   },
   {
     name: "Deny",
@@ -205,7 +181,7 @@ const OurTeam = () => {
             className="border border-gray-200 rounded-2xl p-6 bg-white shadow-md hover:shadow-lg transition duration-200"
           >
             <img
-              src={`/src/assets/team_member/${member.image}`}
+              src={`../src/assets/team_member/${member.image}`}
               alt={member.name}
               className="w-full h-52 object-cover object-center rounded-lg mb-4 bg-gray-100 transform hover:scale-95 transition-transform duration-200"
             />

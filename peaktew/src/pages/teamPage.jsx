@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-import rocketImage from '../assets/spaceship.png'
+import circleImage from '../assets/full_big_ring.webp'
 import globeImage from '../assets/globeillu.png'
 import OurTeam from '../components/our-team/OurTeam'
 
@@ -11,21 +11,14 @@ const TeamPage = () => {
     <>
       {/* Hero Section */}
       <motion.div
-        className="relative w-full h-[80vh] bg-black flex items-center justify-center overflow-hidden"
+        className="relative w-full h-[80vh]  flex items-center justify-center overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.img
-          src={globeImage}
-          alt="Globe"
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        />
+        
         <motion.h1
-          className="relative text-white text-4xl md:text-6xl font-bold text-center z-10 px-4 font-metro-600"
+          className="relative text-4xl md:text-8xl font-bold z-10 px-4 font-metro-600 bg-clip-text text-transparent bg-gradient-to-b from-[#A62AD2] via-[#6E1CBF] to-[#470974] text-left"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -42,14 +35,16 @@ const TeamPage = () => {
         transition={{ duration: 0.8, delay: 0.5 }}
       >
         {/* Title */}
-        <motion.h1
-          className="text-center text-5xl font-extrabold text-[#6D28B2] uppercase mb-12"
+        <div className='flex flex-row justify-end'>
+          <motion.h1
+          className="text-center text-5xl font-extrabold text-[#6D28B2] uppercase mb-12 underline"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
           We're Proudly
         </motion.h1>
+        </div>
 
         {/* Content Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -61,9 +56,9 @@ const TeamPage = () => {
             transition={{ duration: 0.8, delay: 0.9 }}
           >
             <motion.img
-              src={rocketImage}
-              alt="Rocket"
-              className="w-40 md:w-52"
+              src={circleImage}
+              alt="Circle"
+              className="w-80 h-80 md:w-150 md:h-150"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />
@@ -163,6 +158,16 @@ const TeamPage = () => {
                   background: 'radial-gradient(circle at center, #413ECE 0%, #8684FF 100%)',
                 }}
               />
+              <motion.div className='relative w-1/2 items-start'>
+              <motion.p
+                className="text-sm font-light mb-6 absolute left-0 before:-translate-y-1/2 before:w-8 before:h-px before:bg-black"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 3.1 }}
+              >
+                WE LOVE WORKING HERE. <br/> WE THINK YOU WILL TOO.
+              </motion.p>
+            </motion.div>
             </motion.div>
 
             {/* Main content */}

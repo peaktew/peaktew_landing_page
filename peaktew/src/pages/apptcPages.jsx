@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 const ApptcPage = () => {
   // Animation variants

@@ -7,6 +7,9 @@ import logo from '../assets/logo.png';
 
 
 export default function Footer() {
+  const scrollToTop = () => {
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
   return (
     <footer className="bg-white text-[#220239] px-4 sm:px-6 md:px-10 lg:px-24 xl:px-36 2xl:px-48 py-10 z-10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
@@ -38,8 +41,8 @@ export default function Footer() {
             <div>
               <p className="font-metro-600 mb-2">App</p>
               <ul className="space-y-1 text-gray-600 font-metro-300">
-                <li><Link to={'/app-terms-conditions'}><p className="hover:text-purple-700 transition-colors duration-300">Terms & Condition</p></Link></li>
-                <li><Link to={'/app-privacy-policy'}><p className="hover:text-purple-700 transition-colors duration-300">Privacy Policy</p></Link></li>
+                <li><Link to={'/app-terms-conditions'} onClick={() => scrollToTop()}><p className="hover:text-purple-700 transition-colors duration-300">Terms & Condition</p></Link></li>
+                <li><Link to={'/app-privacy-policy'} onClick={() => scrollToTop()}><p className="hover:text-purple-700 transition-colors duration-300">Privacy Policy</p></Link></li>
               </ul>
             </div>
           </div>
