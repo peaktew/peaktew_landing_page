@@ -34,8 +34,8 @@ export default function Footer() {
             <div>
               <p className="font-metro-600 mb-2">Website</p>
               <ul className="space-y-1 text-gray-600 font-metro-300">
-                <li><Link to={'/web-terms-conditions'}><p className="hover:text-purple-700 transition-colors duration-300">Terms & Conditions</p></Link></li>
-                <li><Link to={'/web-privacy-policy'}><p className="hover:text-purple-700 transition-colors duration-300">Private Policy</p></Link></li>
+                <li><Link to={'/web-terms-conditions'} onClick={() => scrollToTop()}><p className="hover:text-purple-700 transition-colors duration-300">Terms & Conditions</p></Link></li>
+                <li><Link to={'/web-privacy-policy'} onClick={() => scrollToTop()}><p className="hover:text-purple-700 transition-colors duration-300">Private Policy</p></Link></li>
               </ul>
             </div>
             <div>

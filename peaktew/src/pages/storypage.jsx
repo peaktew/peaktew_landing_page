@@ -1,14 +1,15 @@
-import React from "react";
-import big_ring from "../assets/full_big_ring.png";
-import ceo from "../assets/ceo.png";
-import star from "../assets/star.png";
-import plus from "../assets/plus.png";
-import pipes from "../assets/pipes.png";
-import blob from "../assets/blob.png";
-import loop from "../assets/loop.png";
-import light from "../assets/light.png";
-import { useEffect, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React from 'react';
+import { useDarkMode } from '../components/DarkModeContext';
+import big_ring from '../assets/full_big_ring.png';
+import ceo from '../assets/ceo.png';
+import star from '../assets/star.png';
+import plus from '../assets/plus.png';
+import pipes from '../assets/pipes.png';
+import blob from '../assets/blob.png';
+import loop from '../assets/loop.png';
+import light from '../assets/light.png';
+import { useEffect, useRef } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -26,6 +27,8 @@ const staggerContainer = {
 };
 
 const StoryPage = () => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+
   const controls = useAnimation();
   const containerRef = useRef(null);
   const duration = 25; // Scroll duration in seconds (adjust as needed)
@@ -55,9 +58,35 @@ const StoryPage = () => {
 
   return (
     <div className="w-full overflow-x-hidden flex flex-col items-center">
+      {/* Dark Mode Toggle - Top Right */}
+      <div className="fixed top-4 right-4 z-50 hidden md:block">
+        <label className="relative inline-flex items-center cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={isDarkMode}
+            onChange={toggleDarkMode}
+            className="sr-only peer"
+            aria-label="Toggle dark mode"
+          />
+          <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
+            <span className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`}>
+              {!isDarkMode ? (
+                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-slate-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                </svg>
+              )}
+            </span>
+          </div>
+        </label>
+      </div>
+
       {/* Hero Section */}
       <motion.section
-        className="relative w-full min-h-screen overflow-hidden bg-white pb-20"
+        className="relative w-full min-h-screen overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] pb-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -73,7 +102,7 @@ const StoryPage = () => {
             alt="Bubble Background"
             className="w-full h-full object-cover object-center scale-110 blur-sm opacity-95"
           />
-          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-white" />
+          <div className={`absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b ${isDarkMode ? "" : "from-transparent to-white"}`} />
           <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-t from-transparent to-white" />
         </motion.div>
 
@@ -138,12 +167,11 @@ const StoryPage = () => {
             </motion.div>
           </motion.div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white"></div>
-      </motion.section>
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>      </motion.section>
 
       {/* CEO Section */}
       <motion.section
-        className="w-fit bg-white px-4 sm:px-6 py-12 sm:py-16 md:py-20 flex flex-col items-center mt-30 relative"
+        className={`w-fit bg-white px-4 sm:px-6 py-12 sm:py-16 md:py-20 flex flex-col items-center mt-30 relative`}
         initial="hidden"
         whileInView="visible"
         variants={staggerContainer}
@@ -181,7 +209,7 @@ const StoryPage = () => {
         </motion.h2>
 
         <motion.div
-          className="max-w-6xl w-full bg-gradient-to-br from-white via-purple-50 to-white border-2 border-purple-500 rounded-3xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch md:mt-25"
+          className={`max-w-6xl w-full bg-gradient-to-br ${isDarkMode ? "bg-gradient-to-b from-[#220239] to-[#5F069F]" : "from-white via-purple-50 to-white"} border-2 border-purple-500 rounded-3xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch md:mt-25`}
           variants={fadeInUp}
           // whileHover={{
           //   y: -5,
@@ -272,7 +300,7 @@ const StoryPage = () => {
                 >
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         01
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -293,10 +321,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The Spark
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         PeakTew started with one mission: making real-life
                         friendships easier in a world obsessed with swipes and
                         likes. It wasn't just a start-up—it was a movement to
@@ -317,7 +345,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         02
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -326,10 +354,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="relative z-10 bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Defining Our Identity
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         The name "PeakTew" captured both the pinnacle of
                         activity and the excitement of the moment. However, the
                         initial app design leaned too heavily into dating app
@@ -360,7 +388,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         03
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -381,10 +409,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The Transformation
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         This was our turning point. We underwent a complete
                         overhaul and our brand identity shifted. Guided by user
                         feedback, we began building a product people truly
@@ -405,7 +433,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         04
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -414,10 +442,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Preparing for Launch
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-purple-600 text-sm leading-relaxed">
                         With the launch approaching, we refined our design and
                         sharpened our brand identity. PeakTew evolved beyond an
                         app—it was ready to make an impact.
@@ -446,7 +474,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         05
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -467,10 +495,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The SEC Pitch Stage
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         At the SEC Pitch Competition, we unveiled PeakTew's
                         Alpha MVP: a hybrid platform designed to move people
                         from digital notifications to real-life interactions. No
@@ -491,7 +519,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         06
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -500,10 +528,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Growth & Recognition
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         We've joined 4 incubators, secured the USC Proving
                         Ground Prize, and expanded to a team of 21 people from
                         13 countries. With 1.2k+ followers and growing
@@ -532,7 +560,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         01
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -553,10 +581,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The Spark
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         PeakTew started with one mission: making real-life
                         friendships easier in a world obsessed with swipes and
                         likes. It wasn't just a start-up—it was a movement to
@@ -575,7 +603,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         02
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -584,10 +612,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="relative z-10 bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Defining Our Identity
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         The name "PeakTew" captured both the pinnacle of
                         activity and the excitement of the moment. However, the
                         initial app design leaned too heavily into dating app
@@ -616,7 +644,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         03
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -637,10 +665,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The Transformation
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         This was our turning point. We underwent a complete
                         overhaul and our brand identity shifted. Guided by user
                         feedback, we began building a product people truly
@@ -659,7 +687,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         04
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -668,10 +696,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Preparing for Launch
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         With the launch approaching, we refined our design and
                         sharpened our brand identity. PeakTew evolved beyond an
                         app—it was ready to make an impact.
@@ -698,7 +726,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         05
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -719,10 +747,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The SEC Pitch Stage
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         At the SEC Pitch Competition, we unveiled PeakTew's
                         Alpha MVP: a hybrid platform designed to move people
                         from digital notifications to real-life interactions. No
@@ -741,7 +769,7 @@ const StoryPage = () => {
 
                   <div className="flex flex-col items-center h-full">
                     <div className="text-center mb-4 sm:mb-6">
-                      <div className="text-3xl sm:text-4xl font-extrabold text-purple-700">
+                      <div className={`text-3xl sm:text-4xl font-extrabold  ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>
                         06
                       </div>
                       <div className="text-xs sm:text-sm text-purple-600">
@@ -750,10 +778,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Growth & Recognition
                       </h3>
-                      <p className="text-black text-sm leading-relaxed">
+                      <p className="text-black dark:!text-black text-sm leading-relaxed">
                         We've joined 4 incubators, secured the USC Proving
                         Ground Prize, and expanded to a team of 21 people from
                         13 countries. With 1.2k+ followers and growing

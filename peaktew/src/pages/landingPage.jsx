@@ -21,7 +21,7 @@ import arrow from "../assets/Landing_page/Arrow.webp";
 import alert from "../assets/Landing_page/alert.webp";
 import pfp from "../assets/Landing_page/pfp.webp";
 import arch from "../assets/Landing_page/arch.webp";
-import { useDarkMode } from '../components/DarkModeContext';
+import { useDarkMode } from "../components/DarkModeContext";
 
 const AnimatedText = ({ text, delay = 0, className }) => {
   const controls = useAnimation();
@@ -166,111 +166,153 @@ const LandingPage = () => {
       {/* Theme Toggle */}
 
       {/* Globe Section */}
-      <motion.div
-        className="mx-auto px-4 w-full h-screen overflow-hidden relative"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <section style={{ position: "relative", zIndex: 1 }}>
-          <GlobeDemo />
-        </section>
-        
-        {/* Dark Mode Toggle - Top Right */}
-        <div className="absolute top-4 right-4 z-20">
-          <label className="relative inline-flex items-center cursor-pointer select-none">
-            <input
-              type="checkbox"
-              checked={isDarkMode}
-              onChange={toggleDarkMode}
-              className="sr-only peer"
-              aria-label="Toggle dark mode"
-            />
-            <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
-              <span className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`}>
-                {!isDarkMode ? (
-                  <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
-                  </svg>
-                ) : (
-                  <svg className="w-5 h-5 text-slate-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                  </svg>
-                )}
-              </span>
-            </div>
-          </label>
-        </div>
-        
-        {/* Hero Text */}
-        <div className='absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10'>
-          <AnimatedText 
-            text="Take the fun" 
-            className="text-5xl md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 text-[#220239] text-center leading-none" 
-            
-          />
-          <AnimatedText
-            text="to the real World"
-            delay={0.3}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br from-[#010101] to-[#B338DE] bg-clip-text text-transparent" 
-          />
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-            className="mt-6"
-          >
-            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center" style={{ color: isDarkMode ? '#f1f5f9' : '#220239' }}>
-              We connect you to what matters. Real people, real experiences,
-            </p>
-            <p className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center" style={{ color: isDarkMode ? '#f1f5f9' : '#220239' }}>
-              and the world just outside your door.
-            </p>
-          </motion.div>
-        </div>
-        </motion.div>
-      <motion.img
-        src={mascot}
-        alt="mascot"
-        className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-3"
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
-      />
+      
+        <motion.div
+          className="mx-auto px-4 w-full h-screen overflow-hidden relative"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <section style={{ position: "relative", zIndex: 1 }}>
+            <GlobeDemo />
+          </section>
 
-      <motion.section
-        className="absolute top-[95vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-hidden"
+          {/* Dark Mode Toggle - Top Right */}
+          <div className="absolute top-4 right-4 z-20">
+            <label className="relative inline-flex items-center cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={isDarkMode}
+                onChange={toggleDarkMode}
+                className="sr-only peer"
+                aria-label="Toggle dark mode"
+              />
+              <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
+                <span
+                  className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${
+                    isDarkMode ? "translate-x-6" : "translate-x-0"
+                  }`}
+                >
+                  {!isDarkMode ? (
+                    <svg
+                      className="w-5 h-5 text-yellow-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      className="w-5 h-5 text-slate-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                    </svg>
+                  )}
+                </span>
+              </div>
+            </label>
+          </div>
+
+          {/* Hero Text */}
+          <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
+            <AnimatedText
+              text="Take the fun"
+              className="text-5xl md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 text-[#220239] dark:!text-[#220239] text-center leading-none"
+            />
+            <AnimatedText
+              text="to the real World"
+              delay={0.3}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br from-[#010101] to-[#B338DE] dark:!from-[#010101] dark:!to-[#B338DE] bg-clip-text dark:!bg-clip-text text-transparent dark:!text-transparent"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="mt-6"
+            >
+              <p
+                className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center"
+                style={{ color: isDarkMode ? "#220239" : "#220239" }}
+              >
+                We connect you to what matters. Real people, real experiences,
+              </p>
+              <p
+                className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center"
+                style={{ color: isDarkMode ? "#220239" : "#220239" }}
+              >
+                and the world just outside your door.
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
+        <motion.img
+          src={mascot}
+          alt="mascot"
+          className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-3"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        />
+
+        <motion.section
+        className="absolute top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        <div className="w-full h-full">
-          <img
-          src={gradient3}
-          alt="glow"
-          className=""
-        />
-        </div>
+        <svg
+          className="w-[190vw] -ml-[15vw] h-[250px] sm:h-[300px] md:h-[400px]"
+          viewBox="0 0 2000 250"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient
+              id="ellipseGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={isDarkMode ? "#220239" : "#f0f0fd"} />
+              <stop offset="50%" stopColor={isDarkMode ? "#220239" : "#ffffff"} />
+              <stop offset="100%" stopColor={isDarkMode ? "#220239" : "#FFFFFF00"} />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,200
+         A720,200 0 0,1 1440,200
+         L1440,200
+         L0,200
+         Z"
+            fill="url(#ellipseGradient)"
+          />
+        </svg>
       </motion.section>
       
       {/* Lines and Arrows Section */}
-      <motion.section 
+      <motion.section
         className="relative w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-
         <img
           src={gradient3}
           alt="glow"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[1500px] pointer-events-none z-3"
+          className="absolute top-15 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[1500px] pointer-events-none z-3"
         />
         <img
           src={lines}
           alt="lines"
-          className="absolute -top-30 left-1/2 -translate-x-1/2 w-full object-cover pointer-events-none z-10 mask-linear-fade"
+          className="absolute -top-30 left-1/2 -translate-x-1/2 w-full h-[1500px] object-cover pointer-events-none z-10 mask-linear-fade"
           style={{
             maskImage:
               "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
@@ -278,10 +320,11 @@ const LandingPage = () => {
               "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
           }}
         />
+        
 
         {/* Text - Left */}
-        <motion.div 
-          className="absolute top-[15%] left-[5%] sm:left-[10%] z-20 font-metro-600 text-[#220239] dark:text-white text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-xs"
+        <motion.div
+          className="absolute top-[15%] left-[5%] sm:left-[10%] z-20 font-metro-600 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-xs"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -289,13 +332,14 @@ const LandingPage = () => {
         >
           <p className="w-[400px]">
             It's easy to feel{" "}
-            <span className="text-[#6D28B2]">disconnected</span> in today's busy world
+            <span className="text-[#6D28B2]">disconnected</span> in today's busy
+            world
           </p>
         </motion.div>
 
         {/* Text - Right */}
-        <motion.div 
-          className="absolute bottom-[50%] right-[5%] sm:right-[10%] font-metro-600 z-20 text-[#220239] dark:text-white text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-sm text-right"
+        <motion.div
+          className="absolute bottom-[50%] right-[5%] sm:right-[10%] font-metro-600 z-20 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-sm text-right"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -311,10 +355,10 @@ const LandingPage = () => {
         </motion.div>
 
         {/* Left Arrow */}
-        <motion.img 
-          src={arrow} 
-          alt="arrow" 
-          className="absolute top-[0%] left-[20%] sm:left-[24.8%] w-[30px] sm:w-[40px] md:w-[50px] z-20" 
+        <motion.img
+          src={arrow}
+          alt="arrow"
+          className="absolute top-[0%] left-[20%] sm:left-[24.8%] w-[30px] sm:w-[40px] md:w-[50px] z-20"
           style={{
             transform: `translateY(${leftArrowY}px) scale(${leftArrowScale})`,
             transition: "transform 0.2s ease-out",
@@ -326,10 +370,10 @@ const LandingPage = () => {
         />
 
         {/* Right Arrow */}
-        <motion.img 
-          src={arrow} 
-          alt="arrow" 
-          className="absolute top-[0%] right-[10%] sm:right-[16%] w-[30px] sm:w-[40px] md:w-[50px] z-20" 
+        <motion.img
+          src={arrow}
+          alt="arrow"
+          className="absolute top-[0%] right-[10%] sm:right-[16%] w-[30px] sm:w-[40px] md:w-[50px] z-20"
           style={{
             transform: `translateY(${rightArrowY}px) scale(${rightArrowScale})`,
             transition: "transform 0.2s ease-out",
@@ -341,10 +385,10 @@ const LandingPage = () => {
         />
 
         {/* Middle Arrow */}
-        <motion.img 
-          src={arrow} 
-          alt="arrow" 
-          className="absolute top-[0%] left-[50%] sm:left-[54.5%] w-[30px] sm:w-[40px] md:w-[50px] z-30" 
+        <motion.img
+          src={arrow}
+          alt="arrow"
+          className="absolute top-[0%] left-[50%] sm:left-[54.5%] w-[30px] sm:w-[40px] md:w-[50px] z-30"
           style={{
             transform: `translate(-50%, ${middleArrowY}px) scale(${middleArrowScale})`,
             transition: "transform 0.2s ease-out",
@@ -354,11 +398,12 @@ const LandingPage = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         />
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
       </motion.section>
 
       {/* What If Section */}
-      <motion.div 
-        className='relative py-12 sm:py-20 md:py-32 bg-white dark:bg-[#220239]'
+      <motion.div
+        className="relative py-12 sm:py-20 md:py-32 bg-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -368,7 +413,7 @@ const LandingPage = () => {
           <motion.img
             src={alert}
             alt="alert"
-            className='relative left-0 sm:left-80 w-[80px] sm:w-[118px] mx-auto sm:mx-0'
+            className="relative left-0 sm:left-80 w-[80px] sm:w-[118px] mx-auto sm:mx-0"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -379,14 +424,14 @@ const LandingPage = () => {
               delay: 0.2,
             }}
           />
-          <AnimatedText 
-            text="But what if we could" 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent" 
+          <AnimatedText
+            text="But what if we could"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent"
           />
           <AnimatedText
             text="change this?"
             delay={0.3}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4" 
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4"
           />
         </div>
 
@@ -400,17 +445,17 @@ const LandingPage = () => {
           <img
             src={gradient}
             alt="gradient"
-            className='relative top-[15%] left-0 z-0 w-[800px] sm:w-[1000px] opacity-100'
+            className="relative top-[15%] left-0 z-0 w-[800px] sm:w-[1000px] opacity-100"
           />
         </motion.div>
 
         {/* Notification Cards Section */}
-        <div className="relative h-[800px] sm:h-[1000px] md:h-[1200px] lg:h-[2000px] w-full overflow-hidden bg-white dark:bg-[#220239]">
-          <NotificationCard 
-            src={not1} 
-            initialX={-200} 
-            initialY={100} 
-            rotate="4.07deg" 
+        <div className="relative h-[800px] sm:h-[1000px] md:h-[1200px] lg:h-[2000px] w-full overflow-hidden bg-white">
+          <NotificationCard
+            src={not1}
+            initialX={-200}
+            initialY={100}
+            rotate="4.07deg"
             delay={0.1}
             top="5%"
             left="0"
@@ -457,9 +502,9 @@ const LandingPage = () => {
           />
 
           {/* Welcome Message */}
-          <motion.img 
-            src={welcome} 
-            alt="WELCOME" 
+          <motion.img
+            src={welcome}
+            alt="WELCOME"
             className="absolute w-[300px] sm:w-[400px] md:w-[600px] lg:w-[850px] z-5"
             style={{ top: "35%", left: "25%", transform: "translateX(-50%)" }}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -474,7 +519,7 @@ const LandingPage = () => {
           />
 
           {/* Review Bubbles */}
-          <motion.div 
+          <motion.div
             className="absolute left-[10%] sm:left-[15%] md:left-[20%] lg:left-[30%] bottom-[30%] sm:bottom-[40%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -482,21 +527,37 @@ const LandingPage = () => {
             transition={{ delay: 0.7 }}
           >
             <div className="flex space-x-[2px] mb-1 sm:mb-2">
-              {Array(5).fill(0).map((_, i) => (
-                <svg key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                  <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
-                </svg>
-              ))}
+              {Array(5)
+                .fill(0)
+                .map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
+                  </svg>
+                ))}
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-[#220239] dark:text-white mb-1">Brilliant</div>
-            <div className="text-xs text-[#220239] dark:text-white mb-2 sm:mb-4">I love this app so much!!</div>
+            <div className="text-xs sm:text-sm font-semibold text-[#220239] dark:text-white mb-1">
+              Brilliant
+            </div>
+            <div className="text-xs text-[#220239] dark:text-white mb-2 sm:mb-4">
+              I love this app so much!!
+            </div>
             <div className="flex items-center space-x-2">
-              <img src={pfp} alt="Aananya J" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover" />
-              <span className="text-xs text-[#220239] dark:text-white font-medium">Aananya J</span>
+              <img
+                src={pfp}
+                alt="Aananya J"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover"
+              />
+              <span className="text-xs text-[#220239] dark:text-white font-medium">
+                Aananya J
+              </span>
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="absolute left-[50%] sm:left-[55%] md:left-[60%] lg:left-[62%] bottom-[25%] sm:bottom-[32%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -504,21 +565,37 @@ const LandingPage = () => {
             transition={{ delay: 0.8 }}
           >
             <div className="flex space-x-[2px] mb-1 sm:mb-2">
-              {Array(5).fill(0).map((_, i) => (
-                <svg key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                  <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
-                </svg>
-              ))}
+              {Array(5)
+                .fill(0)
+                .map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
+                  </svg>
+                ))}
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-[#220239] dark:text-white mb-1">Brilliant</div>
-            <div className="text-xs text-[#220239] dark:text-white mb-2 sm:mb-4">I love this app so much!!</div>
+            <div className="text-xs sm:text-sm font-semibold text-[#220239] dark:text-white mb-1">
+              Brilliant
+            </div>
+            <div className="text-xs text-[#220239] dark:text-white mb-2 sm:mb-4">
+              I love this app so much!!
+            </div>
             <div className="flex items-center space-x-2">
-              <img src={pfp} alt="Aananya J" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover" />
-              <span className="text-xs text-[#220239] dark:text-white font-medium">Aananya J</span>
+              <img
+                src={pfp}
+                alt="Aananya J"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover"
+              />
+              <span className="text-xs text-[#220239] dark:text-white font-medium">
+                Aananya J
+              </span>
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="absolute left-[5%] sm:left-[10%] md:left-[15%] lg:left-[22%] bottom-[10%] sm:bottom-[15%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -526,17 +603,33 @@ const LandingPage = () => {
             transition={{ delay: 0.9 }}
           >
             <div className="flex space-x-[2px] mb-1 sm:mb-2">
-              {Array(5).fill(0).map((_, i) => (
-                <svg key={i} className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                  <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
-                </svg>
-              ))}
+              {Array(5)
+                .fill(0)
+                .map((_, i) => (
+                  <svg
+                    key={i}
+                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
+                  </svg>
+                ))}
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-[#220239] dark:text-white mb-1">Brilliant</div>
-            <div className="text-xs text-[#220239] dark:text-white mb-2 sm:mb-4">I love this app so much!!</div>
+            <div className="text-xs sm:text-sm font-semibold text-[#220239] dark:text-white mb-1">
+              Brilliant
+            </div>
+            <div className="text-xs text-[#220239] dark:text-white mb-2 sm:mb-4">
+              I love this app so much!!
+            </div>
             <div className="flex items-center space-x-2">
-              <img src={pfp} alt="Aananya J" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover" />
-              <span className="text-xs text-[#220239] dark:text-white font-medium">Aananya J</span>
+              <img
+                src={pfp}
+                alt="Aananya J"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover"
+              />
+              <span className="text-xs text-[#220239] dark:text-white font-medium">
+                Aananya J
+              </span>
             </div>
           </motion.div>
         </div>
@@ -582,26 +675,26 @@ const LandingPage = () => {
       </motion.div>
 
       {/* Bringing Back Section */}
-      <motion.div 
-        className='relative py-12 sm:py-20 md:py-32 bg-white dark:bg-[#220239]'
+      <motion.div
+        className="relative py-12 sm:py-20 md:py-32 bg-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-4 text-center justify-items-center">
-          <AnimatedText 
-            text="Bringing Back" 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent" 
+          <AnimatedText
+            text="Bringing Back"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent"
           />
           <AnimatedText
             text="Real-Time Connection"
             delay={0.3}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4" 
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4"
           />
-          <AnimatedText 
-            text="Making Meaningful Friendships Starts Here!" 
-            className="text-base sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4" 
+          <AnimatedText
+            text="Making Meaningful Friendships Starts Here!"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4"
           />
         </div>
       </motion.div>
@@ -617,14 +710,14 @@ const LandingPage = () => {
         <motion.img
           src={mascot}
           alt="mascot"
-          className='absolute w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] z-10'
+          className="absolute w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] z-10"
           initial={{ x: -100, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.8 }}
         />
         <motion.img
-        className="pb-30 w-full"
+          className="pb-30 w-full"
           src={person}
           alt="people"
           initial={{ opacity: 0 }}
@@ -632,12 +725,12 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
       </motion.div>
 
       {/* YouTube Video Section */}
       <motion.div
-        className="w-full flex flex-col items-center justify-center px-4 py-8 sm:py-12 bg-gradient-to-t from-[#ffffff] via-[#ffffff] to-[#ffffff] dark:bg-[#220239]"
+        className="w-full flex flex-col items-center justify-center px-4 py-8 sm:py-12 bg-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -654,8 +747,7 @@ const LandingPage = () => {
           ></iframe>
         </div>
 
-
-        <motion.p 
+        <motion.p
           className="text-center mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-[#220239] dark:text-white font-medium"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
