@@ -321,10 +321,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The Spark
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         PeakTew started with one mission: making real-life
                         friendships easier in a world obsessed with swipes and
                         likes. It wasn't just a start-up—it was a movement to
@@ -354,10 +354,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="relative z-10 bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Defining Our Identity
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         The name "PeakTew" captured both the pinnacle of
                         activity and the excitement of the moment. However, the
                         initial app design leaned too heavily into dating app
@@ -409,10 +409,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The Transformation
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         This was our turning point. We underwent a complete
                         overhaul and our brand identity shifted. Guided by user
                         feedback, we began building a product people truly
@@ -442,10 +442,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Preparing for Launch
                       </h3>
-                      <p className="text-black dark:!text-purple-600 text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         With the launch approaching, we refined our design and
                         sharpened our brand identity. PeakTew evolved beyond an
                         app—it was ready to make an impact.
@@ -495,10 +495,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The SEC Pitch Stage
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         At the SEC Pitch Competition, we unveiled PeakTew's
                         Alpha MVP: a hybrid platform designed to move people
                         from digital notifications to real-life interactions. No
@@ -528,10 +528,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Growth & Recognition
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         We've joined 4 incubators, secured the USC Proving
                         Ground Prize, and expanded to a team of 21 people from
                         13 countries. With 1.2k+ followers and growing
@@ -581,10 +581,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The Spark
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         PeakTew started with one mission: making real-life
                         friendships easier in a world obsessed with swipes and
                         likes. It wasn't just a start-up—it was a movement to
@@ -612,10 +612,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="relative z-10 bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Defining Our Identity
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         The name "PeakTew" captured both the pinnacle of
                         activity and the excitement of the moment. However, the
                         initial app design leaned too heavily into dating app
@@ -665,10 +665,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The Transformation
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         This was our turning point. We underwent a complete
                         overhaul and our brand identity shifted. Guided by user
                         feedback, we began building a product people truly
@@ -696,10 +696,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Preparing for Launch
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         With the launch approaching, we refined our design and
                         sharpened our brand identity. PeakTew evolved beyond an
                         app—it was ready to make an impact.
@@ -747,10 +747,10 @@ const StoryPage = () => {
                     </motion.div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         The SEC Pitch Stage
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         At the SEC Pitch Competition, we unveiled PeakTew's
                         Alpha MVP: a hybrid platform designed to move people
                         from digital notifications to real-life interactions. No
@@ -778,10 +778,10 @@ const StoryPage = () => {
                     </div>
 
                     <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-6 w-full">
-                      <h3 className="text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
+                      <h3 className="!text-purple-600 dark:!text-purple-600 font-semibold text-lg mb-3">
                         Growth & Recognition
                       </h3>
-                      <p className="text-black dark:!text-black text-sm leading-relaxed">
+                      <p className="!text-black dark:!text-black text-sm leading-relaxed">
                         We've joined 4 incubators, secured the USC Proving
                         Ground Prize, and expanded to a team of 21 people from
                         13 countries. With 1.2k+ followers and growing

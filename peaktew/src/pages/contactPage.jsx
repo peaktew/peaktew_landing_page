@@ -108,7 +108,7 @@ const ContactPage = () => {
         </label>
       </div>
 
-      <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] mb-30">
+      <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
         {/* Top Gradient */}
         <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
 

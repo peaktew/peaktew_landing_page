@@ -79,7 +79,7 @@ const CommunityPage = () => {
         </label>
       </div>
 
-      <section className="w-screen min-h-screen flex flex-col gap-20 px-[24px] sm:px-[40px] md:px-[60px] lg:px-[80px] xl:px-[100px] py-20 overflow-x-hidden z-10 transition-colors duration-500 bg-white dark:bg-[#220239]">
+      <section className="w-screen min-h-screen flex flex-col gap-20 px-[24px] sm:px-[40px] md:px-[60px] lg:px-[80px] xl:px-[100px] py-20 overflow-x-hidden z-10 transition-colors duration-500 bg-white">
         <motion.img 
           src={ring} 
           alt="" 
