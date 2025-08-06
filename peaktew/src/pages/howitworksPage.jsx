@@ -89,7 +89,7 @@ const FeaturesPage = () => {
       </div>
 
       <motion.section
-        className="w-full min-h-screen flex flex-col gap-10 md:gap-20 px-[50px] md:px-[100px] py-20 overflow-x-hidden transition-colors duration-500 bg-white dark:bg-[#220239]"
+        className="w-full min-h-screen flex flex-col gap-10 md:gap-20 px-[50px] md:px-[100px] py-20 overflow-x-hidden transition-colors duration-500 bg-white"
         initial="hidden"
         animate="visible"
         variants={containerVariants}

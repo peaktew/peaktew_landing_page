@@ -181,7 +181,7 @@ const OurTeam = () => {
             className="border border-gray-200 rounded-2xl p-6 bg-white shadow-md hover:shadow-lg transition duration-200"
           >
             <img
-              src={`../src/assets/team_member/${member.image}`}
+              src={`/team_member/${member.image}`}
               alt={member.name}
               className="w-full h-52 object-cover object-center rounded-lg mb-4 bg-gray-100 transform hover:scale-95 transition-transform duration-200"
             />
