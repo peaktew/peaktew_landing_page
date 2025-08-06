@@ -2,30 +2,52 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-import rocketImage from '../assets/spaceship.png'
+import { useDarkMode } from '../components/DarkModeContext'
+import circleImage from '../assets/full_big_ring.webp'
 import globeImage from '../assets/globeillu.png'
 import OurTeam from '../components/our-team/OurTeam'
 
 const TeamPage = () => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  
   return (
     <>
+      {/* Dark Mode Toggle - Top Right (Desktop Only) */}
+      <div className="fixed top-4 right-4 z-50 hidden md:block">
+        <label className="relative inline-flex items-center cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={isDarkMode}
+            onChange={toggleDarkMode}
+            className="sr-only peer"
+            aria-label="Toggle dark mode"
+          />
+          <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
+            <span className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`}>
+              {!isDarkMode ? (
+                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-slate-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                </svg>
+              )}
+            </span>
+          </div>
+        </label>
+      </div>
+
       {/* Hero Section */}
       <motion.div
-        className="relative w-full h-[80vh] bg-black flex items-center justify-center overflow-hidden"
+        className="relative w-full h-[80vh]  flex items-center justify-center overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.img
-          src={globeImage}
-          alt="Globe"
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-        />
+        
         <motion.h1
-          className="relative text-white text-4xl md:text-6xl font-bold text-center z-10 px-4 font-metro-600"
+          className="relative text-4xl md:text-8xl font-bold z-10 px-4 font-metro-600 bg-clip-text text-transparent bg-gradient-to-b from-[#A62AD2] via-[#6E1CBF] to-[#470974] text-left"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -42,14 +64,16 @@ const TeamPage = () => {
         transition={{ duration: 0.8, delay: 0.5 }}
       >
         {/* Title */}
-        <motion.h1
-          className="text-center text-5xl font-extrabold text-[#6D28B2] uppercase mb-12"
+        <div className='flex flex-row justify-end'>
+          <motion.h1
+          className="text-center text-5xl font-extrabold text-[#6D28B2] uppercase mb-12 underline"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
           We're Proudly
         </motion.h1>
+        </div>
 
         {/* Content Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
@@ -61,9 +85,9 @@ const TeamPage = () => {
             transition={{ duration: 0.8, delay: 0.9 }}
           >
             <motion.img
-              src={rocketImage}
-              alt="Rocket"
-              className="w-40 md:w-52"
+              src={circleImage}
+              alt="Circle"
+              className="w-80 h-80 md:w-150 md:h-150"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />
@@ -89,7 +113,7 @@ const TeamPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.5 }}
             >
-              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>21+</h2>
+              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>23+</h2>
               <p className="text-xl font-semibold mt-1" style={{ color: '#6D28B2' }}>INNOVATORS</p>
               <hr className="my-4 border-t border-purple-300 mx-auto md:ml-auto md:mr-0 w-1/2" />
             </motion.div>
@@ -99,7 +123,7 @@ const TeamPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.7 }}
             >
-              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>13+</h2>
+              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>15+</h2>
               <p className="text-xl font-semibold mt-1" style={{ color: '#6D28B2' }}>NATIONALITIES</p>
               <hr className="my-4 border-t border-purple-300 mx-auto md:ml-auto md:mr-0 w-1/2" />
             </motion.div>
@@ -109,7 +133,7 @@ const TeamPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.9 }}
             >
-              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>4</h2>
+              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>5</h2>
               <p className="text-xl font-semibold mt-1" style={{ color: '#6D28B2' }}>CONTINENTS</p>
               <hr className="my-4 border-t border-purple-300 mx-auto md:ml-auto md:mr-0 w-1/2" />
             </motion.div>
@@ -163,6 +187,16 @@ const TeamPage = () => {
                   background: 'radial-gradient(circle at center, #413ECE 0%, #8684FF 100%)',
                 }}
               />
+              <motion.div className='relative w-1/2 items-start'>
+              <motion.p
+                className="text-sm font-light mb-6 absolute left-0 before:-translate-y-1/2 before:w-8 before:h-px before:bg-black"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 3.1 }}
+              >
+                WE LOVE WORKING HERE. <br/> WE THINK YOU WILL TOO.
+              </motion.p>
+            </motion.div>
             </motion.div>
 
             {/* Main content */}

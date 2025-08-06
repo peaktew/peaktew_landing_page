@@ -1,10 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useDarkMode } from '../components/DarkModeContext';
 import full_ring from '../assets/full_big_ring.webp';
 import apple from '../assets/apple.png';
 import play from '../assets/play.png';
 
 const DownloadPage = () => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -105,12 +108,38 @@ const DownloadPage = () => {
 
   return (
     <>
-      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden">
+      {/* Dark Mode Toggle - Top Right (Desktop Only) */}
+      <div className="fixed top-4 right-4 z-50 hidden md:block">
+        <label className="relative inline-flex items-center cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={isDarkMode}
+            onChange={toggleDarkMode}
+            className="sr-only peer"
+            aria-label="Toggle dark mode"
+          />
+          <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
+            <span className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`}>
+              {!isDarkMode ? (
+                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-slate-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                </svg>
+              )}
+            </span>
+          </div>
+        </label>
+      </div>
+
+      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] mb-30">
         {/* Top Gradient */}
-        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/90 via-white/30 to-transparent z-20 pointer-events-none"></div>
+        <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
 
         {/* Bottom Gradient */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white/90 via-white/30 to-transparent z-20 pointer-events-none"></div>
+        <div className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
 
         {/* Animated Donut Rings */}
         <motion.img
@@ -121,6 +150,7 @@ const DownloadPage = () => {
           initial="initial"
           animate="animate"
         />
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
         
         {/* Contact Card with glassmorphism */}
         <motion.div
@@ -134,16 +164,16 @@ const DownloadPage = () => {
         >
           {/* Text */}
           <motion.div 
-            className="flex-1 text-left justify-items-center"
+            className="flex-1 text-left justify-items-left"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.h2 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-metro-600 text-[#6D28B2] mb-0"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-metro-600 text-[#6D28B2] mb-0 text-left"
               variants={itemVariants}
             >
-              Download Now
+              Where Social <br/> Meets Real Life
             </motion.h2>
           </motion.div>
           
@@ -171,7 +201,8 @@ const DownloadPage = () => {
                 className='flex flex-col sm:flex-row mt-4 sm:mt-6 justify-center gap-4 sm:gap-6'
                 variants={containerVariants}
               >
-                <motion.button 
+                <h1 className='text-[#6D28B2] text-7xl'>Coming Soon...</h1>
+                {/* <motion.button 
                   className='h-auto w-full sm:w-[300px] md:w-[350px] lg:w-[405px]' 
                   whileHover={buttonHover}
                   whileTap={buttonTap}
@@ -198,7 +229,7 @@ const DownloadPage = () => {
                     whileHover={hoverEffect}
                     whileTap={tapEffect}
                   />
-                </motion.button>
+                </motion.button> */}
               </motion.div>
               
             </motion.div>
