@@ -17,7 +17,7 @@ export function FaqItem({ question, answer }) {
       <motion.div
         onClick={() => setOpen(!open)}
         className={`flex items-center justify-between p-5 cursor-pointer rounded-xl transition 
-          ${open ? "bg-white shadow-md" : "bg-gray-100"}
+          ${open ? "!bg-white shadow-md" : "bg-gray-100"}
         `}
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.99 }}
@@ -30,7 +30,7 @@ export function FaqItem({ question, answer }) {
 
       {open && (
         <motion.div
-          className="bg-white px-5 pb-5 pt-2 text-sm text-gray-700 rounded-b-xl"
+          className="!bg-white px-5 pb-5 pt-2 text-sm text-gray-700 rounded-b-xl"
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
@@ -201,7 +201,7 @@ const CommunityPage = () => {
 
       {/* FAQ Section */}
       <motion.div 
-        className="w-full min-h-screen flex flex-col gap-10 px-[24px] sm:px-[40px] md:px-[60px] lg:px-[80px] xl:px-[100px] py-20 overflow-x-hidden z-10"
+        className={`w-full min-h-screen flex flex-col gap-10 px-[24px] sm:px-[40px] md:px-[60px] lg:px-[80px] xl:px-[100px] py-20 overflow-x-hidden z-10 ${isDarkMode ? "!text-black" : "text-black"}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 3.5 }}
@@ -213,7 +213,7 @@ const CommunityPage = () => {
           ["Is PeakTew really free to use?", "Yes, completely free. No subscriptions, no paywalls. Just real connections."],
           ["Where is PeakTew available?", "PeakTew is on iOS (App Store) and Android (Google Play). Wherever you are, new friends are nearby."]
         ].map(([q, a], i) => (
-          <FaqItem key={i} question={q} answer={a} />
+          <FaqItem key={i} question={q} answer={a}/>
         ))}
       </motion.div>
     </>

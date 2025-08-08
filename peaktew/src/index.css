@@ -158,6 +158,10 @@
   color: #0f172a !important;
 }
 
+.dark .dark-icon{
+  color: #ffffff
+}
+
 @keyframes fadeIn {
     from {
       opacity: 0;

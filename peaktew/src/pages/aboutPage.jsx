@@ -98,7 +98,7 @@ const AboutPage = () => {
       </div>
 
       <motion.section
-        className="w-full min-h-screen flex flex-col gap-20 px-[100px] py-20 overflow-x-hidden z-10 transition-colors duration-500 bg-white dark:bg-[#220239]"
+        className="w-full min-h-screen flex flex-col gap-20 px-[100px] py-20 overflow-x-hidden z-10 transition-colors duration-500 bg-white"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
