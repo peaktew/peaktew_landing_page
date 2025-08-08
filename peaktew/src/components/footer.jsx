@@ -1,21 +1,22 @@
 import React from "react";
-import linkedin from '../assets/linkedin.png';
-import insta from '../assets/insta.png';
-import { Link } from 'react-router-dom';
-import tiktok from '../assets/tiktok.png';
-import logo from '../assets/logo.png';
-
+import linkedin from "../assets/linkedin.png";
+import insta from "../assets/insta.png";
+import { Link } from "react-router-dom";
+import tiktok from "../assets/tiktok.png";
+import logo from "../assets/logo.png";
 
 export default function Footer() {
   const scrollToTop = () => {
-  window.scrollTo({top: 0, behavior: "smooth"});
-}
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <footer className="bg-white text-[#220239] px-4 sm:px-6 md:px-10 lg:px-24 xl:px-36 2xl:px-48 py-10 z-10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className="mb-10">
           <h2 className="text-[24px] sm:text-[32px] md:text-[36px] lg:text-[40px] font-metro-600 leading-snug">
-            Ready to discover<br />what’s possible?
+            Ready to discover
+            <br />
+            what’s possible?
           </h2>
         </div>
 
@@ -25,8 +26,12 @@ export default function Footer() {
           <div className="flex flex-col">
             <img className="w-[30px] h-[30px] mb-4" src={logo} alt="logo" />
             <div>
-              <p className="text-base sm:text-lg font-metro-600">“Together, Unique In Our Own Way”</p>
-              <p className="text-sm font-metro-300 text-gray-500">PeakTew, 2023</p>
+              <p className="text-base sm:text-lg font-metro-600">
+                “Together, Unique In Our Own Way”
+              </p>
+              <p className="text-sm font-metro-300 text-gray-500">
+                PeakTew, 2023
+              </p>
             </div>
           </div>
 
@@ -34,15 +39,51 @@ export default function Footer() {
             <div>
               <p className="font-metro-600 mb-2">Website</p>
               <ul className="space-y-1 text-gray-600 font-metro-300">
-                <li><Link to={'/web-terms-conditions'} onClick={() => scrollToTop()}><p className="hover:text-purple-700 transition-colors duration-300">Terms & Conditions</p></Link></li>
-                <li><Link to={'/web-privacy-policy'} onClick={() => scrollToTop()}><p className="hover:text-purple-700 transition-colors duration-300">Private Policy</p></Link></li>
+                <li>
+                  <Link
+                    to={"/web-terms-conditions"}
+                    onClick={() => scrollToTop()}
+                  >
+                    <p className="hover:text-purple-700 transition-colors duration-300">
+                      Terms & Conditions
+                    </p>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/web-privacy-policy"}
+                    onClick={() => scrollToTop()}
+                  >
+                    <p className="hover:text-purple-700 transition-colors duration-300">
+                      Private Policy
+                    </p>
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <p className="font-metro-600 mb-2">App</p>
               <ul className="space-y-1 text-gray-600 font-metro-300">
-                <li><Link to={'/app-terms-conditions'} onClick={() => scrollToTop()}><p className="hover:text-purple-700 transition-colors duration-300">Terms & Condition</p></Link></li>
-                <li><Link to={'/app-privacy-policy'} onClick={() => scrollToTop()}><p className="hover:text-purple-700 transition-colors duration-300">Privacy Policy</p></Link></li>
+                <li>
+                  <Link
+                    to={"/app-terms-conditions"}
+                    onClick={() => scrollToTop()}
+                  >
+                    <p className="hover:text-purple-700 transition-colors duration-300">
+                      Terms & Condition
+                    </p>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/app-privacy-policy"}
+                    onClick={() => scrollToTop()}
+                  >
+                    <p className="hover:text-purple-700 transition-colors duration-300">
+                      Privacy Policy
+                    </p>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -53,9 +94,52 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-sm sm:text-base text-gray-500 font-metro-300">
           <p>© COPYRIGHT ALL RIGHTS RESERVED</p>
           <div className="flex flex-wrap gap-4 text-xl">
-            <a href="https://www.linkedin.com/company/peaktew/"><img className="w-[19px] h-[22px]" src={linkedin} alt="linkedin" /></a>
-            <a href="https://www.instagram.com/peaktew/"><img className="w-[19px] h-[22px]" src={insta} alt="instagram" /></a>
-            <a href="https://www.tiktok.com/@peaktew"><img className="w-[21px] h-[21px]" src={tiktok} alt="youtube" /></a>
+            <a href="https://www.linkedin.com/company/peaktew/">
+              <svg
+                width="19"
+                height="22"
+                viewBox="0 0 20 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3.75049 0.601562H16.3501C17.0529 0.601563 17.7271 0.880958 18.2241 1.37793C18.721 1.87488 19.0005 2.54922 19.0005 3.25195V15.8516C19.0005 16.5544 18.7211 17.2286 18.2241 17.7256C17.7271 18.2226 17.0529 18.502 16.3501 18.502H3.75049C3.04776 18.502 2.37342 18.2224 1.87646 17.7256C1.37949 17.2286 1.1001 16.5544 1.1001 15.8516V3.25195C1.1001 2.54913 1.37949 1.8749 1.87646 1.37793C2.37344 0.880958 3.04766 0.601563 3.75049 0.601562ZM3.75049 1.70117C3.3394 1.70117 2.94449 1.86459 2.65381 2.15527C2.36313 2.44595 2.19971 2.84087 2.19971 3.25195V15.8516C2.19971 16.2625 2.36331 16.6566 2.65381 16.9473C2.94449 17.2379 3.3394 17.4014 3.75049 17.4014H16.3501C16.7612 17.4014 17.1551 17.2379 17.4458 16.9473C17.7365 16.6566 17.8999 16.2626 17.8999 15.8516V3.25195C17.8999 2.84087 17.7365 2.44595 17.4458 2.15527C17.1551 1.86477 16.761 1.70117 16.3501 1.70117H3.75049ZM5.8501 7.95117C5.98479 7.95121 6.11468 8.00132 6.21533 8.09082C6.29072 8.15788 6.34602 8.24368 6.37549 8.33887L6.396 8.4375L6.3999 8.50684V13.752C6.39951 13.8917 6.34636 14.0263 6.25049 14.1279C6.15426 14.2299 6.02227 14.2916 5.88232 14.2998C5.74245 14.308 5.60503 14.2618 5.49756 14.1719C5.41686 14.1043 5.35712 14.0159 5.32568 13.917L5.3042 13.8154L5.30029 13.7393V8.50195C5.30029 8.35608 5.35828 8.21545 5.46143 8.1123C5.53884 8.035 5.63693 7.98297 5.74268 7.96191L5.8501 7.95117ZM9.00049 6.90137C9.12918 6.90142 9.25421 6.94684 9.35303 7.0293C9.45178 7.1118 9.51847 7.2269 9.5415 7.35352L9.66846 8.05176L10.2837 7.69629C10.4777 7.58425 10.6776 7.48241 10.8833 7.39355L10.8843 7.39453C11.5013 7.13099 12.4256 6.99071 13.2339 7.24414C13.6518 7.37683 14.052 7.61891 14.3462 8.01758L14.3472 8.01855C14.6109 8.37454 14.7635 8.8197 14.7944 9.34863L14.8003 9.56543V13.752C14.7999 13.8918 14.7459 14.0262 14.6499 14.1279C14.5538 14.2297 14.4225 14.2915 14.2827 14.2998C14.1428 14.308 14.0045 14.2618 13.897 14.1719C13.7911 14.0832 13.7224 13.9581 13.7046 13.8213L13.6997 13.7363V9.55176C13.6997 9.11804 13.5927 8.84799 13.4653 8.67383L13.4585 8.66406L13.4507 8.65527L13.3315 8.5293C13.2094 8.41971 13.0629 8.34077 12.9038 8.2959L12.9048 8.29492C12.8981 8.29281 12.891 8.29109 12.8843 8.28906C12.8818 8.2884 12.879 8.28775 12.8765 8.28711H12.8755C12.3753 8.13971 11.7413 8.22533 11.3169 8.40625H11.3159C10.7256 8.65891 10.1934 9.05053 9.82666 9.41602L9.81982 9.42188L9.81299 9.42871L9.68408 9.56738L9.55029 9.71191V13.752C9.5499 13.8918 9.49592 14.0262 9.3999 14.1279C9.30376 14.2297 9.1725 14.2915 9.03271 14.2998C8.89277 14.308 8.75447 14.2618 8.64697 14.1719C8.54112 14.0832 8.47237 13.9581 8.45459 13.8213L8.44971 13.7363V7.45117C8.44981 7.30549 8.50785 7.16554 8.61084 7.0625C8.71398 6.95936 8.85462 6.90137 9.00049 6.90137ZM5.8501 4.80176C5.99597 4.80176 6.13562 4.85975 6.23877 4.96289C6.34191 5.06604 6.3999 5.20569 6.3999 5.35156C6.3999 5.49743 6.34191 5.63709 6.23877 5.74023C6.13562 5.84338 5.99597 5.90137 5.8501 5.90137C5.70423 5.90137 5.56457 5.84338 5.46143 5.74023C5.35828 5.63709 5.30029 5.49743 5.30029 5.35156C5.30029 5.20569 5.35828 5.06604 5.46143 4.96289C5.56457 4.85975 5.70423 4.80176 5.8501 4.80176Z"
+                  fill="black"
+                  stroke="black"
+                />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/peaktew/">
+              <svg
+                width="20"
+                height="22"
+                viewBox="0 0 20 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16.7002 0.101074C17.5356 0.101074 18.3368 0.432948 18.9276 1.02369C19.5183 1.61443 19.8502 2.41564 19.8502 3.25107V15.8511C19.8502 16.6865 19.5183 17.4877 18.9276 18.0785C18.3368 18.6692 17.5356 19.0011 16.7002 19.0011H4.1002C3.26476 19.0011 2.46355 18.6692 1.87281 18.0785C1.28207 17.4877 0.950195 16.6865 0.950195 15.8511V3.25107C0.950195 2.41564 1.28207 1.61443 1.87281 1.02369C2.46355 0.432948 3.26476 0.101074 4.1002 0.101074H16.7002ZM16.7002 2.20107H4.1002C3.82172 2.20107 3.55465 2.3117 3.35773 2.50861C3.16082 2.70553 3.0502 2.9726 3.0502 3.25107V15.8511C3.0502 16.1296 3.16082 16.3966 3.35773 16.5935C3.55465 16.7904 3.82172 16.9011 4.1002 16.9011H16.7002C16.9787 16.9011 17.2457 16.7904 17.4427 16.5935C17.6396 16.3966 17.7502 16.1296 17.7502 15.8511V3.25107C17.7502 2.9726 17.6396 2.70553 17.4427 2.50861C17.2457 2.3117 16.9787 2.20107 16.7002 2.20107Z"
+                  fill="black"
+                />
+                <path
+                  d="M9.90039 5.14917C12.6381 5.17101 14.8106 7.37685 14.8008 10.1218C14.7908 12.8284 12.5792 15.0092 9.86035 14.9988C7.14734 14.9881 4.95173 12.7922 4.9502 10.0847C4.94891 7.36408 7.19 5.12773 9.90039 5.14917ZM9.89355 6.70093C8.09963 6.68745 6.59484 8.21466 6.5918 10.0759C6.58862 11.9448 8.06649 13.4479 9.88574 13.4441C11.7122 13.4401 13.1635 11.9514 13.1592 10.0632C13.1548 8.21554 11.6885 6.71442 9.89355 6.70093Z"
+                  fill="black"
+                  stroke="black"
+                  stroke-width="0.4"
+                />
+                <path
+                  d="M15.6498 4.29645C15.654 4.87641 15.2009 5.3441 14.629 5.35042C14.0312 5.357 13.5563 4.90103 13.5499 4.31422C13.5436 3.73715 14.0323 3.24695 14.6105 3.25051C15.1823 3.25393 15.6456 3.7203 15.6496 4.29645H15.6498Z"
+                  fill="black"
+                />
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@peaktew">
+              <img
+                className="w-[21px] h-[21px] dark-icon"
+                src={tiktok}
+                alt="tiktok"
+              />
+            </a>
           </div>
         </div>
       </div>

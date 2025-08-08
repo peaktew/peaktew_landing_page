@@ -63,6 +63,10 @@ const WebtcPage = () => {
     }
   };
 
+  useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+
   return (
     <>
       {/* Dark Mode Toggle - Top Right (Desktop Only) */}
@@ -92,7 +96,7 @@ const WebtcPage = () => {
       </div>
 
       <motion.section 
-        className="w-full min-h-screen flex flex-col gap-8 sm:gap-12 lg:gap-20 px-4 sm:px-6 md:px-8 lg:px-[100px] py-8 sm:py-12 lg:py-20 overflow-x-hidden transition-colors duration-500 bg-white dark:bg-[#220239]"
+        className="w-full min-h-screen flex flex-col gap-8 sm:gap-12 lg:gap-20 px-4 sm:px-6 md:px-8 lg:px-[100px] py-8 sm:py-12 lg:py-20 overflow-x-hidden transition-colors duration-500 bg-white"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
