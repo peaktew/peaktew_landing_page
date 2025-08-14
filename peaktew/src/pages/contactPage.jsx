@@ -1,12 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useDarkMode } from '../components/DarkModeContext';
+import { useDarkMode } from "../components/DarkModeContext";
 import full_ring from "../assets/full_big_ring.webp";
 import { useState } from "react";
+import axios from "axios";
+import LoadingIndicator from "../components/loading/simpleLoadingIndicator";
 
 const ContactPage = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -79,6 +81,46 @@ const ContactPage = () => {
   };
 
   const [title, setTitle] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    message: "",
+    name: "",
+    subject: "",
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const jsonData = JSON.stringify(formData);
+    try{
+      const result = await axios.post(
+      "https://server-397744756084.us-west1.run.app/v1/notifications/support",
+      jsonData,
+      { headers: { "Content-Type": "application/json" } }
+    );
+    if (result.message == "success") {
+      setIsSubmitted(true);
+    }
+    window.location.reload();
+    }
+    catch(e){
+
+    }
+    finally{
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -93,13 +135,29 @@ const ContactPage = () => {
             aria-label="Toggle dark mode"
           />
           <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
-            <span className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`}>
+            <span
+              className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${
+                isDarkMode ? "translate-x-6" : "translate-x-0"
+              }`}
+            >
               {!isDarkMode ? (
-                <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                <svg
+                  className="w-5 h-5 text-yellow-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               ) : (
-                <svg className="w-5 h-5 text-slate-500" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                  className="w-5 h-5 text-slate-500"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
                   <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                 </svg>
               )}
@@ -107,13 +165,25 @@ const ContactPage = () => {
           </div>
         </label>
       </div>
-
+      
+        <div className="">
+          <LoadingIndicator isLoading={isLoading}/>
+        </div>
+      
       <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
         {/* Top Gradient */}
-        <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
+        <div
+          className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${
+            isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"
+          } z-20 pointer-events-none`}
+        ></div>
 
         {/* Bottom Gradient */}
-        <div className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"}t z-20 pointer-events-none`}></div>
+        <div
+          className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${
+            isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"
+          }t z-20 pointer-events-none`}
+        ></div>
 
         {/* Animated Donut Rings */}
         <motion.img
@@ -133,7 +203,13 @@ const ContactPage = () => {
           animate="animate"
           style={{ rotate: 180 }} // Start with different rotation
         />
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
+        <div
+          className={`absolute inset-0 bg-gradient-to-t ${
+            isDarkMode
+              ? "from-[#2202396d] to-[#220239]"
+              : "from-white  to-transparent"
+          }`}
+        />
         {/* Contact Card with glassmorphism */}
         <motion.div
           className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-white/30"
@@ -159,10 +235,10 @@ const ContactPage = () => {
               Get In Touch
             </motion.h2>
           </motion.div>
-          
-          <div className='flex-1 flex flex-col md:flex-row gap- px-5'>
-            <motion.div 
-              className='flex-1 flex flex-col pr-6'
+
+          <div className="flex-1 flex flex-col md:flex-row gap- px-5">
+            <motion.div
+              className="flex-1 flex flex-col pr-6"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -195,12 +271,13 @@ const ContactPage = () => {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              action={"https://formsubmit.co/lathnog@gmail.com"}
-              method="POST"
+              onSubmit={submitForm}
             >
               <motion.input
                 type="text"
                 placeholder="Name"
+                required
+                onChange={handleChange}
                 name="name"
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
@@ -210,18 +287,32 @@ const ContactPage = () => {
                 }}
               />
 
-               <motion.select
+              <motion.select
                 placeholder="Title"
-                name="title"
-                onChange={(e) => setTitle(e.target.value)}
-                className={`p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2] ${title === "" ? "!text-[#8b7b9c]" : "text-[#220239]"}`}
+                name="subject"
+                required
+                onChange={(e) => {
+                  handleChange(e);
+                  setTitle(e);
+                }}
+                className={`p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2] ${
+                  title === "" ? "!text-[#8b7b9c]" : "text-[#220239]"
+                }`}
                 variants={itemVariants}
                 whileFocus={{
                   scale: 1.02,
                   boxShadow: "0 0 0 2px rgba(109, 40, 178, 0.5)",
                 }}
               >
-                <option value="" disabled selected hidden className=" !text-white/20">Title</option>
+                <option
+                  value=""
+                  disabled
+                  selected
+                  hidden
+                  className=" !text-white/20"
+                >
+                  Title
+                </option>
                 <option value="feedback">Feedback</option>
                 <option value="support">Customer Support</option>
                 <option value="inquiry">Inquiry</option>
@@ -231,7 +322,9 @@ const ContactPage = () => {
               <motion.input
                 type="email"
                 placeholder="Email"
+                required
                 name="email"
+                onChange={handleChange}
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
@@ -242,6 +335,9 @@ const ContactPage = () => {
               <motion.textarea
                 placeholder="Message"
                 name="message"
+                required
+                minLength={10}
+                onChange={handleChange}
                 rows="4"
                 className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
@@ -251,7 +347,6 @@ const ContactPage = () => {
                 }}
               ></motion.textarea>
               <motion.button
-              
                 type="submit"
                 className="bg-black text-white py-2 rounded-md hover:bg-peakPurple transition-colors"
                 variants={itemVariants}
