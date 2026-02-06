@@ -22,6 +22,7 @@ import alert from "../assets/Landing_page/alert.webp";
 import pfp from "../assets/Landing_page/pfp.webp";
 import arch from "../assets/Landing_page/arch.webp";
 import { useDarkMode } from "../components/DarkModeContext";
+import { useSound } from "../components/SoundContext";
 
 const AnimatedText = ({ text, delay = 0, className }) => {
   const controls = useAnimation();
@@ -119,6 +120,7 @@ const LandingPage = () => {
   const [scrollY, setScrollY] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const { isMuted } = useSound();
 
   useEffect(() => {
     const onScroll = () => {
@@ -647,7 +649,7 @@ const LandingPage = () => {
           <video
             autoPlay
             loop
-            muted
+            muted={isMuted}
             playsInline
             className="w-full h-full object-cover"
           >
