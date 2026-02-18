@@ -24,7 +24,7 @@ import arch from "../assets/Landing_page/arch.webp";
 import { useDarkMode } from "../components/DarkModeContext";
 import { useSound } from "../components/SoundContext";
 
-const AnimatedText = ({ text, delay = 0, className }) => {
+const AnimatedText = ({ text, delay = 0, className, style = {} }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     threshold: 0.5,
@@ -72,7 +72,7 @@ const AnimatedText = ({ text, delay = 0, className }) => {
     <motion.div
       ref={ref}
       className={className}
-      style={{ display: "flex", overflow: "hidden" }}
+      style={{ display: "flex", overflow: "hidden", ...style }}
       variants={container}
       initial="hidden"
       animate={controls}
@@ -430,12 +430,30 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText
             text="But what if we could"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent"
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none ${
+              isDarkMode 
+                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
+                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+            } bg-clip-text text-transparent`}
+            style={{
+              color: 'transparent',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text'
+            }}
           />
           <AnimatedText
             text="change this?"
             delay={0.3}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4"
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 ${
+              isDarkMode 
+                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
+                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+            } bg-clip-text text-transparent`}
+            style={{
+              color: 'transparent',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text'
+            }}
           />
         </div>
 
@@ -689,16 +707,35 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText
             text="Bringing Back"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent"
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none ${
+              isDarkMode 
+                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
+                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+            } bg-clip-text text-transparent`}
+            style={{
+              color: 'transparent',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text'
+            }}
           />
           <AnimatedText
             text="Real-Time Connection"
             delay={0.3}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4"
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 ${
+              isDarkMode 
+                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
+                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+            } bg-clip-text text-transparent`}
+            style={{
+              color: 'transparent',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text'
+            }}
           />
           <AnimatedText
             text="Making Meaningful Friendships Starts Here!"
-            className="text-base sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] dark:text-white leading-none mt-2 sm:mt-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl font-metro-600 leading-none mt-2 sm:mt-4"
+            style={{ color: isDarkMode ? "#ffffff" : "#220239" }}
           />
         </div>
       </motion.div>
@@ -741,7 +778,16 @@ const LandingPage = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-[#220239] dark:text-white text-center mb-3 sm:mb-4"
+          className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-center mb-3 sm:mb-4 ${
+            isDarkMode 
+              ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
+              : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+          } bg-clip-text`}
+          style={{ 
+            color: 'transparent',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text'
+          }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -751,7 +797,8 @@ const LandingPage = () => {
         </motion.h2>
 
         <motion.p
-          className="text-center text-base sm:text-lg md:text-xl text-[#220239] dark:text-white font-medium mb-8 sm:mb-10 md:mb-12"
+          className="text-center text-base sm:text-lg md:text-xl font-medium mb-8 sm:mb-10 md:mb-12"
+          style={{ color: isDarkMode ? "#ffffff" : "#220239" }}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
