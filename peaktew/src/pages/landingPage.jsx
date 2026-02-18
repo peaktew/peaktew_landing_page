@@ -101,7 +101,7 @@ const NotificationCard = ({
     <motion.img
       src={src}
       alt="notification"
-      className={`absolute w-[300px] sm:w-[400px] md:w-[500px] lg:w-[700px] ${className}`}
+      className={`absolute w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] ${className}`}
       style={{ top, left, right }}
       initial={{ x: initialX, y: initialY, opacity: 0, rotate }}
       whileInView={{ x: 0, y: 0, opacity: 1, rotate }}
@@ -400,6 +400,22 @@ const LandingPage = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
         />
+
+        {/* Exclamation Mark */}
+        <motion.img
+          src={alert}
+          alt="alert"
+          className="absolute bottom-[5%] right-[30%] sm:right-[33%] w-[60px] sm:w-[80px] md:w-[100px] z-30"
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 15,
+            delay: 0.4,
+          }}
+        />
         <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
       </motion.section>
 
@@ -412,20 +428,6 @@ const LandingPage = () => {
         transition={{ duration: 0.8 }}
       >
         <div className="container mx-auto px-4 text-center justify-items-center">
-          <motion.img
-            src={alert}
-            alt="alert"
-            className="relative left-0 sm:left-80 w-[80px] sm:w-[118px] mx-auto sm:mx-0"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{
-              type: "spring",
-              stiffness: 500,
-              damping: 15,
-              delay: 0.2,
-            }}
-          />
           <AnimatedText
             text="But what if we could"
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none bg-gradient-to-br from-[#ffffff] to-[#220239] via-[#420084] bg-clip-text text-transparent"
@@ -460,7 +462,7 @@ const LandingPage = () => {
             rotate="4.07deg"
             delay={0.1}
             top="5%"
-            left="0"
+            left="15%"
           />
           <NotificationCard
             src={not2}
@@ -468,8 +470,8 @@ const LandingPage = () => {
             initialY={100}
             rotate="8.51deg"
             delay={0.2}
-            top="15%"
-            right="0"
+            top="12%"
+            right="20%"
             className="z-10"
           />
           <NotificationCard
@@ -478,8 +480,8 @@ const LandingPage = () => {
             initialY={100}
             rotate="2.21deg"
             delay={0.3}
-            top="18%"
-            left="20%"
+            top="20%"
+            left="25%"
             className="z-5"
           />
           <NotificationCard
@@ -488,8 +490,8 @@ const LandingPage = () => {
             initialY={100}
             rotate="0deg"
             delay={0.4}
-            top="25%"
-            right="10%"
+            top="28%"
+            right="18%"
             className="z-20"
           />
           <NotificationCard
@@ -498,8 +500,8 @@ const LandingPage = () => {
             initialY={100}
             rotate="-6deg"
             delay={0.5}
-            top="35%"
-            left="15%"
+            top="36%"
+            left="20%"
             className="z-10"
           />
 
@@ -732,36 +734,48 @@ const LandingPage = () => {
 
       {/* YouTube Video Section */}
       <motion.div
-        className="w-full flex flex-col items-center justify-center px-4 py-8 sm:py-12 bg-white"
+        className="w-full flex flex-col items-center justify-center px-4 py-12 sm:py-16 md:py-20 bg-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="w-full mt-10 sm:mt-20 max-w-3xl aspect-video">
+        <motion.h2
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-[#220239] dark:text-white text-center mb-3 sm:mb-4"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+        >
+          Want to know more?
+        </motion.h2>
+
+        <motion.p
+          className="text-center text-base sm:text-lg md:text-xl text-[#220239] dark:text-white font-medium mb-8 sm:mb-10 md:mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          Watch this video to learn more about us from the CEO!
+        </motion.p>
+
+        <motion.div
+          className="w-full max-w-4xl aspect-video"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
           <iframe
-            className="w-full h-full rounded-lg shadow-lg"
+            className="w-full h-full rounded-2xl shadow-2xl border-4 border-white/50"
             src="https://www.youtube.com/embed/Wo9qTKM_6oI"
             title="CEO Video"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
-        </div>
-
-        <motion.p
-          className="text-center mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-[#220239] dark:text-white font-medium"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-        >
-          Want to know more?
-          <br />
-          <span className="font-metro-600">
-            Watch this video to learn more about us from the CEO!
-          </span>
-        </motion.p>
+        </motion.div>
       </motion.div>
     </div>
   );

@@ -4,6 +4,8 @@ import insta from "../assets/insta.png";
 import { Link } from "react-router-dom";
 import tiktok from "../assets/tiktok.png";
 import logo from "../assets/logo.png";
+import faberLogo from "../assets/faber-logo.png";
+import mcnairLogo from "../assets/mcnair-logo.png";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -91,11 +93,35 @@ export default function Footer() {
 
         <hr className="my-6 border-gray-300" />
 
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-sm sm:text-base text-gray-500 font-metro-300">
-          <p>© COPYRIGHT ALL RIGHTS RESERVED</p>
-          <div className="flex flex-wrap gap-4 text-xl">
-            <a href="https://www.linkedin.com/company/peaktew/">
-              <svg
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 text-sm sm:text-base text-gray-500 font-metro-300">
+          <p className="text-gray-500">© COPYRIGHT ALL RIGHTS RESERVED</p>
+          
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
+            <div className="flex flex-col items-start lg:items-center">
+              <h3 className="text-xs sm:text-sm font-metro-600 text-black mb-2">
+                Our Proud Supporters
+              </h3>
+              <div className="flex gap-4 items-center">
+                <img
+                  src={faberLogo}
+                  alt="Faber"
+                  className="h-[21px] object-contain"
+                />
+                <img
+                  src={mcnairLogo}
+                  alt="McNair"
+                  className="h-[21px] object-contain"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col items-start lg:items-end">
+            <h3 className="text-xs sm:text-sm font-metro-600 text-black mb-2">
+              Social Media
+            </h3>
+            <div className="flex flex-wrap gap-4 text-xl">
+              <a href="https://www.linkedin.com/company/peaktew/">
+                <svg
                 width="19"
                 height="22"
                 viewBox="0 0 20 19"
@@ -140,6 +166,8 @@ export default function Footer() {
                 alt="tiktok"
               />
             </a>
+            </div>
+          </div>
           </div>
         </div>
       </div>
