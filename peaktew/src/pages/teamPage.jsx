@@ -58,96 +58,92 @@ const TeamPage = () => {
 
       {/* Content Section */}
       <motion.div
-        className="container mx-auto px-4 py-40 max-w-6xl"
+        className="container mx-auto px-4 py-20 max-w-5xl"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
       >
-        {/* Title */}
-        <div className='flex flex-row justify-end'>
-          <motion.h1
-          className="text-center text-5xl font-extrabold text-[#6D28B2] uppercase mb-12 underline"
+        {/* Title - top left */}
+        <motion.h1
+          className="text-3xl md:text-4xl font-bold text-[#6D28B2] mb-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          We're Proudly
+          We're proudly...
         </motion.h1>
-        </div>
 
-        {/* Content Row */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Left - Rocket + Text */}
-          <motion.div
-            className="flex flex-col items-center md:items-start md:w-1/2 space-y-6"
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+        {/* Ring with floating stat cards — narrow container so cards sit ON the ring */}
+        <div className="relative mx-auto" style={{ width: '100%', maxWidth: '620px', minHeight: '560px' }}>
+          {/* Ring image - centered and fills most of the container */}
+          <motion.img
+            src={circleImage}
+            alt="Circle"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] md:w-[500px] md:h-[500px] z-10"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
+            whileHover={{ scale: 1.03 }}
+          />
+
+          {/* 23+ INNOVATORS — top right, overlapping ring body */}
+          <motion.div
+            className="absolute bg-white/85 backdrop-blur-sm rounded-2xl px-5 py-4 shadow-md text-right z-20"
+            style={{ top: '2%', right: '0' }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.3 }}
           >
-            <motion.img
-              src={circleImage}
-              alt="Circle"
-              className="w-80 h-80 md:w-150 md:h-150"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.p
-              className="text-center md:text-left text-gray-700 text-base md:text-lg max-w-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
-            >
-              With members from over a dozen countries, our team combines global perspectives to design a platform that connects people everywhere—no matter where they call home.
-            </motion.p>
+            <h2 className="text-4xl md:text-5xl font-bold" style={{ color: '#6D28B2' }}>23+</h2>
+            <p className="text-xs font-semibold tracking-widest mt-1" style={{ color: '#6D28B2' }}>INNOVATORS</p>
           </motion.div>
 
-          {/* Right - Stats */}
+          {/* 15+ NATIONALITIES — left middle, overlapping ring body */}
           <motion.div
-            className="md:w-1/2 flex flex-col justify-center space-y-10 text-center md:text-right"
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.3 }}
+            className="absolute bg-white/85 backdrop-blur-sm rounded-2xl px-5 py-4 shadow-md z-20"
+            style={{ top: '28%', left: '0' }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 1.5 }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.5 }}
-            >
-              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>23+</h2>
-              <p className="text-xl font-semibold mt-1" style={{ color: '#6D28B2' }}>INNOVATORS</p>
-              <hr className="my-4 border-t border-purple-300 mx-auto md:ml-auto md:mr-0 w-1/2" />
-            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold" style={{ color: '#6D28B2' }}>15+</h2>
+            <p className="text-xs font-semibold tracking-widest mt-1" style={{ color: '#6D28B2' }}>NATIONALITIES</p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.7 }}
-            >
-              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>15+</h2>
-              <p className="text-xl font-semibold mt-1" style={{ color: '#6D28B2' }}>NATIONALITIES</p>
-              <hr className="my-4 border-t border-purple-300 mx-auto md:ml-auto md:mr-0 w-1/2" />
-            </motion.div>
+          {/* 5 CONTINENTS — right center-lower, overlapping ring body */}
+          <motion.div
+            className="absolute bg-white/85 backdrop-blur-sm rounded-2xl px-5 py-4 shadow-md z-20"
+            style={{ top: '54%', right: '0' }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 1.7 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold" style={{ color: '#6D28B2' }}>5</h2>
+            <p className="text-xs font-semibold tracking-widest mt-1" style={{ color: '#6D28B2' }}>CONTINENTS</p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.9 }}
-            >
-              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>5</h2>
-              <p className="text-xl font-semibold mt-1" style={{ color: '#6D28B2' }}>CONTINENTS</p>
-              <hr className="my-4 border-t border-purple-300 mx-auto md:ml-auto md:mr-0 w-1/2" />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 2.1 }}
-            >
-              <h2 className="text-5xl md:text-6xl font-bold" style={{ color: '#6D28B2' }}>10+</h2>
-              <p className="text-xl font-semibold mt-1" style={{ color: '#6D28B2' }}>TIME ZONES</p>
-            </motion.div>
+          {/* 10+ TIME ZONES — bottom left, overlapping ring body */}
+          <motion.div
+            className="absolute bg-white/85 backdrop-blur-sm rounded-2xl px-5 py-4 shadow-md z-20"
+            style={{ bottom: '2%', left: '2%' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.9 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold" style={{ color: '#6D28B2' }}>10+</h2>
+            <p className="text-xs font-semibold tracking-widest mt-1" style={{ color: '#6D28B2' }}>TIME ZONES</p>
           </motion.div>
         </div>
+
+        {/* Description text - below ring */}
+        <motion.p
+          className="text-center text-gray-600 text-sm md:text-base max-w-xl mx-auto mt-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 2.1 }}
+        >
+          With members from over a dozen countries, our team combines global perspectives to design a platform that connects people everywhere—no matter where they call home.
+        </motion.p>
       </motion.div>
 
       <div className="px-6 sm:px-12 py-28 bg-white relative">
