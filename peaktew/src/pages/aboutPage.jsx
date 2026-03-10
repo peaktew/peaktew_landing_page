@@ -159,19 +159,19 @@ const AboutPage = () => {
       </motion.section>
 
       <motion.section
-        className="w-full min-h-screen gap-20 px-[100px] py-20 overflow-x-hidden z-10"
+        className="w-full relative px-[100px] py-20 overflow-x-hidden z-10"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
       >
         <motion.img
-          src={metal}
+          src={gradient}
           alt=""
-          className="absolute top-[150%] right-60 z-0 w-[180px] opacity-100"
-          initial={{ rotate: 0 }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute top-4 right-8 z-0 w-[160px] opacity-70"
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 0.7 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         />
 
         <motion.div
@@ -187,25 +187,18 @@ const AboutPage = () => {
         </motion.div>
 
         <motion.div
-          className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
           initial="offscreen"
           whileInView="onscreen"
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
-          {/* Mission Card */}
+          {/* Mission Card - top left */}
           <motion.div
             className="bg-white p-8 rounded-2xl shadow-md text-center"
             variants={cardVariants}
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
           >
-            <motion.img
-              src={phone}
-              alt="Mission Icon"
-              className="mx-auto w-16 h-16 mb-6"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            />
             <h2 className="text-2xl font-bold text-[#000] mb-4">Our Mission</h2>
             <p className="text-gray-700 mb-4">
               Our mission is to redefine social networking by prioritizing
@@ -218,19 +211,40 @@ const AboutPage = () => {
             </p>
           </motion.div>
 
-          {/* Vision Card */}
+          {/* Cube decorative - top right */}
+          <motion.div
+            className="flex items-center justify-center"
+            variants={cardVariants}
+          >
+            <motion.img
+              src={cube}
+              alt=""
+              className="w-72 h-72 object-contain"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.div>
+
+          {/* Phone decorative - bottom left */}
+          <motion.div
+            className="flex items-center justify-center"
+            variants={cardVariants}
+          >
+            <motion.img
+              src={phone}
+              alt=""
+              className="w-72 h-72 object-contain"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            />
+          </motion.div>
+
+          {/* Vision Card - bottom right */}
           <motion.div
             className="bg-white p-8 rounded-2xl shadow-md text-center"
             variants={cardVariants}
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
           >
-            <motion.img
-              src={cube}
-              alt="Vision Icon"
-              className="mx-auto w-16 h-16 mb-6"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            />
             <h2 className="text-2xl font-bold text-[#000] mb-4">Our Vision</h2>
             <p className="text-gray-700 mb-4">
               In our quest to redefine social networking, we uphold core values
