@@ -80,7 +80,6 @@ const ContactPage = () => {
     scale: 0.98,
   };
 
-  const [title, setTitle] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -88,7 +87,6 @@ const ContactPage = () => {
     email: "",
     message: "",
     name: "",
-    subject: "",
   });
 
   const handleChange = (e) => {
@@ -287,38 +285,6 @@ const ContactPage = () => {
                 }}
               />
 
-              <motion.select
-                placeholder="Title"
-                name="subject"
-                required
-                onChange={(e) => {
-                  handleChange(e);
-                  setTitle(e);
-                }}
-                className={`p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2] ${
-                  title === "" ? "!text-[#8b7b9c]" : "text-[#220239]"
-                }`}
-                variants={itemVariants}
-                whileFocus={{
-                  scale: 1.02,
-                  boxShadow: "0 0 0 2px rgba(109, 40, 178, 0.5)",
-                }}
-              >
-                <option
-                  value=""
-                  disabled
-                  selected
-                  hidden
-                  className=" !text-white/20"
-                >
-                  Title
-                </option>
-                <option value="feedback">Feedback</option>
-                <option value="support">Customer Support</option>
-                <option value="inquiry">Inquiry</option>
-                <option value="report">Report</option>
-                <option value="others">Others</option>
-              </motion.select>
               <motion.input
                 type="email"
                 placeholder="Email"

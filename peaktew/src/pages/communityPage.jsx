@@ -79,7 +79,7 @@ const CommunityPage = () => {
         </label>
       </div>
 
-      <section className="w-screen min-h-screen flex flex-col gap-20 px-[24px] sm:px-[40px] md:px-[60px] lg:px-[80px] xl:px-[100px] py-20 overflow-x-hidden z-10 transition-colors duration-500 bg-white">
+      <section className="w-full min-h-screen flex flex-col gap-20 px-[24px] sm:px-[40px] md:px-[60px] lg:px-[80px] xl:px-[100px] py-20 overflow-hidden z-10 transition-colors duration-500 bg-white">
         <motion.img 
           src={ring} 
           alt="" 
@@ -95,107 +95,56 @@ const CommunityPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-[40px] sm:text-[64px] md:text-[96px] lg:text-[128px] font-metro-600 text-[#6D28B2] mb-10 leading-none">
+          <h1 className="text-[40px] sm:text-[64px] md:text-[96px] lg:text-[128px] font-metro-600 bg-clip-text text-transparent bg-gradient-to-b from-[#A62AD2] via-[#6E1CBF] to-[#470974] mb-10 leading-none">
             Respect, Safety, Connection
           </h1>
         </motion.div>
 
         <motion.div
-          className="w-full max-w-[95%] flex flex-col gap-6"
+          className="w-full max-w-[95%] flex flex-col gap-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <motion.div 
-            className="font-metro-600 text-[#220239] text-[14px] sm:text-[15px] md:text-[16px] space-y-6 z-10"
+            className="font-metro-600 text-[#6D28B2] text-[14px] sm:text-[15px] md:text-[16px] z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <p>
-              Welcome to PeakTew! Our mission is to create a safe, inclusive,
-              and engaging space where people can build real-life friendships.
-              To ensure a positive experience for everyone, we ask all users to
-              follow these community guidelines.
+              At PeakTew, we believe in building a community that's as vibrant and welcoming as it is diverse. Here's how we do it:
             </p>
           </motion.div>
 
           {/* --- Repeatable Rule Blocks --- */}
           {[
-            ["1. Be Respectful & Kind", [
-              "Treat others with respect, kindness, and empathy.",
-              "No hate speech, bullying, harassment, or discrimination of any kind.",
-              "Respect differing opinions and engage in healthy, constructive conversations."
-            ]],
-            ["2. Prioritize Safety", [
-              "Meet in public places when connecting with new people.",
-              "Avoid sharing personal information (e.g., home address, financial details) with strangers.",
-              "Report any suspicious or inappropriate behavior immediately."
-            ]],
-            ["3. Authenticity Matters", [
-              "Use your real name and a genuine profile picture.",
-              "Do not impersonate others or create fake accounts.",
-              "Be honest about your interests and intentions when connecting with others."
-            ]],
-            ["4. No Harmful or Inappropriate Content", [
-              "Do not post or share violent, sexual, or illegal content.",
-              "Keep conversations and posts appropriate for a community-driven platform.",
-              "Respect others' privacy—do not share personal details or private conversations without consent."
-            ]],
-            ["5. Engage with Purpose", [
-              "Use the platform to build real friendships and meaningful connections.",
-              "Avoid spam, self-promotion, or excessive solicitation.",
-              "Participate in events and discussions with a positive and open-minded attitude."
-            ]],
-            ["6. Follow the Law & Our Terms of Service", [
-              "Do not use the platform for illegal activities, fraud, or harm to others.",
-              "Respect intellectual property rights—do not share copyrighted material without permission.",
-              "Adhere to all local laws and regulations while using the platform."
-            ]],
-          ].map(([title, bullets], index) => (
+            ["1. Respect", "We're all here to connect, so treat every interaction with kindness and respect."],
+            ["2. Safety First", "Your safety is our priority. Our \"Emergency button\" and supportive community are here to assist you in case of danger. Together we create a safe and welcoming environment for everyone."],
+            ["3. Authenticity", "Be yourself! PeakTew is a place where you can be genuine and authentic without fear of judgment."],
+            ["4. Inclusivity", "Embrace diversity and celebrate what makes each of us unique. At PeakTew, we welcome everyone."],
+            ["5. Privacy", "Your privacy matters. We're committed to protecting your data and giving you control over your personal information."],
+            ["6. Contribution", "Be an active participant in our community. Share your experiences, support local businesses, get involved in social initiatives that matter to you."],
+            ["7. Compliance", "Abide by standards and ensure your actions contribute positively to our environment. Report any misconduct or suspicious behavior to maintain the integrity and safety of our community. Any breach of the guidelines will lead to your account being deactivated."],
+            ["8. One Account Per Person", "You will only be able to create one PeakTew account and cannot share your account. Infringing this will lead to a permanent ban from all PeakTew-related platforms."],
+            ["9. Abide By The Law", "Illegal content or activities are strictly prohibited. You cannot use PeakTew to buy or sell drugs, or counterfeit goods, or seek assistance for any unlawful actions."],
+          ].map(([title, description], index) => (
             <React.Fragment key={index}>
-              <motion.p 
-                className='font-metro-600 text-[#6D28B2] text-[32px] sm:text-[48px] md:text-[56px] lg:text-[70px]'
+              <motion.div
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.2 }}
+                transition={{ duration: 0.5, delay: 0.6 + index * 0.15 }}
+                className="z-10"
               >
-                {title}
-              </motion.p>
-              <motion.div 
-                className="font-metro-600 text-[#220239] text-[14px] sm:text-[15px] md:text-[16px] space-y-6 ml-4 sm:ml-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.9 + index * 0.2 }}
-              >
-                <ol className='list-disc'>
-                  {bullets.map((b, i) => <li key={i}>{b}</li>)}
-                </ol>
+                <p className='font-metro-600 text-[#6D28B2] text-[22px] sm:text-[28px] md:text-[34px] lg:text-[40px] mb-2'>
+                  {title}
+                </p>
+                <p className="font-metro-600 text-[#6D28B2] text-[14px] sm:text-[15px] md:text-[16px] max-w-2xl">
+                  {description}
+                </p>
               </motion.div>
             </React.Fragment>
           ))}
-
-          <motion.p 
-            className='font-metro-600 text-[#6D28B2] text-[32px] sm:text-[48px] md:text-[56px] lg:text-[70px]'
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.7 }}
-          >
-            Reporting & Enforcement
-          </motion.p>
-
-          <motion.div 
-            className="font-metro-600 text-[#220239] text-[14px] sm:text-[15px] md:text-[16px] space-y-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.9 }}
-          >
-            <ul className='list-none'>
-              <li>If you experience or witness any violations of these guidelines, please report them to our moderation team. We reserve the right to remove content, issue warnings, suspend accounts, or take further action if necessary to maintain a safe and welcoming environment.</li>
-              <li>By using PeakTew, you agree to uphold these guidelines and contribute to a positive community experience.</li>
-              <li>Let's build real friendships and a welcoming space—together!</li>
-            </ul>
-          </motion.div>
         </motion.div>
       </section>
 
@@ -207,11 +156,17 @@ const CommunityPage = () => {
         transition={{ duration: 0.8, delay: 3.5 }}
       >
         {[
-          ["What makes PeakTew different from other social media apps?", "PeakTew cuts through the noise of endless scrolling. We focus on real life connections, helping you meet friends, join events, and plan activities offline and in person."],
-          ["How do I get started with PeakTew?", "Download PeakTew from the App Store or Google Play, create your profile, and browse nearby events. Join a meetup or host your own in seconds."],
-          ["Can I use PeakTew if I'm not super social?", "Of course. PeakTew is for everyone. Start with smaller, low key meetups or dive into bigger events. You set the pace."],
-          ["Is PeakTew really free to use?", "Yes, completely free. No subscriptions, no paywalls. Just real connections."],
-          ["Where is PeakTew available?", "PeakTew is on iOS (App Store) and Android (Google Play). Wherever you are, new friends are nearby."]
+          ["What makes PeakTew different from other social media apps?", "PeakTew isn't about endless scrolling, it's about creating real-world connections. From meeting new friends to discovering events and planning activities, we focus on bringing people together in meaningful ways."],
+          ["How does PeakTew work?", "PeakTew uses cutting-edge technology to connect you with people, places, and opportunities in your area. Simply set your preferences and let PeakTew do the rest. You'll receive personalized recommendations based on your interests and proximity, making it easy to discover new experiences and forge meaningful connections."],
+          ["Is PeakTew safe to use?", "Absolutely! Your safety is our top priority. We've implemented robust safety features, including user verification and community reporting tools, to ensure a secure and welcoming environment for all our users."],
+          ["Can I find job or volunteer opportunities on PeakTew?", "Yes! PeakTew offers features like Job Offers and Associations & non-profit organizations to help you find employment or volunteer opportunities in your community. Whether you're looking for your dream job or a chance to give back, PeakTew has you covered."],
+          ["How does PeakTew protect my privacy?", "We take your privacy seriously. Your data is encrypted and securely stored, and we never share your personal information with third parties without your consent. You have full control over your profile visibility and can adjust your privacy settings at any time."],
+          ["What makes PeakTew different from other social networks?", "Unlike traditional social networks that keep you glued to your screen, PeakTew encourages you to get out and explore the world around you. Our innovative features like Hotspots and Personalised Suggested Journey make it easy to discover new places, meet interesting people, and create unforgettable memories. Join PeakTew today and start living life to the fullest!"],
+          ["How can I report inappropriate behavior or content on PeakTew?", "If you encounter any inappropriate behavior or content on PeakTew, please report it to our moderation team immediately. You can do this by selecting the \"Report\" option within the app or contacting our support team directly at support@peaktew.com. We take all reports seriously and will take appropriate action to address any violations of our community guidelines."],
+          ["I think my account has been hacked, what should I do?", "If you suspect that your account has been hacked, please take immediate action. First, contact us right away at support@peaktew.com so we can assist you in securing your account. Additionally, consider informing people in your surroundings about the situation."],
+          ["What should I do if I encounter a dangerous situation in real life while using PeakTew?", "When using PeakTew, you are provided with numerous safety features, our main one being the \"emergency button\". In the encounter with a dangerous individual and/or situation, the press of this button will alert all PeakTew users in your direct surroundings and share your location."],
+          ["What happens if somebody breaches the Community Guidelines?", "As detailed in the \"Compliance\" section of our guidelines, any breach of the guidelines will lead to your account being deactivated. Each individual is entitled to one account, which cannot be shared with someone else."],
+          ["How can I avoid being tracked while using PeakTew?", "The PeakTew app does not enable your current location to be tracked. A user can only detect your presence within a certain radius (50m / 150ft) but will be unable to use our app to obtain your exact location."],
         ].map(([q, a], i) => (
           <FaqItem key={i} question={q} answer={a}/>
         ))}
