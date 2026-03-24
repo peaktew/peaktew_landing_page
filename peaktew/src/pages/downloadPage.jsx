@@ -201,9 +201,11 @@ const DownloadPage = () => {
                 className='flex flex-col sm:flex-row mt-4 sm:mt-6 justify-center gap-4 sm:gap-6'
                 variants={containerVariants}
               >
-                <h1 className='text-[#6D28B2] text-7xl'>Coming Soon...</h1>
-                {/* <motion.button 
-                  className='h-auto w-full sm:w-[300px] md:w-[350px] lg:w-[405px]' 
+                <motion.a
+                  href="https://apps.apple.com/app/id6504442833"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='h-auto w-full sm:w-[300px] md:w-[350px] lg:w-[405px]'
                   whileHover={buttonHover}
                   whileTap={buttonTap}
                   variants={itemVariants}
@@ -215,8 +217,11 @@ const DownloadPage = () => {
                     whileHover={hoverEffect}
                     whileTap={tapEffect}
                   />
-                </motion.button>
-                <motion.button 
+                </motion.a>
+                <motion.a
+                  href="https://play.google.com/store/apps/details?id=com.peaktew.apps"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className='h-auto w-full sm:w-[300px] md:w-[350px] lg:w-[405px]'
                   whileHover={buttonHover}
                   whileTap={buttonTap}
@@ -229,7 +234,7 @@ const DownloadPage = () => {
                     whileHover={hoverEffect}
                     whileTap={tapEffect}
                   />
-                </motion.button> */}
+                </motion.a>
               </motion.div>
               
             </motion.div>
