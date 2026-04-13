@@ -16,7 +16,7 @@ export const SoundProvider = ({ children }) => {
     if (saved !== null) {
       return JSON.parse(saved);
     }
-    return true;
+    return false;
   });
 
   useEffect(() => {
