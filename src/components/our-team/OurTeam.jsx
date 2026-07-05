@@ -110,7 +110,7 @@ const departments = [
         name: "Rachael",
         title: "Business Development Engagement Specialist",
         image: "Business/I- Business/Rachael (BDES).jpg",
-        country: "Lebanon",
+        country: "Ireland",
       },
     ],
   },
@@ -192,7 +192,7 @@ const countryFlagEmoji = (country) => {
     Singapore: "SG", "Hong Kong": "HK", Netherlands: "NL",
     "South Africa": "ZA", Lebanon: "LB", Romania: "RO", Myanmar: "MM",
     Brazil: "BR", Tanzania: "TZ", Taiwan: "TW", UK: "GB",
-    Palestine: "PS", Croatia: "HR", Ethiopia: "ET", Canada: "CA",
+    Palestine: "PS", Croatia: "HR", Ethiopia: "ET", Canada: "CA", Ireland: "IE"
   };
   const code = codes[country];
   if (!code) return "";
@@ -204,7 +204,7 @@ const countryFlagEmoji = (country) => {
 };
 
 const MemberCard = ({ member, index, isDarkMode }) => (
-  
+
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
