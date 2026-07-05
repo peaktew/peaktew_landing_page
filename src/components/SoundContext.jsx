@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-
+import React, { createContext, useContext, useEffect, useState, useRef } from "react";
+import music from "../assets/web-music.mp3";
 const SoundContext = createContext();
 
 export const useSound = () => {
@@ -16,9 +16,41 @@ export const SoundProvider = ({ children }) => {
     if (saved !== null) {
       return JSON.parse(saved);
     }
-    return true;
+    return false;
   });
+  const audioRef = useRef(null);
 
+  // Initialize audio on mount
+  useEffect(() => {
+    audioRef.current = new Audio(music);
+    audioRef.current.loop = true;
+    audioRef.current.volume = 0.5;
+    audioRef.current.muted = isMuted;
+    if (!isMuted) {
+      audioRef.current.play().catch(() => { });
+    }
+  }, []);
+
+  // Update mute state
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted;
+      if (!isMuted) {
+        audioRef.current.play().catch(() => { });
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isMuted]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
   useEffect(() => {
     localStorage.setItem("siteMuted", JSON.stringify(isMuted));
   }, [isMuted]);
