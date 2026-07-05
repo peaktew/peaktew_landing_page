@@ -22,14 +22,41 @@ export const SoundProvider = ({ children }) => {
 
   // Initialize audio on mount
   useEffect(() => {
-    audioRef.current = new Audio(music);
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.5;
-    audioRef.current.muted = isMuted;
-    if (!isMuted) {
-      audioRef.current.play().catch(() => { });
-    }
+    const audio = new Audio(music);
+    audio.loop = true;
+    audio.volume = 0.2;
+    audioRef.current = audio;
+
+    // Attempt to play; browsers allow muted autoplay
+    audio.muted = true;
+    audio.play()
+      .then(() => {
+        // Unmute only if user hasn't chosen to mute
+        if (!isMuted) {
+          audio.muted = false;
+        }
+      })
+      .catch(() => {
+        // Autoplay fully blocked — wait for first user interaction
+        const unlock = () => {
+          audio.play()
+            .then(() => {
+              if (!isMuted) {
+                audio.muted = false;
+              }
+            })
+            .catch(() => {});
+          window.removeEventListener("click", unlock);
+          window.removeEventListener("keydown", unlock);
+          window.removeEventListener("touchstart", unlock);
+        };
+        window.addEventListener("click", unlock, { once: true });
+        window.addEventListener("keydown", unlock, { once: true });
+        window.addEventListener("touchstart", unlock, { once: true });
+      });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
 
   // Update mute state
   useEffect(() => {
