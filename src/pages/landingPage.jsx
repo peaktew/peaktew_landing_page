@@ -121,6 +121,13 @@ const LandingPage = () => {
   const [maxScroll, setMaxScroll] = useState(0);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { isMuted } = useSound();
+  const videoRef = React.useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -667,6 +674,7 @@ const LandingPage = () => {
       >
         <div className="absolute inset-0 bg-black/10 z-0">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted={isMuted}
