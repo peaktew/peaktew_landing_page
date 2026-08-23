@@ -19,6 +19,7 @@ export const SoundProvider = ({ children }) => {
     return false;
   });
   const audioRef = useRef(null);
+  const isInitialMount = useRef(true);
 
   // Initialize audio on mount
   useEffect(() => {
@@ -27,39 +28,57 @@ export const SoundProvider = ({ children }) => {
     audio.volume = 0.2;
     audioRef.current = audio;
 
-    // Attempt to play; browsers allow muted autoplay
+    if (isMuted) {
+      audio.muted = true;
+      return;
+    }
+
     audio.muted = true;
+
+    let unlocked = false;
+    const unlock = () => {
+      if (unlocked) return;
+      unlocked = true;
+
+      const savedMute = localStorage.getItem("siteMuted");
+      const currentMute = savedMute !== null ? JSON.parse(savedMute) : false;
+
+      if (!currentMute) {
+        audio.muted = false;
+        audio.play().catch(() => { });
+      }
+
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("keydown", unlock);
+      window.removeEventListener("touchstart", unlock);
+    };
+
     audio.play()
       .then(() => {
-        // Unmute only if user hasn't chosen to mute
-        if (!isMuted) {
-          audio.muted = false;
-        }
+        window.addEventListener("click", unlock);
+        window.addEventListener("keydown", unlock);
+        window.addEventListener("touchstart", unlock);
       })
       .catch(() => {
-        // Autoplay fully blocked — wait for first user interaction
-        const unlock = () => {
-          audio.play()
-            .then(() => {
-              if (!isMuted) {
-                audio.muted = false;
-              }
-            })
-            .catch(() => {});
-          window.removeEventListener("click", unlock);
-          window.removeEventListener("keydown", unlock);
-          window.removeEventListener("touchstart", unlock);
-        };
-        window.addEventListener("click", unlock, { once: true });
-        window.addEventListener("keydown", unlock, { once: true });
-        window.addEventListener("touchstart", unlock, { once: true });
+        window.addEventListener("click", unlock);
+        window.addEventListener("keydown", unlock);
+        window.addEventListener("touchstart", unlock);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
+    return () => {
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("keydown", unlock);
+      window.removeEventListener("touchstart", unlock);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Update mute state
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     if (audioRef.current) {
       audioRef.current.muted = isMuted;
       if (!isMuted) {
@@ -78,6 +97,7 @@ export const SoundProvider = ({ children }) => {
       }
     };
   }, []);
+
   useEffect(() => {
     localStorage.setItem("siteMuted", JSON.stringify(isMuted));
   }, [isMuted]);

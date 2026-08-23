@@ -175,101 +175,100 @@ const LandingPage = () => {
       {/* Theme Toggle */}
 
       {/* Globe Section */}
-      
-        <motion.div
-          className="mx-auto px-4 w-full h-screen overflow-hidden relative"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <section style={{ position: "relative", zIndex: 1 }}>
-            <GlobeDemo />
-          </section>
 
-          {/* Dark Mode Toggle - Top Right */}
-          <div className="absolute top-4 right-4 z-20">
-            <label className="relative inline-flex items-center cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={isDarkMode}
-                onChange={toggleDarkMode}
-                className="sr-only peer"
-                aria-label="Toggle dark mode"
-              />
-              <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
-                <span
-                  className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${
-                    isDarkMode ? "translate-x-6" : "translate-x-0"
+      <motion.div
+        className="mx-auto px-4 w-full h-screen overflow-hidden relative"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <section style={{ position: "relative", zIndex: 1 }}>
+          <GlobeDemo />
+        </section>
+
+        {/* Dark Mode Toggle - Top Right */}
+        <div className="absolute top-4 right-4 z-20">
+          <label className="relative inline-flex items-center cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+              className="sr-only peer"
+              aria-label="Toggle dark mode"
+            />
+            <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
+              <span
+                className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? "translate-x-6" : "translate-x-0"
                   }`}
-                >
-                  {!isDarkMode ? (
-                    <svg
-                      className="w-5 h-5 text-yellow-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      className="w-5 h-5 text-slate-500"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                    </svg>
-                  )}
-                </span>
-              </div>
-            </label>
-          </div>
+              >
+                {!isDarkMode ? (
+                  <svg
+                    className="w-5 h-5 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="w-5 h-5 text-slate-500"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                  </svg>
+                )}
+              </span>
+            </div>
+          </label>
+        </div>
 
-          {/* Hero Text */}
-          <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
-            <AnimatedText
-              text="Take the fun"
-              className="text-5xl md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 text-[#220239] dark:!text-[#220239] text-center leading-none"
-            />
-            <AnimatedText
-              text="to the real World"
-              delay={0.3}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br from-[#010101] to-[#B338DE] dark:!from-[#010101] dark:!to-[#B338DE] bg-clip-text dark:!bg-clip-text text-transparent dark:!text-transparent"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="mt-6"
+        {/* Hero Text */}
+        <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
+          <AnimatedText
+            text="Take the fun"
+            className="text-5xl md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 text-[#220239] dark:!text-[#220239] text-center leading-none"
+          />
+          <AnimatedText
+            text="to the real World"
+            delay={0.3}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br from-[#010101] to-[#B338DE] dark:!from-[#010101] dark:!to-[#B338DE] bg-clip-text dark:!bg-clip-text text-transparent dark:!text-transparent"
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="mt-6"
+          >
+            <p
+              className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center"
+              style={{ color: isDarkMode ? "#220239" : "#220239" }}
             >
-              <p
-                className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center"
-                style={{ color: isDarkMode ? "#220239" : "#220239" }}
-              >
-                We connect you to what matters. Real people, real experiences,
-              </p>
-              <p
-                className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center"
-                style={{ color: isDarkMode ? "#220239" : "#220239" }}
-              >
-                and the world just outside your door.
-              </p>
-            </motion.div>
-          </div>
-        </motion.div>
-        <motion.img
-          src={mascot}
-          alt="mascot"
-          className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-3"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        />
+              We connect you to what matters. Real people, real experiences,
+            </p>
+            <p
+              className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center"
+              style={{ color: isDarkMode ? "#220239" : "#220239" }}
+            >
+              and the world just outside your door.
+            </p>
+          </motion.div>
+        </div>
+      </motion.div>
+      <motion.img
+        src={mascot}
+        alt="mascot"
+        className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-3"
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.8, duration: 0.8 }}
+      />
 
-        <motion.section
+      <motion.section
         className="absolute top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -304,7 +303,7 @@ const LandingPage = () => {
           />
         </svg>
       </motion.section>
-      
+
       {/* Lines and Arrows Section */}
       <motion.section
         className="relative w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
@@ -329,7 +328,7 @@ const LandingPage = () => {
               "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
           }}
         />
-        
+
 
         {/* Text - Left */}
         <motion.div
@@ -423,7 +422,7 @@ const LandingPage = () => {
             delay: 0.4,
           }}
         />
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`} />
       </motion.section>
 
       {/* What If Section */}
@@ -437,11 +436,10 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText
             text="But what if we could"
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none ${
-              isDarkMode 
-                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-            } bg-clip-text text-transparent`}
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none ${isDarkMode
+              ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]'
+              : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+              } bg-clip-text text-transparent`}
             style={{
               color: 'transparent',
               WebkitBackgroundClip: 'text',
@@ -451,11 +449,10 @@ const LandingPage = () => {
           <AnimatedText
             text="change this?"
             delay={0.3}
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 ${
-              isDarkMode 
-                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-            } bg-clip-text text-transparent`}
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 ${isDarkMode
+              ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]'
+              : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+              } bg-clip-text text-transparent`}
             style={{
               color: 'transparent',
               WebkitBackgroundClip: 'text',
@@ -548,7 +545,7 @@ const LandingPage = () => {
           />
 
           {/* Review Bubbles */}
-          <motion.div
+          {/* <motion.div
             className="absolute left-[10%] sm:left-[15%] md:left-[20%] lg:left-[30%] bottom-[30%] sm:bottom-[40%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -660,7 +657,7 @@ const LandingPage = () => {
                 Aananya J
               </span>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </motion.div>
 
@@ -715,11 +712,10 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText
             text="Bringing Back"
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none ${
-              isDarkMode 
-                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-            } bg-clip-text text-transparent`}
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none ${isDarkMode
+              ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]'
+              : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+              } bg-clip-text text-transparent`}
             style={{
               color: 'transparent',
               WebkitBackgroundClip: 'text',
@@ -729,11 +725,10 @@ const LandingPage = () => {
           <AnimatedText
             text="Real-Time Connection"
             delay={0.3}
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 ${
-              isDarkMode 
-                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-            } bg-clip-text text-transparent`}
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 ${isDarkMode
+              ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]'
+              : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+              } bg-clip-text text-transparent`}
             style={{
               color: 'transparent',
               WebkitBackgroundClip: 'text',
@@ -774,7 +769,7 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         />
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`} />
       </motion.div>
 
       {/* YouTube Video Section */}
@@ -786,12 +781,11 @@ const LandingPage = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-center mb-3 sm:mb-4 ${
-            isDarkMode 
-              ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-              : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-          } bg-clip-text`}
-          style={{ 
+          className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-center mb-3 sm:mb-4 ${isDarkMode
+            ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]'
+            : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
+            } bg-clip-text`}
+          style={{
             color: 'transparent',
             WebkitBackgroundClip: 'text',
             backgroundClip: 'text'
