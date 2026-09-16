@@ -45,6 +45,41 @@
   );
 }
 
+/* Draws a rounded gradient border without adding a card background. */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 5px;
+  z-index: 20;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    #fcf0ff 0%,
+    #e8d5f7 45%,
+    rgba(109, 40, 178, 0.55) 100%
+  );
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.dark .gradient-border::before {
+  background: linear-gradient(
+    180deg,
+    #fcf0ff 0%,
+    #f7f1ff 45%,
+    rgba(109, 40, 178, 0.45) 100%
+  );
+}
+
 /* Dark mode utility classes */
 .dark {
   color-scheme: dark;
