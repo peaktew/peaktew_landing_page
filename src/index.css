@@ -20,6 +20,31 @@
   --font-metro-300: Metropolis-300, "san-serif";
 }
 
+/* Reusable heading gradient: light theme by default. */
+.theme-header-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    #a62ad2 0%,
+    #6e1cbf 50%,
+    #470974 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Figma's lighter heading gradient when dark mode is active. */
+.dark .theme-header-gradient {
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #9c65d4 35%,
+    #6e1cbf 68%,
+    #470974 100%
+  );
+}
+
 /* Dark mode utility classes */
 .dark {
   color-scheme: dark;

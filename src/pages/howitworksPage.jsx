@@ -4,6 +4,7 @@ import { useDarkMode } from '../components/DarkModeContext';
 import htw1 from "../assets/htw1.webp";
 import htw2 from "../assets/htw2.webp";
 import htw3 from "../assets/htw3.webp";
+import howItWorksVideo from "../assets/Landing_page/PeaktewHIWAnimation_V1.mp4";
 
 // Animation variants
 const containerVariants = {
@@ -89,23 +90,51 @@ const FeaturesPage = () => {
       </div>
 
       <motion.section
-        className="w-full min-h-screen flex flex-col gap-10 md:gap-20 px-[50px] md:px-[100px] py-20 overflow-x-hidden transition-colors duration-500 bg-white"
+        className="w-full overflow-hidden bg-white transition-colors duration-500"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
-        <motion.div className="w-full max-w-6xl" variants={itemVariants}>
+        <motion.div
+          className="w-full max-w-6xl mx-auto px-4 sm:px-8 md:px-16 lg:px-0 pt-28 sm:pt-36 md:pt-44 lg:pt-52 pb-8 md:pb-12"
+          variants={itemVariants}
+        >
           <motion.h1
-            className="text-[min(10vw,128px)] font-metro-600 bg-clip-text text-transparent bg-gradient-to-b from-[#A62AD2] via-[#6E1CBF] to-[#470974] mb-10 leading-none"
+            className="theme-header-gradient text-[clamp(40px,10vw,128px)] font-metro-600 leading-[0.94] tracking-[-0.04em]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Explore. <br /> Connect. Repeat
+            Explore.
+            <br />
+            <span className="whitespace-nowrap">Connect. Repeat.</span>
           </motion.h1>
-          <motion.p className="text-3xl text-[#6D28B2]">Your guide to getting started with PeakTew</motion.p>
+          {/* <motion.p className="text-3xl text-[#6D28B2]">Your guide to getting started with PeakTew</motion.p> */}
         </motion.div>
-        <motion.div className="w-full max-w-[95%]" variants={itemVariants}>
+
+        <motion.div
+          className="relative w-full max-w-7xl mx-auto overflow-hidden"
+          variants={itemVariants}
+        >
+          <video
+            className="block h-auto w-full"
+            src={howItWorksVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="PeakTew app connection experience"
+          />
+
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(71,9,116,0.18),rgba(34,2,57,0.62))] transition-opacity duration-500 ${
+              isDarkMode ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </motion.div>
+        {/* <motion.div className="w-full max-w-[95%]" variants={itemVariants}>
           <div className="font-metro-600 text-[#220239] text-[16px] space-y-6">
             <motion.p variants={itemVariants}>
               In today's fast-paced, screen-dominated world, genuine human connection often takes a
@@ -123,7 +152,7 @@ const FeaturesPage = () => {
               swiping, no chatting—just subtle signals that guide you toward genuine, spontaneous encounters.
             </motion.p>
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
       <motion.section
