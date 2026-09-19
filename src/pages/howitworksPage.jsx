@@ -142,7 +142,7 @@ const FeaturesPage = () => {
           variants={itemVariants}
         >
           <motion.h1
-            className="theme-header-gradient text-[clamp(40px,10vw,128px)] font-metro-600 leading-[0.94] tracking-[-0.04em]"
+            className="theme-header-gradient text-[clamp(45px,10vw,128px)] font-metro-600 leading-[0.94] tracking-[-0.04em]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -155,11 +155,11 @@ const FeaturesPage = () => {
         </motion.div>
 
         <motion.div
-          className="relative w-full max-w-7xl mx-auto overflow-hidden"
+          className="relative mx-auto aspect-square w-full max-w-7xl overflow-hidden md:aspect-auto"
           variants={itemVariants}
         >
           <video
-            className="block h-auto w-full"
+            className="absolute inset-0 h-full w-full object-cover object-center md:static md:h-auto md:object-contain"
             src={howItWorksVideo}
             autoPlay
             loop
@@ -171,7 +171,7 @@ const FeaturesPage = () => {
 
           <div
             aria-hidden="true"
-            className={`pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(71,9,116,0.18),rgba(34,2,57,0.62))] transition-opacity duration-500 ${
+            className={`pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,2,57,0)_0%,#220239_100%)] transition-opacity duration-500 ${
               isDarkMode ? "opacity-100" : "opacity-0"
             }`}
           />
@@ -228,8 +228,20 @@ const FeaturesPage = () => {
           }`}>
             <div className="relative z-10">
               {steps.map((step, index) => (
-                <article key={step.title} className="py-8 first:pt-0 md:py-10">
-                  <p className={`mb-4 text-sm font-metro-600 uppercase ${isDarkMode ? "!text-white" : "text-[#6E1CBF]"}`}>
+                <motion.article 
+                    key={step.title} className="py-8 first:pt-0 md:py-10" 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{
+                      once: true,
+                      amount: 0.25,
+                    }}
+                    transition={{
+                      duration: 0.45,
+                      ease: "easeOut",
+                      delay: 0.05,
+                    }}>
+                  <p className={`mb-4 text-sm font-metro-600 uppercase ${isDarkMode ? "!text-white" : "text-[#7600CC]"}`}>
                     Step {index + 1}
                   </p>
                   <h2 className={`mb-2  font-extrabold text-[clamp(24px,3.2vw,48px)] font-metro-600 leading-tight theme-header-gradient`}>
@@ -242,7 +254,7 @@ const FeaturesPage = () => {
                   {index < steps.length - 1 && (
                     <div className="mt-8 h-px w-full bg-[linear-gradient(90deg,rgba(252,240,255,0),#D9C5E8_50%,rgba(109,40,178,0.17))] md:mt-10" />
                   )}
-                </article>
+                </motion.article>
               ))}
 
               <div className={`mt-8 text-[clamp(14px,2vw,22px)] rounded-2xl md:font-extrabold border-2 px-6 py-5 leading-relaxed md:text-lg ${isDarkMode ? "border-white/80 !text-white" : "border-[#E2D3ED] text-[#220239]"}`}>
