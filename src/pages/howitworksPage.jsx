@@ -247,7 +247,7 @@ const FeaturesPage = () => {
                   <h2 className={`mb-2  font-extrabold text-[clamp(24px,3.2vw,48px)] font-metro-600 leading-tight theme-header-gradient`}>
                     {step.title}
                   </h2>
-                  <p className={`font-semibold text-[clamp(14px,calc(0.5vw+13px),18px)] leading-relaxed ${isDarkMode ? "!text-white" : "text-[#220239]"}`}>
+                  <p className={`text-[clamp(14px,calc(0.5vw+13px),18px)] leading-relaxed ${isDarkMode ? "!text-white" : "text-[#220239]"}`}>
                     {step.description}
                   </p>
 
@@ -257,7 +257,7 @@ const FeaturesPage = () => {
                 </motion.article>
               ))}
 
-              <div className={`mt-8 text-[clamp(14px,2vw,22px)] rounded-2xl md:font-extrabold border-2 px-6 py-5 leading-relaxed md:text-lg ${isDarkMode ? "border-white/80 !text-white" : "border-[#E2D3ED] text-[#220239]"}`}>
+              <div className={`mt-8 text-[clamp(14px,2vw,22px)] rounded-2xl border-2 px-6 py-5 leading-relaxed md:text-lg ${isDarkMode ? "border-white/80 !text-white" : "border-[#E2D3ED] text-[#220239]"}`}>
                 No swiping, no texting, no add friend button, and no exact location displayed. In the future,
                 the same notification-based system will work for places and events within a 50m/150ft radius
                 of your location. A complementary map will be added to enable you to discover live events and
