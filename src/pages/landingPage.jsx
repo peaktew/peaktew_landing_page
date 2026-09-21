@@ -143,6 +143,7 @@ const LandingPage = () => {
   // Calculate scroll progress (0 to 1)
   const scrollProgress = Math.min(scrollY / maxScroll, 1);
   const isMobileScreen = window.innerWidth < 768;
+  const showArrows = scrollY > window.innerHeight * 0.15;
 
   // Left Arrow (stops at left text position)
   const leftArrowMaxY = isMobileScreen ? 180 : 100;
@@ -389,12 +390,9 @@ const LandingPage = () => {
           className="absolute top-[0%] left-[20%] sm:left-[24.8%] w-[30px] sm:w-[40px] md:w-[50px] z-20"
           style={{
             transform: `translateY(${leftArrowY}px) scale(${leftArrowScale})`,
-            transition: "transform 0.2s ease-out",
-            opacity: leftArrowOpacity,
+            transition: "transform 0.2s ease-out, opacity 0.3s ease-out",
+            opacity: showArrows ? leftArrowOpacity : 0,
           }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
         />
 
         {/* Right Arrow */}
@@ -404,12 +402,9 @@ const LandingPage = () => {
           className="absolute top-[0%] right-[10%] sm:right-[16%] w-[30px] sm:w-[40px] md:w-[50px] z-20"
           style={{
             transform: `translateY(${rightArrowY}px) scale(${rightArrowScale})`,
-            transition: "transform 0.2s ease-out",
-            opacity: rightArrowOpacity,
+            transition: "transform 0.2s ease-out, opacity 0.3s ease-out",
+            opacity: showArrows ? rightArrowOpacity : 0,
           }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
         />
 
         {/* Middle Arrow */}
@@ -419,12 +414,9 @@ const LandingPage = () => {
           className="absolute top-[0%] left-[50%] sm:left-[54.5%] w-[30px] sm:w-[40px] md:w-[50px] z-30"
           style={{
             transform: `translate(-50%, ${middleArrowY}px) scale(${middleArrowScale})`,
-            transition: "transform 0.2s ease-out",
-            opacity: middleArrowOpacity,
+            transition: "transform 0.2s ease-out, opacity 0.3s ease-out",
+            opacity: showArrows ? middleArrowOpacity : 0,
           }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
         />
 
         {/* Exclamation Mark */}
