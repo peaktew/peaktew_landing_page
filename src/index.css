@@ -269,3 +269,47 @@
   animation: dotExpand 2s ease-in-out forwards;
 }
   
+.videoDiv::before,
+.videoDiv::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 28%;
+  pointer-events: none;
+}
+
+.videoDiv::before {
+  top: 0;
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.videoDiv::after {
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    #FFFFFF 100%
+  );
+}
+
+.dark .videoDiv::before {
+  background: linear-gradient(
+    180deg,
+    #220239ac 0%,
+    rgba(34, 2, 57, 0) 100%
+  );
+}
+
+.dark .videoDiv::after {
+  background: linear-gradient(
+    180deg,
+    rgba(34, 2, 57, 0) 0%,
+    #220239ac 100%
+  );
+}

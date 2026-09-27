@@ -142,16 +142,18 @@ const LandingPage = () => {
 
   // Calculate scroll progress (0 to 1)
   const scrollProgress = Math.min(scrollY / maxScroll, 1);
+  const isMobileScreen = window.innerWidth < 768;
+  const showArrows = scrollY > window.innerHeight * 0.15;
 
   // Left Arrow (stops at left text position)
-  const leftArrowMaxY = 100;
+  const leftArrowMaxY = isMobileScreen ? 180 : 100;
   const leftArrowY = Math.min(scrollY * 0.5, leftArrowMaxY);
   const leftArrowScale = 0.5 + Math.min(scrollY / 1000, 0.5);
   const leftArrowOpacity =
     scrollY < leftArrowMaxY * 2 ? 1 : 1 - (scrollY - leftArrowMaxY * 2) / 500;
 
   // Right Arrow (stops at right text position)
-  const rightArrowMaxY = 250;
+  const rightArrowMaxY = isMobileScreen ? 330 : 250;
   const rightArrowY = Math.min(scrollY * 0.5, rightArrowMaxY);
   const rightArrowScale = 0.5 + Math.min(scrollY / 1000, 1.75);
   const rightArrowOpacity =
@@ -182,10 +184,11 @@ const LandingPage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <section style={{ position: "relative", zIndex: 1 }}>
-            <GlobeDemo />
-          </section>
-
+      {(!isDarkMode || window.innerWidth >= 768) && (
+        <section style={{ position: "relative", zIndex: 1 }}>
+          <GlobeDemo />
+        </section>
+      )}
           {/* Dark Mode Toggle - Top Right */}
           <div className="absolute top-4 right-4 z-20">
             <label className="relative inline-flex items-center cursor-pointer select-none">
@@ -229,15 +232,15 @@ const LandingPage = () => {
           </div>
 
           {/* Hero Text */}
-          <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
+          <div className="absolute lg:top-[50%] top-[35%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
             <AnimatedText
               text="Take the fun"
-              className="text-5xl md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 text-[#220239] dark:!text-[#220239] text-center leading-none"
+              className="text-[45px] md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 theme-header-gradient text-center leading-none"
             />
             <AnimatedText
               text="to the real World"
               delay={0.3}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br from-[#010101] to-[#B338DE] dark:!from-[#010101] dark:!to-[#B338DE] bg-clip-text dark:!bg-clip-text text-transparent dark:!text-transparent"
+              className="text-[45px] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br theme-header-gradient bg-clip-text dark:!bg-clip-text text-transparent dark:!text-transparent"
             />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -246,8 +249,8 @@ const LandingPage = () => {
               className="mt-6"
             >
               <p
-                className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center"
-                style={{ color: isDarkMode ? "#220239" : "#220239" }}
+                className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-center"
+                style={{ color: isDarkMode ? "#220239":"#220239" }}
               >
                 We connect you to what matters. Real people, real experiences,
               </p>
@@ -263,25 +266,34 @@ const LandingPage = () => {
         <motion.img
           src={mascot}
           alt="mascot"
-          className="absolute top-[60vh] right-0 rotate-[40deg] w-[200px] sm:w-[300px] md:w-[400px] pointer-events-none z-3"
+          className="absolute right-0 rotate-[40deg] w-[200px] sm:top-[95vh] top-[55vh] sm:w-[300px] md:top-[60vh] md:w-[400px] pointer-events-none z-3"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         />
 
         <motion.section
-        className="absolute top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-hidden"
+        className="absolute top-[76vh] md:top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-visible"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
         <svg
-          className="w-[190vw] -ml-[15vw] h-[250px] sm:h-[300px] md:h-[400px]"
+          className="w-[190vw] -ml-[15vw] h-[250px] sm:h-[300px] md:h-[400px] overflow-visible"
           viewBox="0 0 2000 250"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
+            <filter
+              id="curveGlow"
+              x="-30%"
+              y="-100%"
+              width="160%"
+              height="300%"
+            >
+              <feGaussianBlur stdDeviation="24" />
+            </filter>
             <linearGradient
               id="ellipseGradient"
               x1="0%"
@@ -295,6 +307,14 @@ const LandingPage = () => {
             </linearGradient>
           </defs>
           <path
+            d="M0,200 A720,200 0 0,1 1440,200"
+            fill="none"
+            stroke={isDarkMode ? "#7E3FAC" : "#C9A7EA"}
+            strokeWidth="30"
+            opacity={isDarkMode ? "0.55" : "0.38"}
+            filter="url(#curveGlow)"
+          />
+          <path
             d="M0,200
          A720,200 0 0,1 1440,200
          L1440,200
@@ -307,7 +327,7 @@ const LandingPage = () => {
       
       {/* Lines and Arrows Section */}
       <motion.section
-        className="relative w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
+        className="relative -mt-[24vh] md:mt-0 w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -370,12 +390,9 @@ const LandingPage = () => {
           className="absolute top-[0%] left-[20%] sm:left-[24.8%] w-[30px] sm:w-[40px] md:w-[50px] z-20"
           style={{
             transform: `translateY(${leftArrowY}px) scale(${leftArrowScale})`,
-            transition: "transform 0.2s ease-out",
-            opacity: leftArrowOpacity,
+            transition: "transform 0.2s ease-out, opacity 0.3s ease-out",
+            opacity: showArrows ? leftArrowOpacity : 0,
           }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
         />
 
         {/* Right Arrow */}
@@ -385,12 +402,9 @@ const LandingPage = () => {
           className="absolute top-[0%] right-[10%] sm:right-[16%] w-[30px] sm:w-[40px] md:w-[50px] z-20"
           style={{
             transform: `translateY(${rightArrowY}px) scale(${rightArrowScale})`,
-            transition: "transform 0.2s ease-out",
-            opacity: rightArrowOpacity,
+            transition: "transform 0.2s ease-out, opacity 0.3s ease-out",
+            opacity: showArrows ? rightArrowOpacity : 0,
           }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
         />
 
         {/* Middle Arrow */}
@@ -400,12 +414,9 @@ const LandingPage = () => {
           className="absolute top-[0%] left-[50%] sm:left-[54.5%] w-[30px] sm:w-[40px] md:w-[50px] z-30"
           style={{
             transform: `translate(-50%, ${middleArrowY}px) scale(${middleArrowScale})`,
-            transition: "transform 0.2s ease-out",
-            opacity: middleArrowOpacity,
+            transition: "transform 0.2s ease-out, opacity 0.3s ease-out",
+            opacity: showArrows ? middleArrowOpacity : 0,
           }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
         />
 
         {/* Exclamation Mark */}
@@ -437,11 +448,7 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText
             text="But what if we could"
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none ${
-              isDarkMode 
-                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-            } bg-clip-text text-transparent`}
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none theme-header-gradient bg-clip-text text-transparent`}
             style={{
               color: 'transparent',
               WebkitBackgroundClip: 'text',
@@ -451,11 +458,7 @@ const LandingPage = () => {
           <AnimatedText
             text="change this?"
             delay={0.3}
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 ${
-              isDarkMode 
-                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-            } bg-clip-text text-transparent`}
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 theme-header-gradient bg-clip-text text-transparent`}
             style={{
               color: 'transparent',
               WebkitBackgroundClip: 'text',
@@ -672,7 +675,7 @@ const LandingPage = () => {
         viewport={{ once: true }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       >
-        <div className="absolute inset-0 bg-black/10 z-0">
+        <div className="absolute inset-0 bg-black/10 z-0 videoDiv">
           <video
             ref={videoRef}
             autoPlay
@@ -715,11 +718,7 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText
             text="Bringing Back"
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none ${
-              isDarkMode 
-                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-            } bg-clip-text text-transparent`}
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none theme-header-gradient bg-clip-text text-transparent`}
             style={{
               color: 'transparent',
               WebkitBackgroundClip: 'text',
@@ -729,11 +728,7 @@ const LandingPage = () => {
           <AnimatedText
             text="Real-Time Connection"
             delay={0.3}
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 ${
-              isDarkMode 
-                ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-                : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-            } bg-clip-text text-transparent`}
+            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 theme-header-gradient bg-clip-text text-transparent`}
             style={{
               color: 'transparent',
               WebkitBackgroundClip: 'text',
@@ -774,7 +769,7 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         />
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#220239] from-0% via-[#220239]/95 via-28% to-transparent to-60%" : "from-white  to-transparent to-40%"}`}/>
       </motion.div>
 
       {/* YouTube Video Section */}
@@ -786,11 +781,7 @@ const LandingPage = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-center mb-3 sm:mb-4 ${
-            isDarkMode 
-              ? 'bg-gradient-to-br from-[#FFFFFF] to-[#420084]' 
-              : 'bg-gradient-to-br from-[#FFFFFF] via-[#420084] to-[#220239]'
-          } bg-clip-text`}
+          className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-center mb-3 sm:mb-4 theme-header-gradient bg-clip-text`}
           style={{ 
             color: 'transparent',
             WebkitBackgroundClip: 'text',
@@ -816,14 +807,14 @@ const LandingPage = () => {
         </motion.p>
 
         <motion.div
-          className="w-full max-w-4xl aspect-video"
+          className={`w-full max-w-4xl aspect-video overflow-hidden rounded-2xl ${isDarkMode ? "shadow-[-3px_-2px_26.8px_12px_#FFFFFF40]": "shadow-[0px_-1px_23.4px_2px_#7E3FAC85]"}`}
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           <iframe
-            className="w-full h-full rounded-2xl shadow-2xl border-4 border-white/50"
+            className="h-full w-full border-0"
             src="https://www.youtube.com/embed/Wo9qTKM_6oI"
             title="CEO Video"
             frameBorder="0"
