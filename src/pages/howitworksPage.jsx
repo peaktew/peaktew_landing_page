@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useDarkMode } from '../components/DarkModeContext';
-import htw1 from "../assets/htw1.webp";
 import htw2 from "../assets/htw2.webp";
 import htw3 from "../assets/htw3.webp";
+import howItWorksVideo from "../assets/Landing_page/PeaktewHIWAnimation_V1.mp4";
 
 // Animation variants
 const containerVariants = {
@@ -57,6 +57,49 @@ const sectionVariants = {
   },
 };
 
+const steps = [
+  {
+    title: "Create Your Profile",
+    description: "Create your profile (with your name, age, and profile picture).",
+  },
+  {
+    title: "Show Who You Are",
+    description: "Outline your aspirations through the language(s) you speak and your interests via the “About me” section. To fill this “About me” section, you will be given 10 questions with a selection of answers to craft your profile to show your true self!",
+  },
+  {
+    title: "Set Your Status",
+    description: "Describe your Status to showcase your current interests, activity, task, etc. (I’m looking for someone to grab a coffee with). Determine the duration of your status (ranging from 1 to 24 hours), after which the status will expire and be reset to the default.",
+  },
+  {
+    title: "Choose How You Connect",
+    description: "Decide whether you want to only meet people with a similar interest, activity, task, etc. or if you are open to meeting anyone. If so, turn on the “Status Matching” on the home page.",
+  },
+  {
+    title: "Just Go About Your Day",
+    description: "Phone in your pocket, move on with your day. (Make sure you are Online!)",
+  },
+  {
+    title: "Get Notified In Real Time",
+    description: "As you walk in the city/on campus, the app will send you real-time push notifications whenever another PeakTew user is located within 50m/150ft of your location. If the “Status Matching” is on, you will only receive notifications about people matching your status. Otherwise, you will receive up to 10 people at a time surrounding you in a 50m/150ft radius. Through future updates, you will be able to receive similar notifications about places and events around you as well.",
+  },
+  {
+    title: "Check Who’s Around You",
+    description: "Once notified, open the app, check the Peals page (a.k.a. Notification page) to view the profile of any user(s) surrounding you. (Places & events will also be featured there in the future).",
+  },
+  {
+    title: "Discover Your Compatibility",
+    description: "Click and read the person’s profile to discover a bit more about who they are. The “Compatibility Bar” on their profile is there to help and will showcase the percentage (%) of the interests/personality traits you share with the other user.",
+  },
+  {
+    title: "Find Them In Real Life",
+    description: "If you are interested in meeting this person(s): close your phone, locate them around you, and find your next best friend! (Futurely, spot places and events around you).",
+  },
+  {
+    title: "Stay Pealed For What’s Next",
+    description: "Keep your eyes Pealed for more to come with PeakTew; Together, Unique In Our Own Way.",
+  },
+];
+
 const FeaturesPage = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
@@ -89,23 +132,51 @@ const FeaturesPage = () => {
       </div>
 
       <motion.section
-        className="w-full min-h-screen flex flex-col gap-10 md:gap-20 px-[50px] md:px-[100px] py-20 overflow-x-hidden transition-colors duration-500 bg-white"
+        className="w-full overflow-hidden bg-white transition-colors duration-500"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
-        <motion.div className="w-full max-w-6xl" variants={itemVariants}>
+        <motion.div
+          className="w-full max-w-6xl mx-auto px-4 sm:px-8 md:px-16 lg:px-0 pt-28 sm:pt-36 md:pt-44 lg:pt-52 pb-8 md:pb-12"
+          variants={itemVariants}
+        >
           <motion.h1
-            className="text-[min(10vw,128px)] font-metro-600 bg-clip-text text-transparent bg-gradient-to-b from-[#A62AD2] via-[#6E1CBF] to-[#470974] mb-10 leading-none"
+            className="theme-header-gradient text-[clamp(45px,10vw,128px)] font-metro-600 leading-[0.94] tracking-[-0.04em]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Explore. <br /> Connect. Repeat
+            Explore.
+            <br />
+            <span className="whitespace-nowrap">Connect. Repeat.</span>
           </motion.h1>
-          <motion.p className="text-3xl text-[#6D28B2]">Your guide to getting started with PeakTew</motion.p>
+          {/* <motion.p className="text-3xl text-[#6D28B2]">Your guide to getting started with PeakTew</motion.p> */}
         </motion.div>
-        <motion.div className="w-full max-w-[95%]" variants={itemVariants}>
+
+        <motion.div
+          className="relative mx-auto aspect-square w-full max-w-7xl overflow-hidden md:aspect-auto"
+          variants={itemVariants}
+        >
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center md:static md:h-auto md:object-contain"
+            src={howItWorksVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-label="PeakTew app connection experience"
+          />
+
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,2,57,0)_0%,#220239_100%)] transition-opacity duration-500 ${
+              isDarkMode ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </motion.div>
+        {/* <motion.div className="w-full max-w-[95%]" variants={itemVariants}>
           <div className="font-metro-600 text-[#220239] text-[16px] space-y-6">
             <motion.p variants={itemVariants}>
               In today's fast-paced, screen-dominated world, genuine human connection often takes a
@@ -123,69 +194,81 @@ const FeaturesPage = () => {
               swiping, no chatting—just subtle signals that guide you toward genuine, spontaneous encounters.
             </motion.p>
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.section>
 
       <motion.section
-        className="w-full py-20 px-8 md:px-20 overflow-x-hidden"
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
+        className="relative w-full overflow-hidden bg-white px-4 py-48 sm:px-8 md:px-16 lg:px-24"
       >
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-12 md:space-y-0">
-          <div className="md:w-1/2 text-left space-y-6">
-            <motion.h2
-              className="text-[64px] font-bold text-[#6D28B2] font-metro-600"
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              viewport={{ once: true }}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(ellipse_at_right,rgba(166,42,210,0.22),transparent_72%)]"
+        />
+
+        <div className="gradient-border relative z-10 mx-auto w-full max-w-6xl rounded-[30px]">
+          <div className={`absolute -top-[25px] left-6 z-30 rounded-full p-px shadow-[0_12px_30px_rgba(34,2,57,0.25)] md:left-[158px] ${
+            isDarkMode
+              ? "bg-[linear-gradient(135deg,#C97EFF_0%,#6E1CBF_100%)]"
+              : "bg-[linear-gradient(135deg,#FFFFFF_0%,#7E3FAC_100%)]"
+          }`}>
+            <button
+              type="button"
+              className={`flex h-[50px] items-center rounded-full px-7 text-sm !text-white ${
+                isDarkMode
+                  ? "bg-[linear-gradient(90deg,#9C65D4_0%,#6E1CBF_55%,#470974_100%)]"
+                  : "bg-[linear-gradient(90deg,#C97EFF_0%,#9C65D4_48%,#7E3FAC_100%)]"
+              }`}
             >
-              Setting Up Your Profile
-            </motion.h2>
-            <motion.p
-              className="text-[#220239] text-[16px] font-metro-600 leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              Creating your PeakTew profile is the first step toward meaningful encounters. The process is
-              quick and intuitive. You start by adding your name, age, and a profile picture—because putting a
-              face to a presence makes real-life interactions more natural and human.
-            </motion.p>
-            <motion.p
-              className="text-[#220239] text-[16px] font-metro-600 leading-relaxed"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              Next, you define who you are through the “About me” section. By answering a series of
-              structured questions, you build a clear and authentic representation of your personality, interests,
-              and preferences. This creates your virtual persona, helping others quickly understand you when
-              they come across your profile in real time.
-            </motion.p>
+              Let’s get started!
+            </button>
           </div>
 
-          <motion.div
-            className="flex justify-center"
-            variants={imageVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <img
-              src={htw1}
-              alt="Profile setup mockup"
-              className="w-full max-w-[350px] md:max-w-[400px] object-contain"
-            />
-          </motion.div>
+          <div className={`relative overflow-hidden rounded-[30px] px-5 pb-12 pt-16 sm:px-10 md:px-20 md:py-20 lg:px-[158px] ${
+            isDarkMode ? "bg-[#371A4D]/70" : "bg-transparent"
+          }`}>
+            <div className="relative z-10">
+              {steps.map((step, index) => (
+                <motion.article 
+                    key={step.title} className="py-8 first:pt-0 md:py-10" 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{
+                      once: true,
+                      amount: 0.25,
+                    }}
+                    transition={{
+                      duration: 0.45,
+                      ease: "easeOut",
+                      delay: 0.05,
+                    }}>
+                  <p className={`mb-4 text-sm font-metro-600 uppercase ${isDarkMode ? "!text-white" : "text-[#7600CC]"}`}>
+                    Step {index + 1}
+                  </p>
+                  <h2 className={`mb-2  font-extrabold text-[clamp(24px,3.2vw,48px)] font-metro-600 leading-tight theme-header-gradient`}>
+                    {step.title}
+                  </h2>
+                  <p className={`text-[clamp(14px,calc(0.5vw+13px),18px)] leading-relaxed ${isDarkMode ? "!text-white" : "text-[#220239]"}`}>
+                    {step.description}
+                  </p>
+
+                  {index < steps.length - 1 && (
+                    <div className="mt-8 h-px w-full bg-[linear-gradient(90deg,rgba(252,240,255,0),#D9C5E8_50%,rgba(109,40,178,0.17))] md:mt-10" />
+                  )}
+                </motion.article>
+              ))}
+
+              <div className={`mt-8 text-[clamp(14px,2vw,22px)] rounded-2xl border-2 px-6 py-5 leading-relaxed md:text-lg ${isDarkMode ? "border-white/80 !text-white" : "border-[#E2D3ED] text-[#220239]"}`}>
+                No swiping, no texting, no add friend button, and no exact location displayed. In the future,
+                the same notification-based system will work for places and events within a 50m/150ft radius
+                of your location. A complementary map will be added to enable you to discover live events and
+                places beyond this radius.
+              </div>
+            </div>
+          </div>
         </div>
       </motion.section>
 
-      <motion.section
+      {/* <motion.section
         className="w-full py-20 px-8 md:px-20 overflow-x-hidden"
         initial="offscreen"
         whileInView="onscreen"
@@ -323,7 +406,7 @@ const FeaturesPage = () => {
             />
           </motion.div>
         </div>
-      </motion.section>
+      </motion.section> */}
     </>
   );
 };
