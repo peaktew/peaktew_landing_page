@@ -28,7 +28,7 @@ import pfp from "../assets/Landing_page/pfp.webp";
 // import arch from "../assets/Landing_page/arch.webp";
 import { useDarkMode } from "../components/DarkModeContext";
 import AnimatedText from "../components/animatedText";
-// import { GlobeDemo } from "../components/globe/Globle";
+import { GlobeDemo } from "../components/globe/Globle";
 
 
 const NotificationCard = ({
@@ -151,12 +151,15 @@ const LandingPage = () => {
           transition={{ duration: 0.5 }}
         >
       {!isDarkMode && (
-        <img
-          src={globeImage}
-          alt=""
-          aria-hidden="true"
-          className="absolute top-0 left-1/2 z-[1] w-full max-w-[1257px] -translate-x-1/2 pointer-events-none"
-        />
+        // <img
+        //   src={globeImage}
+        //   alt=""
+        //   aria-hidden="true"
+        //   className="absolute top-0 left-1/2 z-[1] w-full max-w-[1257px] -translate-x-1/2 pointer-events-none"
+        // />
+         <section style={{ position: "relative", zIndex: 1 }}>
+          <GlobeDemo />
+        </section>
       )}
           {/* Dark Mode Toggle - Top Right */}
           <div className="absolute top-4 right-4 z-20">

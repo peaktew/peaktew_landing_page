@@ -1,108 +1,257 @@
-// src/components/globe/World.jsx
-import { useEffect, useRef, useState } from "react";
-import { Color, Scene, Fog, Vector3} from "three";
-import * as THREE from 'three';
+import React,{ useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 import ThreeGlobe from "three-globe";
-import { Canvas, useThree, extend } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import React from "react";
-import countries from './globe.json';
-
-extend({ ThreeGlobe });
 
 export function Globe({ globeConfig }) {
   const globeRef = useRef(null);
-  const groupRef = useRef();
+  const groupRef = useRef(null);
+
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    if (!globeRef.current && groupRef.current) {
-      globeRef.current = new ThreeGlobe();
-      groupRef.current.add(globeRef.current);
+    if (!groupRef.current || globeRef.current) return;
 
-      groupRef.current.rotation.y = 0.5; // Adjust this to rotate to desired longitude
-groupRef.current.rotation.x = 0.18;         // Optional tilt
+    const globe = new ThreeGlobe();
 
-      setIsInitialized(true);
-    }
+    globeRef.current = globe;
+    groupRef.current.add(globe);
+
+    groupRef.current.rotation.y = 0.5;
+    groupRef.current.rotation.x = 0.18;
+
+    setIsInitialized(true);
+
+    return () => {
+      if (groupRef.current && globeRef.current) {
+        groupRef.current.remove(globeRef.current);
+      }
+
+      globeRef.current = null;
+    };
   }, []);
+
   useEffect(() => {
     if (!globeRef.current || !isInitialized) return;
-    
-    const gradientMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        topColor: { value: new THREE.Color('#f5e6fa') },  // Lighter soft pink
-        bottomColor: { value: new THREE.Color(2, 2, 2) }, // SUPER WHITE (RGB > 1 for HDR effect)
-        whiteBoost: { value: 0.7 } // Intensity multiplier
+
+    const globe = globeRef.current;
+
+    const textureLoader = new THREE.TextureLoader();
+
+    let texture;
+    let material;
+
+    textureLoader.load(
+      "/texture/globe-hex-texture.png",
+
+      (loadedTexture) => {
+        texture = loadedTexture;
+
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.ClampToEdgeWrapping;
+
+        texture.minFilter = THREE.LinearMipmapLinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+
+        texture.needsUpdate = true;
+
+        material = new THREE.ShaderMaterial({
+          uniforms: {
+            // Original globe gradient
+            topColor: {
+              value: new THREE.Color("#f5e6fa"),
+            },
+
+            bottomColor: {
+              value: new THREE.Color(2, 2, 2),
+            },
+
+            whiteBoost: {
+              value: 0.7,
+            },
+
+            // NEW:
+            // purple world-map texture
+            patternTexture: {
+              value: texture,
+            },
+
+            patternStrength: {
+              value: 1.0,
+            },
+          },
+
+          vertexShader: `
+            varying vec3 vNormal;
+            varying vec2 vUv;
+
+            void main() {
+              vNormal = normalize(normalMatrix * normal);
+              vUv = uv;
+
+              gl_Position =
+                projectionMatrix *
+                modelViewMatrix *
+                vec4(position, 1.0);
+            }
+          `,
+
+          fragmentShader: `
+            uniform vec3 topColor;
+            uniform vec3 bottomColor;
+            uniform float whiteBoost;
+
+            uniform sampler2D patternTexture;
+            uniform float patternStrength;
+
+            varying vec3 vNormal;
+            varying vec2 vUv;
+
+            void main() {
+
+              // ------------------------------
+              // ORIGINAL WHITE / PINK GLOBE
+              // ------------------------------
+
+              float gradient =
+                clamp(
+                  vNormal.y * 0.5 + 0.5,
+                  0.0,
+                  1.0
+                );
+
+              gradient =
+                smoothstep(
+                  0.5,
+                  0.9,
+                  gradient
+                );
+
+              vec3 baseColor =
+                mix(
+                  bottomColor * whiteBoost,
+                  topColor,
+                  gradient
+                );
+
+
+              // ------------------------------
+              // PURPLE COUNTRY PATTERN
+              // ------------------------------
+
+              vec4 pattern =
+                texture2D(
+                  patternTexture,
+                  vUv
+                );
+
+              float patternAlpha =
+                pattern.a *
+                patternStrength;
+
+
+              // ------------------------------
+              // COMBINE THEM
+              // ------------------------------
+
+              vec3 finalColor =
+                mix(
+                  baseColor,
+                  pattern.rgb,
+                  patternAlpha
+                );
+
+
+              gl_FragColor =
+                vec4(
+                  finalColor,
+                  1.0
+                );
+            }
+          `,
+        });
+
+        globe.globeMaterial(material);
+
+        globe
+          .showAtmosphere(true)
+          .atmosphereColor(
+            globeConfig.atmosphereColor || "#ffffff"
+          )
+          .atmosphereAltitude(
+            globeConfig.atmosphereAltitude || 0.3
+          );
       },
-      vertexShader: `
-        varying vec3 vNormal;
-        void main() {
-          vNormal = normalize(normalMatrix * normal);
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-        fragmentShader: `
-          uniform vec3 topColor;
-          uniform vec3 bottomColor;
-          uniform float whiteBoost;
-          varying vec3 vNormal;
-          
-          void main() {
-            float gradient = clamp(vNormal.y * 0.5 + 0.5, 0.0, 1.0);
-            gradient = smoothstep(0.5, 0.9, gradient); // White dominates 70% of the globe
-            
-            vec3 baseColor = mix(bottomColor * whiteBoost, topColor, gradient);
-            gl_FragColor = vec4(baseColor, 1.0);
-          }
-        `,
-        emissive: new THREE.Color(2, 2, 2), // Emissive white glow
-        emissiveIntensity: 0.3, // Increased from 0.1
-      });
-  
-    globeRef.current.globeMaterial(gradientMaterial);
-  
-    // Rest of your existing code
-    globeRef.current.showAtmosphere(true)
-      .atmosphereColor(globeConfig.atmosphereColor || "#FFFFFF")
-      .atmosphereAltitude(globeConfig.atmosphereAltitude || 0.3);
-  
-    globeRef.current
-      .hexPolygonsData(countries.features)
-      .hexPolygonResolution(4)
-      .hexPolygonMargin(0.6)
-      .hexPolygonColor(() => '#9f0b9f');
-  
+
+      undefined,
+
+      (error) => {
+        console.error(
+          "Failed to load globe texture:",
+          error
+        );
+      }
+    );
+
+    return () => {
+      if (texture) {
+        texture.dispose();
+      }
+
+      if (material) {
+        material.dispose();
+      }
+    };
   }, [isInitialized, globeConfig]);
 
   return <group ref={groupRef} />;
 }
 
-export function WebGLRendererConfig() {
-  const { gl, size } = useThree();
-  useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
-    gl.setSize(size.width, size.height);
-    gl.setClearColor(0x000000, 0); // Transparent background
-  }, []);
-  return null;
-}
-
 export function World({ globeConfig }) {
-  const scene = new Scene();
   return (
-    <Canvas camera={{ position: [0, 0, 300], fov: 40}} scene={scene}>
-      <WebGLRendererConfig />
-      <ambientLight intensity={0.8} color={globeConfig.ambientLight || "#ffffff"} />
-      <directionalLight color="#ffffff" position={new Vector3(100, 200, 400)} intensity={1} />
-      <pointLight color="#9d4edd" intensity={1.2} position={[0, 0, 300]} />
+    <Canvas
+      camera={{
+        position: [0, 0, 300],
+        fov: 40,
+      }}
+      dpr={[1, 1.5]}
+      gl={{
+        alpha: true,
+        antialias: true,
+        powerPreference: "high-performance",
+      }}
+    >
+      <ambientLight
+        intensity={0.8}
+        color={
+          globeConfig.ambientLight ||
+          "#ffffff"
+        }
+      />
+
+      <directionalLight
+        color="#ffffff"
+        position={[100, 200, 400]}
+        intensity={1}
+      />
+
+      <pointLight
+        color="#9d4edd"
+        intensity={1.2}
+        position={[0, 0, 300]}
+      />
+
       <Globe globeConfig={globeConfig} />
+
       <OrbitControls
         enablePan={false}
         enableZoom={false}
-        enableRotate={true}
-        autoRotate
-        autoRotateSpeed={2.0}
+        enableRotate
+        autoRotate={globeConfig.autoRotate}
+        autoRotateSpeed={
+          globeConfig.autoRotateSpeed
+        }
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}
       />
