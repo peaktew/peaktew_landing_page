@@ -119,7 +119,7 @@ export default function Footer() {
             <h3 className="text-xs sm:text-sm font-metro-600 text-black mb-2">
               Social Media
             </h3>
-            <div className="flex flex-wrap gap-4 text-xl">
+            <div className="social-icons flex flex-wrap gap-4 text-xl">
               <a href="https://www.linkedin.com/company/peaktew/">
                 <svg
                 width="19"

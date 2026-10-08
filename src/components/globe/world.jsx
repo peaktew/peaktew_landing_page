@@ -1,4 +1,6 @@
-import React,{ useEffect, useRef, useState } from "react";
+// src/components/world.jsx
+
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import ThreeGlobe from "three-globe";
 import { Canvas } from "@react-three/fiber";
@@ -11,54 +13,80 @@ export function Globe({ globeConfig }) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    if (!groupRef.current || globeRef.current) return;
+    const group = groupRef.current;
+
+    if (!group || globeRef.current) return;
 
     const globe = new ThreeGlobe();
 
     globeRef.current = globe;
-    groupRef.current.add(globe);
+    group.add(globe);
 
-    groupRef.current.rotation.y = 0.5;
-    groupRef.current.rotation.x = 0.18;
+    // Initial geographic orientation
+    // Africa / Europe / Asia toward the viewer
+    group.rotation.y = globeConfig.initialRotationY ?? -1.9;
+
+    // Keep the continents near the vertical center
+    group.rotation.x = globeConfig.initialRotationX ?? 0;
+
+    group.rotation.z = 0;
 
     setIsInitialized(true);
 
     return () => {
-      if (groupRef.current && globeRef.current) {
-        groupRef.current.remove(globeRef.current);
-      }
+      group.remove(globe);
 
-      globeRef.current = null;
+      if (globeRef.current === globe) {
+        globeRef.current = null;
+      }
     };
-  }, []);
+  }, [
+    globeConfig.initialRotationY,
+    globeConfig.initialRotationX,
+  ]);
+
+  // =====================================================
+  // LOAD TEXTURE AND SHADER
+  // =====================================================
 
   useEffect(() => {
-    if (!globeRef.current || !isInitialized) return;
-
     const globe = globeRef.current;
+
+    if (!globe || !isInitialized) return;
 
     const textureLoader = new THREE.TextureLoader();
 
-    let texture;
-    let material;
+    let texture = null;
+    let material = null;
+    let cancelled = false;
 
     textureLoader.load(
       "/texture/globe-hex-texture.png",
 
       (loadedTexture) => {
+        if (cancelled) {
+          loadedTexture.dispose();
+          return;
+        }
+
         texture = loadedTexture;
 
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.ClampToEdgeWrapping;
 
-        texture.minFilter = THREE.LinearMipmapLinearFilter;
+        texture.minFilter =
+          THREE.LinearMipmapLinearFilter;
+
         texture.magFilter = THREE.LinearFilter;
 
         texture.needsUpdate = true;
 
+        // =================================================
+        // CUSTOM SHADER
+        // =================================================
+
         material = new THREE.ShaderMaterial({
           uniforms: {
-            // Original globe gradient
             topColor: {
               value: new THREE.Color("#f5e6fa"),
             },
@@ -71,8 +99,6 @@ export function Globe({ globeConfig }) {
               value: 0.7,
             },
 
-            // NEW:
-            // purple world-map texture
             patternTexture: {
               value: texture,
             },
@@ -110,9 +136,7 @@ export function Globe({ globeConfig }) {
 
             void main() {
 
-              // ------------------------------
-              // ORIGINAL WHITE / PINK GLOBE
-              // ------------------------------
+              // Base globe gradient
 
               float gradient =
                 clamp(
@@ -121,53 +145,38 @@ export function Globe({ globeConfig }) {
                   1.0
                 );
 
-              gradient =
-                smoothstep(
-                  0.5,
-                  0.9,
-                  gradient
-                );
+              gradient = smoothstep(
+                0.5,
+                0.9,
+                gradient
+              );
 
-              vec3 baseColor =
-                mix(
-                  bottomColor * whiteBoost,
-                  topColor,
-                  gradient
-                );
+              vec3 baseColor = mix(
+                bottomColor * whiteBoost,
+                topColor,
+                gradient
+              );
 
+              // Purple geographic texture
 
-              // ------------------------------
-              // PURPLE COUNTRY PATTERN
-              // ------------------------------
-
-              vec4 pattern =
-                texture2D(
-                  patternTexture,
-                  vUv
-                );
+              vec4 pattern = texture2D(
+                patternTexture,
+                vUv
+              );
 
               float patternAlpha =
-                pattern.a *
-                patternStrength;
+                pattern.a * patternStrength;
 
+              vec3 finalColor = mix(
+                baseColor,
+                pattern.rgb,
+                patternAlpha
+              );
 
-              // ------------------------------
-              // COMBINE THEM
-              // ------------------------------
-
-              vec3 finalColor =
-                mix(
-                  baseColor,
-                  pattern.rgb,
-                  patternAlpha
-                );
-
-
-              gl_FragColor =
-                vec4(
-                  finalColor,
-                  1.0
-                );
+              gl_FragColor = vec4(
+                finalColor,
+                1.0
+              );
             }
           `,
         });
@@ -175,26 +184,32 @@ export function Globe({ globeConfig }) {
         globe.globeMaterial(material);
 
         globe
-          .showAtmosphere(true)
+          .showAtmosphere(
+            globeConfig.showAtmosphere ?? true
+          )
           .atmosphereColor(
-            globeConfig.atmosphereColor || "#ffffff"
+            globeConfig.atmosphereColor ?? "#ffffff"
           )
           .atmosphereAltitude(
-            globeConfig.atmosphereAltitude || 0.3
+            globeConfig.atmosphereAltitude ?? 0.3
           );
       },
 
       undefined,
 
       (error) => {
-        console.error(
-          "Failed to load globe texture:",
-          error
-        );
+        if (!cancelled) {
+          console.error(
+            "Failed to load globe texture:",
+            error
+          );
+        }
       }
     );
 
     return () => {
+      cancelled = true;
+
       if (texture) {
         texture.dispose();
       }
@@ -203,10 +218,19 @@ export function Globe({ globeConfig }) {
         material.dispose();
       }
     };
-  }, [isInitialized, globeConfig]);
+  }, [
+    isInitialized,
+    globeConfig.showAtmosphere,
+    globeConfig.atmosphereColor,
+    globeConfig.atmosphereAltitude,
+  ]);
 
   return <group ref={groupRef} />;
 }
+
+// =====================================================
+// WORLD CANVAS
+// =====================================================
 
 export function World({ globeConfig }) {
   return (
@@ -214,6 +238,8 @@ export function World({ globeConfig }) {
       camera={{
         position: [0, 0, 300],
         fov: 40,
+        near: 0.1,
+        far: 1000,
       }}
       dpr={[1, 1.5]}
       gl={{
@@ -224,10 +250,7 @@ export function World({ globeConfig }) {
     >
       <ambientLight
         intensity={0.8}
-        color={
-          globeConfig.ambientLight ||
-          "#ffffff"
-        }
+        color={globeConfig.ambientLight ?? "#ffffff"}
       />
 
       <directionalLight
@@ -245,13 +268,15 @@ export function World({ globeConfig }) {
       <Globe globeConfig={globeConfig} />
 
       <OrbitControls
+        makeDefault
+        target={[0, 0, 0]}
         enablePan={false}
         enableZoom={false}
-        enableRotate
+        enableRotate={true}
+        enableDamping={true}
+        dampingFactor={0.05}
         autoRotate={globeConfig.autoRotate}
-        autoRotateSpeed={
-          globeConfig.autoRotateSpeed
-        }
+        autoRotateSpeed={globeConfig.autoRotateSpeed}
         minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}
       />

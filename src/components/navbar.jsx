@@ -18,14 +18,14 @@ const Navbar = () => {
           </Link>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-[#220239] text-2xl focus:outline-none">
+          <div className="xl:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-[#220239] text-2xl md:text-4xl focus:outline-none">
               ☰
             </button>
           </div>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex space-x-6 lg:space-x-16 items-center text-base lg:text-lg">
+          <div className="hidden xl:flex space-x-6 lg:space-x-16 items-center text-base lg:text-lg">
             <div className="relative group">
               <span className="cursor-pointer flex items-center gap-1">
                 About <img src={arrow} className="h-[7px] w-[12px]" alt="Dropdown arrow" />
@@ -63,7 +63,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-4 space-y-2 text-sm sm:text-base text-black">
+          <div className="xl:hidden mt-4 space-y-2 text-sm sm:text-base text-black">
             <div className="space-y-1">
               <p className="font-semibold">About</p>
               {['About Us', 'Our Team', 'Our Story'].map((label) => (

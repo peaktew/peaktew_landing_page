@@ -1,6 +1,12 @@
 // src/components/GlobeDemo.jsx
 
-import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
+import React, {
+  Suspense,
+  lazy,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 const World = lazy(() =>
   import("./world").then((module) => ({
@@ -13,20 +19,34 @@ const globeConfig = {
   showAtmosphere: true,
   atmosphereColor: "#ffffff",
   atmosphereAltitude: 0.3,
+
   emissive: "#220239",
   emissiveIntensity: 0.3,
   shininess: 1,
+
   ambientLight: "#38bdf8",
   directionalLeftLight: "#ffffff",
   directionalTopLight: "#ffffff",
   pointLight: "#ffffff",
+
+  // ROTATION
   autoRotate: true,
-  autoRotateSpeed: 0.8,
+
+  // Previously 0.8
+  autoRotateSpeed: 1.8,
+
+  // INITIAL POSITION
+  // Approximate orientation toward Africa / Europe / Asia
+  initialRotationY: -1.9,
+
+  // Keep continents vertically centered
+  initialRotationX: 0,
 };
 
 export function GlobeDemo() {
   const containerRef = useRef(null);
-  const [shouldLoadGlobe, setShouldLoadGlobe] = useState(false);
+  const [shouldLoadGlobe, setShouldLoadGlobe] =
+    useState(false);
 
   useEffect(() => {
     const element = containerRef.current;

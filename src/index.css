@@ -287,7 +287,12 @@
 }
 
 .dark .dark-icon{
-  color: #ffffff
+  filter: brightness(0) invert(1);
+}
+
+.dark .social-icons svg,
+.dark .social-icons img {
+  filter: brightness(0) invert(1);
 }
 
 @keyframes fadeIn {
