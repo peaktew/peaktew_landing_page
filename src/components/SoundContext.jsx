@@ -90,6 +90,7 @@ export const SoundProvider = ({ children }) => {
       }
     };
   }, []);
+
   useEffect(() => {
     localStorage.setItem("siteMuted", JSON.stringify(isMuted));
   }, [isMuted]);
