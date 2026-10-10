@@ -25,6 +25,8 @@ import linesMobile from "../assets/Landing_page/lines-mobile.webp";
 import arrow from "../assets/Landing_page/Arrow.webp";
 import alert from "../assets/Landing_page/alert.webp";
 import pfp from "../assets/Landing_page/pfp.webp";
+import pfp2 from "../assets/Landing_page/pfp2.webp";
+import pfp3 from "../assets/Landing_page/pfp3.webp";
 // import arch from "../assets/Landing_page/arch.webp";
 import { useDarkMode } from "../components/DarkModeContext";
 import AnimatedText from "../components/animatedText";
@@ -143,30 +145,29 @@ const LandingPage = () => {
       {/* Theme Toggle */}
 
       {/* Globe Section */}
-      
-        <motion.div
-          className="mx-auto px-4 w-full h-[calc(92svh-4rem)] sm:h-[calc(92svh-5rem)] md:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-         <section style={{ position: "relative", zIndex: 1 }}>
+
+      <motion.div
+        className="mx-auto px-4 w-full h-[calc(92svh-4rem)] sm:h-[calc(92svh-5rem)] md:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <section style={{ position: "relative", zIndex: 1 }}>
           <GlobeDemo />
         </section>
-          {/* Dark Mode Toggle - Top Right */}
-          <div className="absolute top-4 right-4 z-20">
-            <label className="relative inline-flex items-center cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={isDarkMode}
-                onChange={toggleDarkMode}
-                className="sr-only peer"
-                aria-label="Toggle dark mode"
-              />
-              <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
-                <span
-                  className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${
-                    isDarkMode ? "translate-x-6" : "translate-x-0"
+        {/* Dark Mode Toggle - Top Right */}
+        <div className="absolute top-4 right-4 z-20">
+          <label className="relative inline-flex items-center cursor-pointer select-none">
+            <input
+              type="checkbox"
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+              className="sr-only peer"
+              aria-label="Toggle dark mode"
+            />
+            <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
+              <span
+                className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? "translate-x-6" : "translate-x-0"
                   }`}
               >
                 {!isDarkMode ? (
@@ -195,38 +196,38 @@ const LandingPage = () => {
           </label>
         </div>
 
-          {/* Hero Text */}
-          <div className="absolute lg:top-[50%] top-[35%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
-            <h1 className="flex flex-col items-center text-center font-metro-600 leading-none">
-              <span className="hero-line-enter heading-gradient heading-gradient--ink text-[45px] md:text-7xl lg:text-8xl xl:text-[96px]">
-                Take The Fun
-              </span>
-              <span className="hero-line-enter hero-line-enter--second heading-gradient heading-gradient--violet whitespace-nowrap text-[clamp(32px,10vw,45px)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] my-2 sm:my-4">
-                To The Real World
-              </span>
-            </h1>
-            <div className="hero-copy-enter mt-6">
-              <p
-                className="mx-auto w-full max-w-[31em] text-center text-[11px] font-metro-600 sm:text-xs md:text-xl lg:text-2xl"
-                style={{ color: isDarkMode ? "#220239" : "#220239" }}
-              >
-                We connect you to what matters. Real people, real experiences, and
-                the world just outside your door.
-              </p>
-            </div>
+        {/* Hero Text */}
+        <div className="absolute lg:top-[50%] top-[35%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
+          <h1 className="flex flex-col items-center text-center font-metro-600 leading-none">
+            <span className="hero-line-enter heading-gradient heading-gradient--ink text-[45px] md:text-7xl lg:text-8xl xl:text-[96px]">
+              Take The Fun
+            </span>
+            <span className="hero-line-enter hero-line-enter--second heading-gradient heading-gradient--violet whitespace-nowrap text-[clamp(32px,10vw,45px)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] my-2 sm:my-4">
+              To The Real World
+            </span>
+          </h1>
+          <div className="hero-copy-enter mt-6">
+            <p
+              className="mx-auto w-full max-w-[31em] text-center text-[11px] font-metro-600 sm:text-xs md:text-xl lg:text-2xl"
+              style={{ color: isDarkMode ? "#220239" : "#220239" }}
+            >
+              We connect you to what matters. Real people, real experiences, and
+              the world just outside your door.
+            </p>
           </div>
-        </motion.div>
-        <motion.img
-          src={mascot}
-          alt="mascot"
-          fetchPriority="high"
-          className="absolute right-0 top-[64vh] z-[1] w-[120px] rotate-[40deg] pointer-events-none sm:top-[72vh] sm:w-[225px] md:top-[60vh] md:w-[300px] xl:top-[70vh]"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        />
+        </div>
+      </motion.div>
+      <motion.img
+        src={mascot}
+        alt="mascot"
+        fetchPriority="high"
+        className="absolute right-0 top-[64vh] z-[1] w-[120px] rotate-[40deg] pointer-events-none sm:top-[72vh] sm:w-[225px] md:top-[60vh] md:w-[300px] xl:top-[70vh]"
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.8, duration: 0.8 }}
+      />
 
-        <motion.section
+      <motion.section
         className="absolute top-[76vh] md:top-[75vh] xl:top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-visible"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -310,7 +311,7 @@ const LandingPage = () => {
             }}
           />
         </picture>
-        
+
 
         {/* Text - Left */}
         <motion.div
@@ -566,19 +567,19 @@ const LandingPage = () => {
                 ))}
             </div>
             <div className="text-xs sm:text-sm font-semibold text-[#220239] dark:text-white mb-1">
-              Brilliant
+              A little daily escape
             </div>
             <div className="text-xs text-[#220239] dark:text-white mb-2 sm:mb-4">
-              I love this app so much!!
+              This app is my favorite part of the day.
             </div>
             <div className="flex items-center space-x-2">
               <img
-                src={pfp}
-                alt="Aananya J"
+                src={pfp2}
+                alt="Sofia M"
                 className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover"
               />
               <span className="text-xs text-[#220239] dark:text-white font-medium">
-                Aananya J
+                Sofia M
               </span>
             </div>
           </motion.div>
@@ -604,22 +605,22 @@ const LandingPage = () => {
                 ))}
             </div>
             <div className="text-xs sm:text-sm font-semibold text-[#220239] dark:text-white mb-1">
-              Brilliant
+              Exactly what I needed
             </div>
             <div className="text-xs text-[#220239] dark:text-white mb-2 sm:mb-4">
-              I love this app so much!!
+              Simple, thoughtful, and genuinely helpful!
             </div>
             <div className="flex items-center space-x-2">
               <img
-                src={pfp}
-                alt="Aananya J"
+                src={pfp3}
+                alt="Daniel R"
                 className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover"
               />
               <span className="text-xs text-[#220239] dark:text-white font-medium">
-                Aananya J
+                Daniel R
               </span>
             </div>
-          </motion.div> */}
+          </motion.div>
         </div>
       </motion.div>
 
@@ -715,7 +716,7 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         />
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#220239] from-0% via-[#220239]/95 via-28% to-transparent to-60%" : "from-white  to-transparent to-40%"}`}/>
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#220239] from-0% via-[#220239]/95 via-28% to-transparent to-60%" : "from-white  to-transparent to-40%"}`} />
       </motion.div>
 
       {/* YouTube Video Section */}
@@ -748,7 +749,7 @@ const LandingPage = () => {
         </motion.p>
 
         <motion.div
-          className={`w-full max-w-4xl aspect-video overflow-hidden rounded-2xl ${isDarkMode ? "shadow-[-3px_-2px_26.8px_12px_#FFFFFF40]": "shadow-[0px_-1px_23.4px_2px_#7E3FAC85]"}`}
+          className={`w-full max-w-4xl aspect-video overflow-hidden rounded-2xl ${isDarkMode ? "shadow-[-3px_-2px_26.8px_12px_#FFFFFF40]" : "shadow-[0px_-1px_23.4px_2px_#7E3FAC85]"}`}
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
