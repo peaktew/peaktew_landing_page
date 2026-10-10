@@ -1,93 +1,39 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import person from "../assets/Landing_page/three_person.webp";
-import { GlobeDemo } from "../components/globe/Globle";
-import Ellipse2 from "../assets/Landing_page/Ellipse 2.webp";
-import Ellipse3 from "../assets/Landing_page/Ellipse 3.webp";
-import not1 from "../assets/Landing_page/not1.webp";
-import not2 from "../assets/Landing_page/not2.webp";
-import not3 from "../assets/Landing_page/not3.webp";
-import not4 from "../assets/Landing_page/not4.webp";
-import not5 from "../assets/Landing_page/not5.webp";
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import person from "../assets/Landing_page/three_person.png";
+// import Ellipse2 from "../assets/Landing_page/Ellipse 2.png";
+// import Ellipse3 from "../assets/Landing_page/Ellipse 3.webp";
+import not1Mobile from "../assets/Landing_page/not1-400.png";
+import not1Desktop from "../assets/Landing_page/not1-640.png";
+import not2Mobile from "../assets/Landing_page/not2-400.png";
+import not2Desktop from "../assets/Landing_page/not2-640.png";
+import not3Mobile from "../assets/Landing_page/not3-400.png";
+import not3Desktop from "../assets/Landing_page/not3-640.png";
+import not4Mobile from "../assets/Landing_page/not4-400.png";
+import not4Desktop from "../assets/Landing_page/not4-640.png";
+import not5Mobile from "../assets/Landing_page/not5-400.png";
+import not5Desktop from "../assets/Landing_page/not5-640.png";
 import welcome from "../assets/Landing_page/welcome.webp";
-import gradient from "../assets/Landing_page/gradient.webp";
+import gradient from "../assets/Landing_page/gradient.png";
 import anime from "../assets/Landing_page/Homepage Animation.mp4";
-import mascot from "../assets/Landing_page/mascot.webp";
-import gradient3 from "../assets/Landing_page/gradient-3.webp";
+import mascot from "../assets/Landing_page/mascot.png";
+import globeImage from "../assets/Landing_page/globe_img.png";
+import gradient3 from "../assets/Landing_page/gradient-3.png";
+import gradient3Mobile from "../assets/Landing_page/gradient-3-mobile.webp";
 import lines from "../assets/Landing_page/lines.webp";
+import linesMobile from "../assets/Landing_page/lines-mobile.webp";
 import arrow from "../assets/Landing_page/Arrow.webp";
 import alert from "../assets/Landing_page/alert.webp";
 import pfp from "../assets/Landing_page/pfp.webp";
-import arch from "../assets/Landing_page/arch.webp";
+// import arch from "../assets/Landing_page/arch.webp";
 import { useDarkMode } from "../components/DarkModeContext";
-import { useSound } from "../components/SoundContext";
+import AnimatedText from "../components/animatedText";
+import { GlobeDemo } from "../components/globe/Globle";
 
-const AnimatedText = ({ text, delay = 0, className, style = {} }) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    threshold: 0.5,
-    triggerOnce: true,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
-  const letters = Array.from(text);
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      transition: { staggerChildren: 0.03, delayChildren: 0.04 * i + delay },
-    }),
-  };
-
-  const child = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      y: 20,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      style={{ display: "flex", overflow: "hidden", ...style }}
-      variants={container}
-      initial="hidden"
-      animate={controls}
-    >
-      {letters.map((letter, index) => (
-        <motion.span key={index} variants={child}>
-          {letter === " " ? "\u00A0" : letter}
-        </motion.span>
-      ))}
-    </motion.div>
-  );
-};
 
 const NotificationCard = ({
-  src,
+  mobileSrc,
+  desktopSrc,
   initialX,
   initialY,
   rotate,
@@ -98,9 +44,7 @@ const NotificationCard = ({
   className,
 }) => {
   return (
-    <motion.img
-      src={src}
-      alt="notification"
+    <motion.picture
       className={`absolute w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] ${className}`}
       style={{ top, left, right }}
       initial={{ x: initialX, y: initialY, opacity: 0, rotate }}
@@ -112,22 +56,44 @@ const NotificationCard = ({
         damping: 15,
         delay,
       }}
-    />
+    >
+      <source media="(max-width: 767px)" srcSet={mobileSrc} />
+      <source media="(min-width: 768px)" srcSet={desktopSrc} />
+      <img
+        src={desktopSrc}
+        alt="notification"
+        decoding="async"
+        className="block h-auto w-full"
+      />
+    </motion.picture>
   );
 };
 
 const LandingPage = () => {
   const [scrollY, setScrollY] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
+  const [shouldLoadYouTube, setShouldLoadYouTube] = useState(false);
+  const [shouldLoadLandingVideo, setShouldLoadLandingVideo] = useState(false);
+  const videoSectionRef = useRef(null);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  const { isMuted } = useSound();
-  const videoRef = React.useRef(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
-    }
-  }, [isMuted]);
+    const videoSection = videoSectionRef.current;
+    if (!videoSection) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadLandingVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "1600px 0px" },
+    );
+
+    observer.observe(videoSection);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -179,16 +145,14 @@ const LandingPage = () => {
       {/* Globe Section */}
       
         <motion.div
-          className="mx-auto px-4 w-full h-screen overflow-hidden relative"
+          className="mx-auto px-4 w-full h-[calc(92svh-4rem)] sm:h-[calc(92svh-5rem)] md:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-      {(!isDarkMode || window.innerWidth >= 768) && (
-        <section style={{ position: "relative", zIndex: 1 }}>
+         <section style={{ position: "relative", zIndex: 1 }}>
           <GlobeDemo />
         </section>
-      )}
           {/* Dark Mode Toggle - Top Right */}
           <div className="absolute top-4 right-4 z-20">
             <label className="relative inline-flex items-center cursor-pointer select-none">
@@ -233,47 +197,37 @@ const LandingPage = () => {
 
           {/* Hero Text */}
           <div className="absolute lg:top-[50%] top-[35%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
-            <AnimatedText
-              text="Take the fun"
-              className="text-[45px] md:text-7xl lg:text-8xl xl:text-[96px] font-metro-600 theme-header-gradient text-center leading-none"
-            />
-            <AnimatedText
-              text="to the real World"
-              delay={0.3}
-              className="text-[45px] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] font-metro-600 text-center leading-none my-2 sm:my-4 bg-gradient-to-br theme-header-gradient bg-clip-text dark:!bg-clip-text text-transparent dark:!text-transparent"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="mt-6"
-            >
+            <h1 className="flex flex-col items-center text-center font-metro-600 leading-none">
+              <span className="hero-line-enter heading-gradient heading-gradient--ink text-[45px] md:text-7xl lg:text-8xl xl:text-[96px]">
+                Take The Fun
+              </span>
+              <span className="hero-line-enter hero-line-enter--second heading-gradient heading-gradient--violet whitespace-nowrap text-[clamp(32px,10vw,45px)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] my-2 sm:my-4">
+                To The Real World
+              </span>
+            </h1>
+            <div className="hero-copy-enter mt-6">
               <p
-                className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-center"
-                style={{ color: isDarkMode ? "#220239":"#220239" }}
-              >
-                We connect you to what matters. Real people, real experiences,
-              </p>
-              <p
-                className="text-lg sm:text-lg md:text-xl lg:text-2xl font-metro-600 text-[#220239] text-center"
+                className="mx-auto w-full max-w-[31em] text-center text-[11px] font-metro-600 sm:text-xs md:text-xl lg:text-2xl"
                 style={{ color: isDarkMode ? "#220239" : "#220239" }}
               >
-                and the world just outside your door.
+                We connect you to what matters. Real people, real experiences, and
+                the world just outside your door.
               </p>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
         <motion.img
           src={mascot}
           alt="mascot"
-          className="absolute right-0 rotate-[40deg] w-[200px] sm:top-[95vh] top-[55vh] sm:w-[300px] md:top-[60vh] md:w-[400px] pointer-events-none z-3"
+          fetchPriority="high"
+          className="absolute right-0 top-[64vh] z-[1] w-[120px] rotate-[40deg] pointer-events-none sm:top-[72vh] sm:w-[225px] md:top-[60vh] md:w-[300px] xl:top-[70vh]"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         />
 
         <motion.section
-        className="absolute top-[76vh] md:top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-visible"
+        className="absolute top-[76vh] md:top-[75vh] xl:top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-visible"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -327,39 +281,46 @@ const LandingPage = () => {
       
       {/* Lines and Arrows Section */}
       <motion.section
-        className="relative -mt-[24vh] md:mt-0 w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
+        // className="relative -mt-[24vh] md:mt-0 w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
+        className="relative mt-0 w-full h-[80vh] sm:h-[100vh] md:h-[120vh] overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <img
-          src={gradient3}
-          alt="glow"
-          className="absolute top-15 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[1500px] pointer-events-none z-3"
-        />
-        <img
-          src={lines}
-          alt="lines"
-          className="absolute -top-30 left-1/2 -translate-x-1/2 w-full h-[1500px] object-cover pointer-events-none z-10 mask-linear-fade"
-          style={{
-            maskImage:
-              "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
-          }}
-        />
+        <picture className="contents">
+          <source media="(max-width: 767px)" srcSet={gradient3Mobile} />
+          <img
+            src={gradient3}
+            alt="glow"
+            className="opacity-70 absolute top-15 left-1/2 -translate-x-1/2 w-full max-w-[1600px] h-[1500px] pointer-events-none z-3"
+          />
+        </picture>
+        <picture className="contents">
+          <source media="(max-width: 767px)" srcSet={linesMobile} />
+          <img
+            src={lines}
+            alt="lines"
+            className="absolute -top-30 left-1/2 -translate-x-1/2 w-full h-[1500px] object-cover pointer-events-none z-10 mask-linear-fade"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, black 50%, black 80%, transparent 100%)",
+            }}
+          />
+        </picture>
         
 
         {/* Text - Left */}
         <motion.div
-          className="absolute top-[15%] left-[5%] sm:left-[10%] z-20 font-metro-600 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-xs"
+          className="absolute top-[8%] sm:top-[12%] md:top-[15%] left-[5%] sm:left-[10%] z-40 w-[90%] max-w-[400px] font-metro-600 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px]"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <p className="w-[400px]">
+          <p>
             It's easy to feel{" "}
             <span className="text-[#6D28B2]">disconnected</span> in today's busy
             world
@@ -368,7 +329,7 @@ const LandingPage = () => {
 
         {/* Text - Right */}
         <motion.div
-          className="absolute bottom-[50%] right-[5%] sm:right-[10%] font-metro-600 z-20 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-sm text-right"
+          className="absolute bottom-[50%] right-[5%] sm:right-[10%] font-metro-600 z-40 text-[#220239] text-xl sm:text-2xl md:text-3xl lg:text-[38px] max-w-[200px] sm:max-w-sm text-right"
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -411,7 +372,7 @@ const LandingPage = () => {
         <motion.img
           src={arrow}
           alt="arrow"
-          className="absolute top-[0%] left-[50%] sm:left-[54.5%] w-[30px] sm:w-[40px] md:w-[50px] z-30"
+          className="absolute top-[0%] left-[64%] sm:left-[54.5%] w-[30px] sm:w-[40px] md:w-[50px] z-30"
           style={{
             transform: `translate(-50%, ${middleArrowY}px) scale(${middleArrowScale})`,
             transition: "transform 0.2s ease-out, opacity 0.3s ease-out",
@@ -448,22 +409,12 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText
             text="But what if we could"
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none theme-header-gradient bg-clip-text text-transparent`}
-            style={{
-              color: 'transparent',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text'
-            }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-5xl font-metro-600 leading-none section-heading-gradient"
           />
           <AnimatedText
             text="change this?"
             delay={0.3}
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 theme-header-gradient bg-clip-text text-transparent`}
-            style={{
-              color: 'transparent',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text'
-            }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 section-heading-solid"
           />
         </div>
 
@@ -484,7 +435,8 @@ const LandingPage = () => {
         {/* Notification Cards Section */}
         <div className="relative h-[800px] sm:h-[1000px] md:h-[1200px] lg:h-[2000px] w-full overflow-hidden bg-white">
           <NotificationCard
-            src={not1}
+            mobileSrc={not1Mobile}
+            desktopSrc={not1Desktop}
             initialX={-200}
             initialY={100}
             rotate="4.07deg"
@@ -493,7 +445,8 @@ const LandingPage = () => {
             left="15%"
           />
           <NotificationCard
-            src={not2}
+            mobileSrc={not2Mobile}
+            desktopSrc={not2Desktop}
             initialX={200}
             initialY={100}
             rotate="8.51deg"
@@ -503,7 +456,8 @@ const LandingPage = () => {
             className="z-10"
           />
           <NotificationCard
-            src={not3}
+            mobileSrc={not3Mobile}
+            desktopSrc={not3Desktop}
             initialX={0}
             initialY={100}
             rotate="2.21deg"
@@ -513,7 +467,8 @@ const LandingPage = () => {
             className="z-5"
           />
           <NotificationCard
-            src={not4}
+            mobileSrc={not4Mobile}
+            desktopSrc={not4Desktop}
             initialX={100}
             initialY={100}
             rotate="0deg"
@@ -523,7 +478,8 @@ const LandingPage = () => {
             className="z-20"
           />
           <NotificationCard
-            src={not5}
+            mobileSrc={not5Mobile}
+            desktopSrc={not5Desktop}
             initialX={-100}
             initialY={100}
             rotate="-6deg"
@@ -552,7 +508,7 @@ const LandingPage = () => {
 
           {/* Review Bubbles */}
           <motion.div
-            className="absolute left-[10%] sm:left-[15%] md:left-[20%] lg:left-[30%] bottom-[30%] sm:bottom-[40%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[10%] bottom-[44%] w-[200px] sm:left-[15%] sm:bottom-[46%] sm:w-[260px] md:left-[20%] md:bottom-[40%] lg:left-[30%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -590,7 +546,7 @@ const LandingPage = () => {
           </motion.div>
 
           <motion.div
-            className="absolute left-[50%] sm:left-[55%] md:left-[60%] lg:left-[62%] bottom-[25%] sm:bottom-[32%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[50%] bottom-[23%] w-[200px] sm:left-[55%] sm:bottom-[23%] sm:w-[260px] md:left-[60%] md:bottom-[32%] lg:left-[62%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -628,7 +584,7 @@ const LandingPage = () => {
           </motion.div>
 
           <motion.div
-            className="absolute left-[5%] sm:left-[10%] md:left-[15%] lg:left-[22%] bottom-[10%] sm:bottom-[15%] w-[200px] sm:w-[260px] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[5%] bottom-[5%] w-[200px] sm:left-[10%] sm:bottom-[5%] sm:w-[260px] md:left-[15%] md:bottom-[15%] lg:left-[22%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -669,6 +625,7 @@ const LandingPage = () => {
 
       {/* Video Section */}
       <motion.div
+        ref={videoSectionRef}
         className="relative h-screen w-full overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -677,15 +634,14 @@ const LandingPage = () => {
       >
         <div className="absolute inset-0 bg-black/10 z-0 videoDiv">
           <video
-            ref={videoRef}
+            src={shouldLoadLandingVideo ? anime : undefined}
             autoPlay
             loop
-            muted={isMuted}
+            muted
             playsInline
+            preload={shouldLoadLandingVideo ? "auto" : "none"}
             className="w-full h-full object-cover"
-          >
-            <source src={anime} type="video/mp4" />
-          </video>
+          />
         </div>
 
         <motion.div
@@ -718,22 +674,12 @@ const LandingPage = () => {
         <div className="container mx-auto px-4 text-center justify-items-center">
           <AnimatedText
             text="Bringing Back"
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none theme-header-gradient bg-clip-text text-transparent`}
-            style={{
-              color: 'transparent',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text'
-            }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-metro-600 leading-none section-heading-gradient"
           />
           <AnimatedText
             text="Real-Time Connection"
             delay={0.3}
-            className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 theme-header-gradient bg-clip-text text-transparent`}
-            style={{
-              color: 'transparent',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text'
-            }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 section-heading-solid"
           />
           <AnimatedText
             text="Making Meaningful Friendships Starts Here!"
@@ -754,8 +700,8 @@ const LandingPage = () => {
         <motion.img
           src={mascot}
           alt="mascot"
-          className="absolute w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] z-10"
-          initial={{ x: -100, opacity: 0 }}
+          className="absolute left-2 -top-6 w-[90px] sm:left-4 sm:top-0 sm:w-[150px] md:left-0 md:top-0 md:w-[190px] lg:w-[225px] z-10"
+          initial={{ x: -40, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -781,12 +727,7 @@ const LandingPage = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.h2
-          className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-center mb-3 sm:mb-4 theme-header-gradient bg-clip-text`}
-          style={{ 
-            color: 'transparent',
-            WebkitBackgroundClip: 'text',
-            backgroundClip: 'text'
-          }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-metro-600 text-center mb-3 sm:mb-4 section-heading-gradient"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -813,14 +754,34 @@ const LandingPage = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
-          <iframe
-            className="h-full w-full border-0"
-            src="https://www.youtube.com/embed/Wo9qTKM_6oI"
-            title="CEO Video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+          {shouldLoadYouTube ? (
+            <iframe
+              className="h-full w-full border-0"
+              src="https://www.youtube.com/embed/Wo9qTKM_6oI?autoplay=1"
+              title="CEO Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          ) : (
+            <button
+              type="button"
+              className="group relative h-full w-full cursor-pointer bg-black"
+              onClick={() => setShouldLoadYouTube(true)}
+              aria-label="Play CEO video"
+            >
+              <img
+                src="https://i.ytimg.com/vi/Wo9qTKM_6oI/hqdefault.jpg"
+                alt="CEO video preview"
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+              <span className="absolute inset-0 bg-black/15 transition-colors group-hover:bg-black/25" />
+              <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#7E3FAC] shadow-lg transition-transform group-hover:scale-110 sm:h-20 sm:w-20">
+                <span className="ml-1 block h-0 w-0 border-y-[12px] border-l-[20px] border-y-transparent border-l-white sm:border-y-[15px] sm:border-l-[24px]" />
+              </span>
+            </button>
+          )}
         </motion.div>
       </motion.div>
     </div>

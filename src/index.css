@@ -39,6 +39,80 @@
   background-image: linear-gradient(147.4deg, #FFFFFF -29.4%, #9C65D4 67.11%, #6E1CBF 101.62%, #470974 102.12%);
 }
 
+.section-heading-gradient {
+  background-image: linear-gradient(180deg, #b996d1 0%, #68149a 52%, #31004c 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .section-heading-gradient {
+  background-image: linear-gradient(180deg, #d5b4ed 0%, #cba0e6 100%);
+}
+
+.section-heading-solid {
+  color: #26053d;
+}
+
+.dark .section-heading-solid {
+  color: #d0ade7;
+}
+
+.heading-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.heading-gradient--ink {
+  background-image: linear-gradient(100deg, #050306 0%, #1a0b1f 60%, #381044 100%);
+}
+
+.heading-gradient--violet {
+  background-image: linear-gradient(105deg, #210b29 0%, #43144f 48%, #8723a9 100%);
+}
+
+.dark .heading-gradient--ink {
+  background-image: linear-gradient(180deg, #dfc1f2 0%, #b37bdc 100%);
+}
+
+.dark .heading-gradient--violet {
+  background-image: linear-gradient(180deg, #bd83e2 0%, #9144ce 58%, #792ab8 100%);
+}
+
+/* Hero content stays visible while transform-only entrance motion runs. */
+.hero-line-enter,
+.hero-copy-enter {
+  animation: hero-enter 550ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-line-enter--second {
+  animation-delay: 80ms;
+}
+
+.hero-copy-enter {
+  animation-delay: 140ms;
+}
+
+@keyframes hero-enter {
+  from {
+    transform: translateY(14px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line-enter,
+  .hero-copy-enter {
+    animation: none;
+  }
+}
+
 /* Draws a rounded gradient border without adding a card background. */
 .gradient-border {
   position: relative;
@@ -213,7 +287,12 @@
 }
 
 .dark .dark-icon{
-  color: #ffffff
+  filter: brightness(0) invert(1);
+}
+
+.dark .social-icons svg,
+.dark .social-icons img {
+  filter: brightness(0) invert(1);
 }
 
 @keyframes fadeIn {

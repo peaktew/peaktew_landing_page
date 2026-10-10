@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useEffect, useState, useRef } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import music from "../assets/web-music.mp3";
 const SoundContext = createContext();
 
@@ -19,27 +26,59 @@ export const SoundProvider = ({ children }) => {
     return false;
   });
   const audioRef = useRef(null);
+  const isMutedRef = useRef(isMuted);
 
-  // Initialize audio on mount
-  useEffect(() => {
-    audioRef.current = new Audio(music);
-    audioRef.current.loop = true;
-    audioRef.current.volume = 0.5;
-    audioRef.current.muted = isMuted;
-    if (!isMuted) {
-      audioRef.current.play().catch(() => { });
+  isMutedRef.current = isMuted;
+
+  const initializeAudio = useCallback(() => {
+    if (!audioRef.current) {
+      const audio = new Audio(music);
+      audio.loop = true;
+      audio.volume = 0.5;
+      audio.muted = isMutedRef.current;
+      audio.preload = "auto";
+      audioRef.current = audio;
     }
+
+    return audioRef.current;
   }, []);
 
-  // Update mute state
+  // Defer the music request until the visitor interacts with the page.
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.muted = isMuted;
-      if (!isMuted) {
-        audioRef.current.play().catch(() => { });
-      } else {
-        audioRef.current.pause();
+    const startAudio = () => {
+      const audio = initializeAudio();
+      if (!isMutedRef.current) {
+        audio.play().catch(() => {});
       }
+      interactionEvents.forEach((eventName) =>
+        window.removeEventListener(eventName, startAudio),
+      );
+    };
+
+    const interactionEvents = ["pointerdown", "touchstart", "keydown", "scroll"];
+    interactionEvents.forEach((eventName) =>
+      window.addEventListener(eventName, startAudio, {
+        once: true,
+        passive: eventName !== "keydown",
+      }),
+    );
+
+    return () =>
+      interactionEvents.forEach((eventName) =>
+        window.removeEventListener(eventName, startAudio),
+      );
+  }, [initializeAudio]);
+
+  // Keep an initialized player in sync with the mute control.
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.muted = isMuted;
+    if (isMuted) {
+      audio.pause();
+    } else {
+      audio.play().catch(() => {});
     }
   }, [isMuted]);
 
@@ -56,6 +95,7 @@ export const SoundProvider = ({ children }) => {
   }, [isMuted]);
 
   const toggleMute = () => {
+    initializeAudio();
     setIsMuted((prev) => !prev);
   };
 
