@@ -147,7 +147,7 @@ const LandingPage = () => {
       {/* Globe Section */}
 
       <motion.div
-        className="mx-auto px-4 w-full h-[calc(92svh-4rem)] sm:h-[calc(92svh-5rem)] md:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
+        className="mx-auto w-full px-0 sm:px-4 h-[calc(92svh-4rem)] sm:h-[calc(92svh-5rem)] md:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}

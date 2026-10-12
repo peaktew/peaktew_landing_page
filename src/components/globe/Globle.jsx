@@ -73,9 +73,8 @@ export function GlobeDemo() {
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto overflow-hidden"
+      className="relative mx-auto w-screen overflow-hidden sm:w-[calc(100vw-32px)]"
       style={{
-        width: "calc(100vw - 32px)",
         aspectRatio: "2 / 1.6",
         borderRadius: "30px",
         minHeight: "400px",
