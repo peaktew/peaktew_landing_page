@@ -43,10 +43,20 @@ const globeConfig = {
   initialRotationX: 0,
 };
 
+const compactGlobeConfig = {
+  ...globeConfig,
+  // Keep the glow for contrast, but stop it before it reaches the canvas edge.
+  atmosphereAltitude: 0.18,
+};
+
 export function GlobeDemo() {
   const containerRef = useRef(null);
   const [shouldLoadGlobe, setShouldLoadGlobe] =
     useState(false);
+  const activeGlobeConfig =
+    typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches
+      ? compactGlobeConfig
+      : globeConfig;
 
   useEffect(() => {
     const element = containerRef.current;
@@ -82,7 +92,7 @@ export function GlobeDemo() {
     >
       {shouldLoadGlobe && (
         <Suspense fallback={null}>
-          <World globeConfig={globeConfig} />
+          <World globeConfig={activeGlobeConfig} />
         </Suspense>
       )}
     </div>

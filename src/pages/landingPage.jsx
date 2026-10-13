@@ -147,7 +147,7 @@ const LandingPage = () => {
       {/* Globe Section */}
 
       <motion.div
-        className="mx-auto w-full px-0 sm:px-4 h-[calc(92svh-4rem)] sm:h-[calc(92svh-5rem)] md:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
+        className="mx-auto w-full px-0 sm:px-4 h-[calc(77svh-4rem)] sm:h-[calc(77svh-5rem)] md:h-[calc(70svh-5rem)] lg:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -221,14 +221,14 @@ const LandingPage = () => {
         src={mascot}
         alt="mascot"
         fetchPriority="high"
-        className="absolute right-0 top-[64vh] z-[1] w-[120px] rotate-[40deg] pointer-events-none sm:top-[72vh] sm:w-[225px] md:top-[60vh] md:w-[300px] xl:top-[70vh]"
+        className="absolute right-0 top-[51svh] z-[1] w-[120px] rotate-[40deg] pointer-events-none sm:top-[58svh] sm:w-[225px] md:top-[46svh] md:w-[300px] lg:top-[60vh] xl:top-[70vh]"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.8, duration: 0.8 }}
       />
 
       <motion.section
-        className="absolute top-[76vh] md:top-[75vh] xl:top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-visible"
+        className="absolute top-[61svh] sm:top-[63svh] md:top-[60svh] lg:top-[75vh] xl:top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-visible"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
