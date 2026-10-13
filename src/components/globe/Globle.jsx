@@ -83,7 +83,7 @@ export function GlobeDemo() {
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto w-screen overflow-hidden sm:w-[calc(100vw-32px)]"
+      className="hero-globe relative mx-auto w-screen overflow-hidden sm:w-[calc(100vw-32px)]"
       style={{
         aspectRatio: "2 / 1.6",
         borderRadius: "30px",

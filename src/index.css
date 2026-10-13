@@ -384,3 +384,43 @@
     #220239ac 100%
   );
 }
+
+/* Keep the hero readable on phones and tablets held in short landscape mode. */
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 1199px) {
+  .hero-shell {
+    height: calc(100svh - 5rem) !important;
+    min-height: 220px;
+  }
+
+  .hero-globe {
+    aspect-ratio: auto !important;
+    height: calc(100svh - 5rem);
+    min-height: 220px !important;
+  }
+
+  .hero-content {
+    top: 48% !important;
+  }
+
+  .hero-title-line {
+    font-size: clamp(28px, 8svh, 40px) !important;
+  }
+
+  .hero-copy {
+    margin-top: 0.5rem !important;
+  }
+
+  .hero-copy p {
+    max-width: 42rem;
+    font-size: clamp(10px, 2.8svh, 13px) !important;
+  }
+
+  .hero-mascot {
+    top: calc(100svh - 10.5rem) !important;
+    width: clamp(90px, 16svh, 125px) !important;
+  }
+
+  .hero-curve {
+    top: calc(100svh - 7.5rem) !important;
+  }
+}
