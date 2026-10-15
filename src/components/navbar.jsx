@@ -9,7 +9,11 @@ const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <header className="w-full z-50 bg-white  transition-colors duration-300">
+    <header
+      className={`site-navbar w-full z-50 transition-colors duration-300 ${
+        isDarkMode ? 'bg-transparent' : 'bg-white'
+      }`}
+    >
       <div className="px-4 sm:px-6 md:px-10 lg:px-24 xl:px-36 2xl:px-48">
         <nav className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}

@@ -141,13 +141,13 @@ const LandingPage = () => {
   // Animation variants for dark mode transition
 
   return (
-    <div className="relative overflow-hidden transition-colors duration-500 bg-white">
+    <div className="landing-page relative overflow-x-clip transition-colors duration-500 bg-white">
       {/* Theme Toggle */}
 
       {/* Globe Section */}
 
       <motion.div
-        className="hero-shell mx-auto w-full px-0 sm:px-4 h-[calc(77svh-4rem)] sm:h-[calc(77svh-5rem)] md:h-[calc(70svh-5rem)] lg:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
+        className="hero-shell relative mx-auto w-full px-0 sm:px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -199,10 +199,10 @@ const LandingPage = () => {
         {/* Hero Text */}
         <div className="hero-content absolute lg:top-[50%] top-[35%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
           <h1 className="flex flex-col items-center text-center font-metro-600 leading-none">
-            <span className="hero-title-line hero-line-enter heading-gradient heading-gradient--ink text-[45px] md:text-7xl lg:text-8xl xl:text-[96px]">
+            <span className="hero-title-line hero-line-enter heading-gradient heading-gradient--ink text-[clamp(30px,8.8vw,40px)] sm:text-[45px] md:text-7xl lg:text-8xl xl:text-[96px]">
               Take The Fun
             </span>
-            <span className="hero-title-line hero-line-enter hero-line-enter--second heading-gradient heading-gradient--violet whitespace-nowrap text-[clamp(32px,10vw,45px)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] my-2 sm:my-4">
+            <span className="hero-title-line hero-line-enter hero-line-enter--second heading-gradient heading-gradient--violet whitespace-nowrap text-[clamp(32px,9.6vw,46px)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] my-2 sm:my-4">
               To The Real World
             </span>
           </h1>
@@ -221,14 +221,14 @@ const LandingPage = () => {
         src={mascot}
         alt="mascot"
         fetchPriority="high"
-        className="hero-mascot absolute right-0 top-[51svh] z-[1] w-[120px] rotate-[40deg] pointer-events-none sm:top-[58svh] sm:w-[225px] md:top-[46svh] md:w-[300px] lg:top-[60vh] xl:top-[70vh]"
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="hero-mascot absolute z-[1] pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}
       />
 
       <motion.section
-        className="hero-curve absolute top-[61svh] sm:top-[63svh] md:top-[60svh] lg:top-[75vh] xl:top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-visible"
+        className="hero-curve absolute left-0 z-[2] w-screen max-w-none overflow-visible pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}

@@ -45,8 +45,9 @@ const globeConfig = {
 
 const compactGlobeConfig = {
   ...globeConfig,
-  // Keep the glow for contrast, but stop it before it reaches the canvas edge.
-  atmosphereAltitude: 0.18,
+  // Preserve the original glow size while the wider camera prevents clipping.
+  atmosphereAltitude: 0.3,
+  cameraZ: 355,
 };
 
 export function GlobeDemo() {
@@ -83,12 +84,7 @@ export function GlobeDemo() {
   return (
     <div
       ref={containerRef}
-      className="hero-globe relative mx-auto w-screen overflow-hidden sm:w-[calc(100vw-32px)]"
-      style={{
-        aspectRatio: "2 / 1.6",
-        borderRadius: "30px",
-        minHeight: "400px",
-      }}
+      className="hero-globe relative mx-auto w-screen overflow-visible sm:w-[calc(100vw-32px)]"
     >
       {shouldLoadGlobe && (
         <Suspense fallback={null}>

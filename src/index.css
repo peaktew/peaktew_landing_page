@@ -196,6 +196,10 @@
   border-bottom-color: #334155 !important;
 }
 
+.dark .site-navbar {
+  background-color: transparent !important;
+}
+
 .dark footer {
   background-color: #220239 !important;
 }
@@ -383,6 +387,116 @@
     rgba(34, 2, 57, 0) 0%,
     #220239ac 100%
   );
+}
+
+/* Landing hero: keep the globe, mascot, and curve in one fluid composition. */
+.hero-shell {
+  height: calc(77svh - 4rem);
+  min-height: 520px;
+  overflow: visible;
+}
+
+.hero-content {
+  left: 0 !important;
+  transform: none !important;
+  translate: 0 -50% !important;
+}
+
+.hero-globe {
+  aspect-ratio: 1 / 1.18;
+  min-height: 430px;
+}
+
+.hero-curve {
+  top: 61svh;
+}
+
+.hero-mascot {
+  top: calc(61svh - 4.75rem);
+  right: 0.5rem;
+  width: clamp(118px, 34vw, 150px);
+  transform: rotate(30deg);
+}
+
+@media (min-width: 640px) {
+  .hero-shell {
+    height: calc(77svh - 5rem);
+    min-height: 570px;
+  }
+
+  .hero-globe {
+    aspect-ratio: 2 / 1.6;
+    min-height: 520px;
+  }
+
+  .hero-curve {
+    top: 63svh;
+  }
+
+  .hero-mascot {
+    top: calc(63svh - 9.5rem);
+    right: 0;
+    width: clamp(210px, 30vw, 280px);
+    transform: rotate(40deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-shell {
+    height: calc(70svh - 5rem);
+  }
+
+  /* The iPad headline crosses both the white globe and dark hero background.
+     A restrained light edge preserves the gradient while retaining contrast. */
+  .hero-content h1 {
+    filter:
+      drop-shadow(0 0 1px rgba(255, 255, 255, 0.95))
+      drop-shadow(0 0 9px rgba(255, 255, 255, 0.72));
+  }
+
+  .hero-copy {
+    filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.85));
+  }
+
+  .hero-curve {
+    top: 60svh;
+  }
+
+  .hero-mascot {
+    top: calc(60svh - 10rem);
+    width: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-shell {
+    height: calc(85svh - 5rem);
+    min-height: 600px;
+  }
+
+  .hero-globe {
+    min-height: 640px;
+  }
+
+  .hero-curve {
+    top: clamp(75vh, calc(15vh + 46.875vw), 90vh);
+  }
+
+  .hero-mascot {
+    top: calc(clamp(75vh, calc(15vh + 46.875vw), 90vh) - 10rem);
+    width: 300px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-shell {
+    height: 100svh;
+  }
+
+  .hero-content h1,
+  .hero-copy {
+    filter: none;
+  }
 }
 
 /* Keep the hero readable on phones and tablets held in short landscape mode. */
