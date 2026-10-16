@@ -510,7 +510,7 @@ const LandingPage = () => {
 
           {/* Review Bubbles */}
           <motion.div
-            className="absolute left-[10%] bottom-[44%] w-[200px] sm:left-[15%] sm:bottom-[46%] sm:w-[260px] md:left-[20%] md:bottom-[40%] lg:left-[30%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[5%] bottom-[44%] w-[200px] sm:left-[15%] sm:bottom-[46%] sm:w-[260px] md:left-[20%] md:bottom-[40%] lg:left-[30%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -549,7 +549,7 @@ const LandingPage = () => {
           </motion.div>
 
           <motion.div
-            className="absolute left-[41%] bottom-[23%] w-[200px] sm:left-[55%] sm:bottom-[23%] sm:w-[260px] md:left-[60%] md:bottom-[32%] lg:left-[62%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[45%] bottom-[18%] w-[200px] sm:left-[55%] sm:bottom-[23%] sm:w-[260px] md:left-[60%] md:bottom-[32%] lg:left-[62%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -588,7 +588,7 @@ const LandingPage = () => {
           </motion.div>
 
           <motion.div
-            className="absolute left-[5%] bottom-[5%] w-[200px] sm:left-[10%] sm:bottom-[5%] sm:w-[260px] md:left-[15%] md:bottom-[15%] lg:left-[22%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[5%] bottom-[2%] w-[200px] sm:left-[10%] sm:bottom-[5%] sm:w-[260px] md:left-[15%] md:bottom-[15%] lg:left-[22%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

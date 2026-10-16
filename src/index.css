@@ -497,6 +497,7 @@
 @media (min-width: 1280px) {
   .hero-shell {
     height: 100svh;
+    overflow: hidden;
   }
 
   .hero-content h1,
