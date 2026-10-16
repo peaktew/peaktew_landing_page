@@ -418,6 +418,12 @@
   transform: rotate(30deg);
 }
 
+@media (max-width: 639px) {
+  .notification-card {
+    top: calc(var(--notification-top) - 6%) !important;
+  }
+}
+
 @media (min-width: 640px) {
   .hero-shell {
     height: calc(77svh - 5rem);

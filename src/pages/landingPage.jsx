@@ -47,11 +47,11 @@ const NotificationCard = ({
 }) => {
   return (
     <motion.picture
-      className={`absolute w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] ${className}`}
-      style={{ top, left, right }}
+      className={`notification-card absolute z-10 w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] ${className}`}
+      style={{ "--notification-top": top, top: "var(--notification-top)", left, right }}
       initial={{ x: initialX, y: initialY, opacity: 0, rotate }}
       whileInView={{ x: 0, y: 0, opacity: 1, rotate }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "160px 0px" }}
       transition={{
         type: "spring",
         stiffness: 50,
@@ -444,6 +444,7 @@ const LandingPage = () => {
             delay={0.1}
             top="5%"
             left="15%"
+            className="hidden sm:block"
           />
           <NotificationCard
             mobileSrc={not2Mobile}
@@ -454,7 +455,7 @@ const LandingPage = () => {
             delay={0.2}
             top="12%"
             right="20%"
-            className="z-10"
+            className="hidden sm:block z-10"
           />
           <NotificationCard
             mobileSrc={not3Mobile}
@@ -521,7 +522,8 @@ const LandingPage = () => {
                 .map((_, i) => (
                   <svg
                     key={i}
-                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    className="w-3 h-3 sm:w-4 sm:h-4"
+                    fill="#facc15"
                     viewBox="0 0 20 20"
                   >
                     <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
@@ -547,7 +549,7 @@ const LandingPage = () => {
           </motion.div>
 
           <motion.div
-            className="absolute left-[50%] bottom-[23%] w-[200px] sm:left-[55%] sm:bottom-[23%] sm:w-[260px] md:left-[60%] md:bottom-[32%] lg:left-[62%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[41%] bottom-[23%] w-[200px] sm:left-[55%] sm:bottom-[23%] sm:w-[260px] md:left-[60%] md:bottom-[32%] lg:left-[62%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -559,7 +561,8 @@ const LandingPage = () => {
                 .map((_, i) => (
                   <svg
                     key={i}
-                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    className="w-3 h-3 sm:w-4 sm:h-4"
+                    fill="#facc15"
                     viewBox="0 0 20 20"
                   >
                     <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
@@ -597,7 +600,8 @@ const LandingPage = () => {
                 .map((_, i) => (
                   <svg
                     key={i}
-                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    className="w-3 h-3 sm:w-4 sm:h-4"
+                    fill="#facc15"
                     viewBox="0 0 20 20"
                   >
                     <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
