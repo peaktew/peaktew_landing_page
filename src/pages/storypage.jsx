@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDarkMode } from '../components/DarkModeContext';
-import big_ring from '../assets/full_big_ring.png';
+import big_ring from '../assets/full_big_ring.webp';
 import ceo from '../assets/ceo.png';
 import star from '../assets/star.png';
 import plus from '../assets/plus.png';
@@ -76,13 +76,14 @@ const StoryPage = () => {
 
       {/* Hero Section */}
       <motion.section
-        className="relative w-full min-h-screen overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] pb-20"
+        className="relative w-full min-h-screen overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] pt-20 sm:pt-28 md:pt-36 pb-20 flex flex-col items-center justify-start"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
+        {/* Background Ring */}
         <motion.div
-          className="absolute inset-0 z-0"
+          className="absolute top-0 left-0 right-0 h-[450px] sm:h-[600px] md:h-[750px] lg:h-[900px] z-0 pointer-events-none flex justify-center items-start overflow-hidden"
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
@@ -90,74 +91,73 @@ const StoryPage = () => {
           <img
             src={big_ring}
             alt="Bubble Background"
-            className="w-full h-full object-cover object-center scale-110 blur-sm opacity-95"
+            className="w-[120%] max-w-none lg:w-full md:max-w-none h-auto object-contain opacity-95 select-none"
           />
-          <div className={`absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b ${isDarkMode ? "" : "from-transparent to-white"}`} />
-          <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-t from-transparent to-white" />
+          {/* Bottom Fade Gradient*/}
+          <div
+            className={`absolute bottom-0 left-0 w-full h-3/4 sm:h-1/4 pointer-events-none bg-gradient-to-b ${
+              isDarkMode
+                ? "from-transparent via-[#220239]/90 to-[#220239]"
+                : "from-transparent via-white/90 to-white"
+            }`}
+          />
         </motion.div>
 
-        <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 mt-20">
+        {/* Content Container */}
+        <div className="relative z-10 flex items-center justify-center w-full px-3 sm:px-6 -mt-2 sm:mt-6 md:mt-16 lg:mt-24">
           <motion.div
-            className="bg-white/70 backdrop-blur-lg rounded-2xl shadow-2xl max-w-5xl p-4 sm:p-6 md:p-8 lg:p-12 text-center mx-4"
+            className="bg-white/40 dark:bg-white/40 backdrop-blur-lg rounded-3xl shadow-2xl max-w-4xl p-5 sm:p-8 md:p-12 text-center border border-white/30 w-full"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <motion.h2
-              className="text-[90px] sm:text-4xl md:text-[72px] font-bold text-purple-700 mb-1 sm:mb-3"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              How
-            </motion.h2>
-            <motion.h2
-              className="text-[100px] sm:text-5xl md:text-[80px] font-bold text-purple-700 mb-4 sm:mb-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              PeakTew Started
-            </motion.h2>
-            <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-700 mb-4 sm:mb-6"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              (and Why We Care So Much)
-            </motion.h2>
+            {/* Gradient Title Block */}
             <motion.div
-              className="columns-1 md:columns-1 gap-6 md:gap-8"
+              className="mb-4 sm:mb-6 select-none inline-block bg-clip-text text-transparent !text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(177.11deg, #A62AD2 2.4%, #6E1CBF 30.78%, #470974 97.6%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              <h1 className="font-extrabold text-[32px] sm:text-6xl md:text-7xl lg:text-[84px] leading-tight tracking-tight capitalize mb-0.5 sm:mb-1">
+                How
+              </h1>
+              <h1 className="font-extrabold text-[32px] sm:text-6xl md:text-7xl lg:text-[84px] leading-tight tracking-tight capitalize my-0.5 sm:my-1">
+                PeakTew Started
+              </h1>
+              <h2 className="font-semibold md:font-bold text-[20px] sm:text-2xl md:text-3xl lg:text-[34px] leading-snug tracking-tight mt-2 sm:mt-3">
+                (And Why We Care So Much)
+              </h2>
+            </motion.div>
+
+            {/* Content Paragraphs */}
+            <motion.div
+              className="space-y-4 sm:space-y-6 text-[#1A1A1A] !text-[#1A1A1A] text-xs sm:text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-medium"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.8 }}
             >
-              <p className="mb-4 sm:mb-6 text-gray-700 text-sm sm:text-base leading-relaxed">
-                Founded in January 2023, PeakTew is an award-winning
-                next-generation social network that notifies and physically
-                connects its users to people, places, and events in their
-                immediate surroundings. A disruptive Blue Ocean start-up that
-                reinvents the social network industry by solving Gen Z’s desire
-                to socialize, while alleviating phone addiction and mental
-                health issues. Its innovative app features unique designs and
-                technologies that have earned it prestigious recognition,
-                attracting investors & advisors from Silicon Valley. Incubated
-                in ventures across the USA, France, and the UK, PeakTew is on
-                the fast track to becoming a unicorn company, according to
-                multiple industry professionals. PeakTew is passionate about
-                delivering excellence and offers services that cater to all
-                stages of life, every moment of the day. The startup is
-                committed to social responsibility as it aligns itself with UN
-                Sustainable Development Goals N°3-Good Health and Well-being,
-                N°11-Sustainable Cities and Communities, and N°12-Responsible
-                Consumption and Production. Embark with PeakTew for an exciting
-                journey!
+              <p className="text-[#1A1A1A] !text-[#1A1A1A]">
+                Founded in January 2023, PeakTew is an award-winning next-generation social network that notifies and physically connects its users to people, places, and events in their immediate surroundings. A disruptive Blue Ocean start-up that reinvents the social network industry by solving Gen Z’s desire to socialize, while alleviating phone addiction and mental health issues.
+              </p>
+              <p className="text-[#1A1A1A] !text-[#1A1A1A]">
+                Its innovative app features unique designs and technologies that have earned it prestigious recognition, attracting investors & advisors from Silicon Valley. Incubated in ventures across the USA, France, and the UK, PeakTew is on the fast track to becoming a unicorn company, according to multiple industry professionals.
+              </p>
+              <p className="text-[#1A1A1A] !text-[#1A1A1A]">
+                PeakTew is passionate about delivering excellence and offers services that cater to all stages of life, every moment of the day. The startup is committed to social responsibility as it aligns itself with UN Sustainable Development Goals N°3-Good Health and Well-being, N°11-Sustainable Cities and Communities, and N°12-Responsible Consumption and Production.
+              </p>
+              <p className="font-semibold text-[#1A1A1A] !text-[#1A1A1A] pt-2">
+                Embark with PeakTew for an exciting journey!
               </p>
             </motion.div>
           </motion.div>
         </div>
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>      </motion.section>
+        {/* <div className={`absolute inset-0 pointer-events-none bg-gradient-to-t ${isDarkMode ? "from-[#220239] to-[#220239]/20" : "from-white to-transparent"}`} /> */}
+      </motion.section>
 
       {/* CEO Section */}
       <motion.section
@@ -168,29 +168,29 @@ const StoryPage = () => {
         viewport={{ once: true, amount: 0.3 }}
       >
         {/* Right Image */}
-          <motion.div
-            className="hidden md:visible md:flex flex-shrink-0 w-full md:w-[250px] lg:w-[300px] xl:w-[350px] h-[500px] absolute right-7 bottom-20.5 overflow-hidden rounded-3xl"
-            initial={{ x: 20, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+        <motion.div
+          className="hidden md:visible md:flex flex-shrink-0 w-full md:w-[250px] lg:w-[300px] xl:w-[350px] h-[500px] absolute right-7 bottom-20.5 overflow-hidden rounded-3xl"
+          initial={{ x: 20, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.img
+            src={ceo}
+            alt="CEO"
+            className="w-full h-full object-cover object-top"
+            initial={{ scale: 1.1 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-          >
-            <motion.img
-              src={ceo}
-              alt="CEO"
-              className="w-full h-full object-cover object-top"
-              initial={{ scale: 1.1 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-purple-500/10 mix-blend-multiply"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.div>
+          />
+          <motion.div
+            className="absolute inset-0 bg-purple-500/10 mix-blend-multiply"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
         <motion.h2
           className="text-[90px] sm:text-4xl md:text-[72px] font-bold text-purple-700 mb-60 sm:mb-12 text-left"
           variants={fadeInUp}
@@ -201,12 +201,12 @@ const StoryPage = () => {
         <motion.div
           className={`max-w-6xl w-full bg-gradient-to-br ${isDarkMode ? "bg-gradient-to-b from-[#220239] to-[#5F069F]" : "from-white via-purple-50 to-white"} border-2 border-purple-500 rounded-3xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch md:mt-25`}
           variants={fadeInUp}
-          // whileHover={{
-          //   y: -5,
-          //   boxShadow:
-          //     "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-          // }}
-          // transition={{ type: "spring", stiffness: 300 }}
+        // whileHover={{
+        //   y: -5,
+        //   boxShadow:
+        //     "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+        // }}
+        // transition={{ type: "spring", stiffness: 300 }}
         >
           {/* Left Text */}
           <motion.div
@@ -230,7 +230,7 @@ const StoryPage = () => {
             </p>
           </motion.div>
           <div className="flex-1 hidden md:flex"></div>
-        {/* Right Image */}
+          {/* Right Image */}
           <motion.div
             className="md:hidden flex-shrink-0 w-full md:w-[250px] lg:w-[300px] xl:w-[350px] h-[500px] overflow-hidden border-none"
             initial={{ x: 20, opacity: 0 }}
@@ -254,7 +254,7 @@ const StoryPage = () => {
               transition={{ duration: 0.3 }}
             />
           </motion.div>
-          
+
         </motion.div>
       </motion.section>
 
@@ -308,194 +308,194 @@ const StoryPage = () => {
               <style>{`.milestone-track::-webkit-scrollbar { display: none; }`}</style>
               <div className="flex space-x-10" style={{ width: "max-content" }}>
 
-              {/* Milestone 1 */}
-              <motion.div
-                className="relative w-96 flex-shrink-0"
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="flex flex-col items-center h-full">
-                  <div className="text-center mb-5">
-                    <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>01</div>
-                    <div className="text-base text-purple-600 mt-1">January 2023</div>
+                {/* Milestone 1 */}
+                <motion.div
+                  className="relative w-96 flex-shrink-0"
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="flex flex-col items-center h-full">
+                    <div className="text-center mb-5">
+                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>01</div>
+                      <div className="text-base text-purple-600 mt-1">January 2023</div>
+                    </div>
+                    <motion.div
+                      className="relative z-10 -mb-8"
+                      whileHover={{ rotate: 15, scale: 1.1 }}
+                      transition={{ type: "spring" }}
+                    >
+                      <img src={star} alt="Star Icon" className="w-24 h-24 object-contain" />
+                    </motion.div>
+                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
+                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">The Spark</h3>
+                      <p className="!text-black text-base leading-relaxed">
+                        PeakTew started with one mission: making real-life friendships easier in a
+                        world obsessed with swipes and likes. It wasn't just a start-up—it was a
+                        movement to bring people together offline.
+                      </p>
+                    </div>
                   </div>
-                  <motion.div
-                    className="relative z-10 -mb-8"
-                    whileHover={{ rotate: 15, scale: 1.1 }}
-                    transition={{ type: "spring" }}
-                  >
-                    <img src={star} alt="Star Icon" className="w-24 h-24 object-contain" />
-                  </motion.div>
-                  <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                    <h3 className="!text-purple-600 font-semibold text-xl mb-4">The Spark</h3>
-                    <p className="!text-black text-base leading-relaxed">
-                      PeakTew started with one mission: making real-life friendships easier in a
-                      world obsessed with swipes and likes. It wasn't just a start-up—it was a
-                      movement to bring people together offline.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
 
-              {/* Milestone 2 */}
-              <motion.div
-                className="relative w-96 flex-shrink-0"
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
-              >
-                <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                <div className="flex flex-col items-center h-full">
-                  <div className="text-center mb-5">
-                    <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>02</div>
-                    <div className="text-base text-purple-600 mt-1">June 2023</div>
+                {/* Milestone 2 */}
+                <motion.div
+                  className="relative w-96 flex-shrink-0"
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                  transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
+                >
+                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
+                  <div className="flex flex-col items-center h-full">
+                    <div className="text-center mb-5">
+                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>02</div>
+                      <div className="text-base text-purple-600 mt-1">June 2023</div>
+                    </div>
+                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
+                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">Defining Our Identity</h3>
+                      <p className="!text-black text-base leading-relaxed">
+                        The name "PeakTew" captured both the pinnacle of activity and the excitement of
+                        the moment. However, the initial app design leaned too heavily into dating app
+                        territory. It was clear we needed a new direction, and the redesign began.
+                      </p>
+                    </div>
+                    <motion.img
+                      src={plus}
+                      alt="Plus Icon"
+                      className="absolute -bottom-6 left-3 w-24 h-24 object-contain"
+                      initial={{ rotate: 0 }}
+                      whileHover={{ rotate: 90 }}
+                      transition={{ duration: 0.5 }}
+                    />
                   </div>
-                  <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                    <h3 className="!text-purple-600 font-semibold text-xl mb-4">Defining Our Identity</h3>
-                    <p className="!text-black text-base leading-relaxed">
-                      The name "PeakTew" captured both the pinnacle of activity and the excitement of
-                      the moment. However, the initial app design leaned too heavily into dating app
-                      territory. It was clear we needed a new direction, and the redesign began.
-                    </p>
-                  </div>
-                  <motion.img
-                    src={plus}
-                    alt="Plus Icon"
-                    className="absolute -bottom-6 left-3 w-24 h-24 object-contain"
-                    initial={{ rotate: 0 }}
-                    whileHover={{ rotate: 90 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
-              </motion.div>
+                </motion.div>
 
-              {/* Milestone 3 */}
-              <motion.div
-                className="relative w-96 flex-shrink-0"
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.4 }}
-              >
-                <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                <div className="flex flex-col items-center h-full">
-                  <div className="text-center mb-5">
-                    <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>03</div>
-                    <div className="text-base text-purple-600 mt-1">Sept 2023 – Feb 2024</div>
+                {/* Milestone 3 */}
+                <motion.div
+                  className="relative w-96 flex-shrink-0"
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                  transition={{ type: "spring", stiffness: 300, delay: 0.4 }}
+                >
+                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
+                  <div className="flex flex-col items-center h-full">
+                    <div className="text-center mb-5">
+                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>03</div>
+                      <div className="text-base text-purple-600 mt-1">Sept 2023 – Feb 2024</div>
+                    </div>
+                    <motion.div
+                      className="relative z-10 -mb-8"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring" }}
+                    >
+                      <img src={pipes} alt="Pipes Icon" className="w-24 h-24 object-contain" />
+                    </motion.div>
+                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
+                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">The Transformation</h3>
+                      <p className="!text-black text-base leading-relaxed">
+                        This was our turning point. We underwent a complete overhaul and our brand
+                        identity shifted. Guided by user feedback, we began building a product people
+                        truly wanted.
+                      </p>
+                    </div>
                   </div>
-                  <motion.div
-                    className="relative z-10 -mb-8"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring" }}
-                  >
-                    <img src={pipes} alt="Pipes Icon" className="w-24 h-24 object-contain" />
-                  </motion.div>
-                  <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                    <h3 className="!text-purple-600 font-semibold text-xl mb-4">The Transformation</h3>
-                    <p className="!text-black text-base leading-relaxed">
-                      This was our turning point. We underwent a complete overhaul and our brand
-                      identity shifted. Guided by user feedback, we began building a product people
-                      truly wanted.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
 
-              {/* Milestone 4 */}
-              <motion.div
-                className="relative w-96 flex-shrink-0"
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.6 }}
-              >
-                <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                <div className="flex flex-col items-center h-full">
-                  <div className="text-center mb-5">
-                    <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>04</div>
-                    <div className="text-base text-purple-600 mt-1">July 2024</div>
+                {/* Milestone 4 */}
+                <motion.div
+                  className="relative w-96 flex-shrink-0"
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                  transition={{ type: "spring", stiffness: 300, delay: 0.6 }}
+                >
+                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
+                  <div className="flex flex-col items-center h-full">
+                    <div className="text-center mb-5">
+                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>04</div>
+                      <div className="text-base text-purple-600 mt-1">July 2024</div>
+                    </div>
+                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
+                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">Preparing for Launch</h3>
+                      <p className="!text-black text-base leading-relaxed">
+                        With the launch approaching, we refined our design and sharpened our brand
+                        identity. PeakTew evolved beyond an app—it was ready to make an impact.
+                      </p>
+                    </div>
+                    <motion.img
+                      src={blob}
+                      alt="Blob Icon"
+                      className="absolute bottom-10 right-3 w-28 h-28 object-contain"
+                      initial={{ rotate: 0 }}
+                      whileHover={{ rotate: 90 }}
+                      transition={{ duration: 0.5 }}
+                    />
                   </div>
-                  <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                    <h3 className="!text-purple-600 font-semibold text-xl mb-4">Preparing for Launch</h3>
-                    <p className="!text-black text-base leading-relaxed">
-                      With the launch approaching, we refined our design and sharpened our brand
-                      identity. PeakTew evolved beyond an app—it was ready to make an impact.
-                    </p>
-                  </div>
-                  <motion.img
-                    src={blob}
-                    alt="Blob Icon"
-                    className="absolute bottom-10 right-3 w-28 h-28 object-contain"
-                    initial={{ rotate: 0 }}
-                    whileHover={{ rotate: 90 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
-              </motion.div>
+                </motion.div>
 
-              {/* Milestone 5 */}
-              <motion.div
-                className="relative w-96 flex-shrink-0"
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300, delay: 0.8 }}
-              >
-                <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                <div className="flex flex-col items-center h-full">
-                  <div className="text-center mb-5">
-                    <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>05</div>
-                    <div className="text-base text-purple-600 mt-1">October 2024</div>
+                {/* Milestone 5 */}
+                <motion.div
+                  className="relative w-96 flex-shrink-0"
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                  transition={{ type: "spring", stiffness: 300, delay: 0.8 }}
+                >
+                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
+                  <div className="flex flex-col items-center h-full">
+                    <div className="text-center mb-5">
+                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>05</div>
+                      <div className="text-base text-purple-600 mt-1">October 2024</div>
+                    </div>
+                    <motion.div
+                      className="relative z-0 -mb-4"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring" }}
+                    >
+                      <img src={loop} alt="Loop Icon" className="w-24 h-24 object-contain" />
+                    </motion.div>
+                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
+                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">The SEC Pitch Stage</h3>
+                      <p className="!text-black text-base leading-relaxed">
+                        At the SEC Pitch Competition, we unveiled PeakTew's Alpha MVP: a hybrid platform
+                        designed to move people from digital notifications to real-life interactions. No
+                        endless swiping—just authentic connections.
+                      </p>
+                    </div>
                   </div>
-                  <motion.div
-                    className="relative z-0 -mb-4"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring" }}
-                  >
-                    <img src={loop} alt="Loop Icon" className="w-24 h-24 object-contain" />
-                  </motion.div>
-                  <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                    <h3 className="!text-purple-600 font-semibold text-xl mb-4">The SEC Pitch Stage</h3>
-                    <p className="!text-black text-base leading-relaxed">
-                      At the SEC Pitch Competition, we unveiled PeakTew's Alpha MVP: a hybrid platform
-                      designed to move people from digital notifications to real-life interactions. No
-                      endless swiping—just authentic connections.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
 
-              {/* Milestone 6 */}
-              <motion.div
-                className="relative w-96 flex-shrink-0"
-                variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300, delay: 1.0 }}
-              >
-                <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                <div className="flex flex-col items-center h-full">
-                  <div className="text-center mb-5">
-                    <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>06</div>
-                    <div className="text-base text-purple-600 mt-1">Ongoing</div>
+                {/* Milestone 6 */}
+                <motion.div
+                  className="relative w-96 flex-shrink-0"
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                  transition={{ type: "spring", stiffness: 300, delay: 1.0 }}
+                >
+                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
+                  <div className="flex flex-col items-center h-full">
+                    <div className="text-center mb-5">
+                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>06</div>
+                      <div className="text-base text-purple-600 mt-1">Ongoing</div>
+                    </div>
+                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
+                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">Growth & Recognition</h3>
+                      <p className="!text-black text-base leading-relaxed">
+                        We've joined 4 incubators, secured the USC Proving Ground Prize, and expanded to
+                        a team of 21 people from 13 countries. With 1.2k+ followers and growing
+                        influence, PeakTew is just getting started.
+                      </p>
+                    </div>
+                    <motion.img
+                      src={light}
+                      alt="Light Icon"
+                      className="absolute bottom-10 right-3 w-28 h-28 object-contain"
+                      initial={{ rotate: 0 }}
+                      whileHover={{ rotate: 90 }}
+                      transition={{ duration: 0.5 }}
+                    />
                   </div>
-                  <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                    <h3 className="!text-purple-600 font-semibold text-xl mb-4">Growth & Recognition</h3>
-                    <p className="!text-black text-base leading-relaxed">
-                      We've joined 4 incubators, secured the USC Proving Ground Prize, and expanded to
-                      a team of 21 people from 13 countries. With 1.2k+ followers and growing
-                      influence, PeakTew is just getting started.
-                    </p>
-                  </div>
-                  <motion.img
-                    src={light}
-                    alt="Light Icon"
-                    className="absolute bottom-10 right-3 w-28 h-28 object-contain"
-                    initial={{ rotate: 0 }}
-                    whileHover={{ rotate: 90 }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
-              </motion.div>
+                </motion.div>
 
-            </div>
+              </div>
             </div>
           </div>
         </div>
