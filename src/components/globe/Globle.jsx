@@ -50,14 +50,37 @@ const compactGlobeConfig = {
   cameraZ: 355,
 };
 
+const compactGlobeQuery = "(max-width: 1023px)";
+
+const getIsCompactViewport = () =>
+  typeof window !== "undefined" && window.matchMedia(compactGlobeQuery).matches;
+
 export function GlobeDemo() {
   const containerRef = useRef(null);
   const [shouldLoadGlobe, setShouldLoadGlobe] =
     useState(false);
-  const activeGlobeConfig =
-    typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches
-      ? compactGlobeConfig
-      : globeConfig;
+  const [isCompactViewport, setIsCompactViewport] = useState(
+    getIsCompactViewport
+  );
+  const activeGlobeConfig = isCompactViewport
+    ? compactGlobeConfig
+    : globeConfig;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(compactGlobeQuery);
+    const handleViewportChange = (event) => {
+      setIsCompactViewport(event.matches);
+    };
+
+    // Synchronize once in case the viewport changed between initialization
+    // and effect setup, then keep React in sync with DevTools/orientation.
+    setIsCompactViewport(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleViewportChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleViewportChange);
+    };
+  }, []);
 
   useEffect(() => {
     const element = containerRef.current;
@@ -88,7 +111,10 @@ export function GlobeDemo() {
     >
       {shouldLoadGlobe && (
         <Suspense fallback={null}>
-          <World globeConfig={activeGlobeConfig} />
+          <World
+            key={isCompactViewport ? "compact" : "desktop"}
+            globeConfig={activeGlobeConfig}
+          />
         </Suspense>
       )}
     </div>
