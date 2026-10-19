@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDarkMode } from '../components/DarkModeContext';
 import big_ring from '../assets/full_big_ring.webp';
-import ceo from '../assets/ceo.png';
+import ceo from '../assets/ceo.webp';
 import star from '../assets/star.png';
 import plus from '../assets/plus.png';
 import pipes from '../assets/pipes.png';
@@ -62,7 +62,7 @@ const StoryPage = () => {
             <span className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`}>
               {!isDarkMode ? (
                 <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
                 </svg>
               ) : (
                 <svg className="w-5 h-5 text-slate-500" fill="currentColor" viewBox="0 0 20 20">
@@ -76,7 +76,7 @@ const StoryPage = () => {
 
       {/* Hero Section */}
       <motion.section
-        className="relative w-full min-h-screen overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] pt-20 sm:pt-28 md:pt-36 pb-20 flex flex-col items-center justify-start"
+        className="relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] pt-16 sm:pt-24 md:pt-28 lg:pt-32 pb-16 sm:pb-24 lg:pb-32 flex flex-col items-center justify-start"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -95,18 +95,17 @@ const StoryPage = () => {
           />
           {/* Bottom Fade Gradient*/}
           <div
-            className={`absolute bottom-0 left-0 w-full h-3/4 sm:h-1/4 pointer-events-none bg-gradient-to-b ${
-              isDarkMode
-                ? "from-transparent via-[#220239]/90 to-[#220239]"
-                : "from-transparent via-white/90 to-white"
-            }`}
+            className={`absolute bottom-0 left-0 w-full h-3/4 sm:h-1/4 pointer-events-none bg-gradient-to-b ${isDarkMode
+              ? "from-transparent via-[#220239]/90 to-[#220239]"
+              : "from-transparent via-white/90 to-white"
+              }`}
           />
         </motion.div>
 
         {/* Content Container */}
-        <div className="relative z-10 flex items-center justify-center w-full px-3 sm:px-6 -mt-2 sm:mt-6 md:mt-16 lg:mt-24">
+        <div className="relative z-10 flex items-center justify-center w-full px-3 sm:px-6 mt-2 sm:mt-6 md:mt-16 lg:mt-24">
           <motion.div
-            className="bg-white/40 dark:bg-white/40 backdrop-blur-lg rounded-3xl shadow-2xl max-w-4xl p-5 sm:p-8 md:p-12 text-center border border-white/30 w-full"
+            className="bg-white/40 dark:bg-white/40 backdrop-blur-lg rounded-3xl shadow-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] xl:w-[70%] max-w-[1014px] p-5 sm:p-8 md:p-12 text-center border border-white/30"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -123,10 +122,10 @@ const StoryPage = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              <h1 className="font-extrabold text-[32px] sm:text-6xl md:text-7xl lg:text-[84px] leading-tight tracking-tight capitalize mb-0.5 sm:mb-1">
+              <h1 className="font-extrabold text-[32px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[84px] leading-tight tracking-tight capitalize mb-0.5 sm:mb-1">
                 How
               </h1>
-              <h1 className="font-extrabold text-[32px] sm:text-6xl md:text-7xl lg:text-[84px] leading-tight tracking-tight capitalize my-0.5 sm:my-1">
+              <h1 className="font-extrabold text-[32px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[84px] leading-tight tracking-tight capitalize my-0.5 sm:my-1">
                 PeakTew Started
               </h1>
               <h2 className="font-semibold md:font-bold text-[20px] sm:text-2xl md:text-3xl lg:text-[34px] leading-snug tracking-tight mt-2 sm:mt-3">
@@ -161,101 +160,100 @@ const StoryPage = () => {
 
       {/* CEO Section */}
       <motion.section
-        className={`w-fit bg-white px-4 sm:px-6 py-12 sm:py-16 md:py-20 flex flex-col items-center mt-30 relative`}
+        className="w-full bg-white dark:bg-[#220239] px-3 xs:px-4 sm:px-6 py-2 sm:py-4 md:py-6 flex flex-col items-center relative transition-colors duration-500"
         initial="hidden"
         whileInView="visible"
         variants={staggerContainer}
         viewport={{ once: true, amount: 0.3 }}
       >
-        {/* Right Image */}
-        <motion.div
-          className="hidden md:visible md:flex flex-shrink-0 w-full md:w-[250px] lg:w-[300px] xl:w-[350px] h-[500px] absolute right-7 bottom-20.5 overflow-hidden rounded-3xl"
-          initial={{ x: 20, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <motion.img
-            src={ceo}
-            alt="CEO"
-            className="w-full h-full object-cover object-top"
-            initial={{ scale: 1.1 }}
-            whileInView={{ scale: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          />
+        <div className="max-w-[1080px] w-full flex flex-col items-start pt-1 sm:pt-4">
+          {/* Title Container */}
           <motion.div
-            className="absolute inset-0 bg-purple-500/10 mix-blend-multiply"
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          />
-        </motion.div>
-        <motion.h2
-          className="text-[90px] sm:text-4xl md:text-[72px] font-bold text-purple-700 mb-60 sm:mb-12 text-left"
-          variants={fadeInUp}
-        >
-          I Saw And Felt What Was Missing
-        </motion.h2>
-
-        <motion.div
-          className={`max-w-6xl w-full bg-gradient-to-br ${isDarkMode ? "bg-gradient-to-b from-[#220239] to-[#5F069F]" : "from-white via-purple-50 to-white"} border-2 border-purple-500 rounded-3xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center md:items-stretch md:mt-25`}
-          variants={fadeInUp}
-        // whileHover={{
-        //   y: -5,
-        //   boxShadow:
-        //     "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-        // }}
-        // transition={{ type: "spring", stiffness: 300 }}
-        >
-          {/* Left Text */}
-          <motion.div
-            className="flex-2 m-10 p-6 sm:p-8 md:p-10 lg:p-12 text-left text-[#6D28B2] text-sm sm:text-base leading-relaxed w-1/2"
-            initial={{ x: -20, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            viewport={{ once: true }}
+            className="mb-2 sm:mb-4 md:mb-6 lg:mb-8 select-none inline-block bg-clip-text text-transparent !text-transparent pb-2"
+            style={{
+              backgroundImage: isDarkMode
+                ? "linear-gradient(180deg, #FFFFFF 0%, #A62AD2 60%, #6E1CBF 100%)"
+                : "linear-gradient(180deg, #A62AD2 0%, #6E1CBF 40%, #470974 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+            variants={fadeInUp}
           >
-            <p>
-              The idea for PeakTew stemmed from the observation of society’s
-              growing disconnect caused by excessive phone usage and social
-              media addiction. Recognizing the detrimental effects of this
-              phenomenon on mental health and social well-being, we set out to
-              create a solution that would reconnect people with the real world.
-              Thus, PeakTew was born with a mission to break the cycle of mobile
-              phone addiction and inspire individuals to step out of their
-              comfort zones. Since our inception, we have remained steadfast in
-              our commitment to promoting genuine human connections and tackling
-              the negative effects of isolation.
-            </p>
+            <h2
+              className="font-extrabold sm:font-bold text-[36px] min-[400px]:text-[40px] leading-[44px] min-[400px]:leading-[48px] sm:text-5xl md:text-6xl lg:text-[80px] sm:leading-tight lg:leading-[97px] tracking-[0px] sm:tracking-[-0.4px]"
+              style={{ fontFamily: "'Proxima Nova', sans-serif" }}
+            >
+              {/* Mobile: 3 lines */}
+              <span className="block min-[401px]:hidden">
+                I Saw And Felt<br />
+                What Was<br />
+                Missing
+              </span>
+              {/* Larger Screens: 2 lines */}
+              <span className="hidden min-[401px]:block">
+                I Saw And Felt<br />
+                What Was Missing
+              </span>
+            </h2>
           </motion.div>
-          <div className="flex-1 hidden md:flex"></div>
-          {/* Right Image */}
+
+          {/* Main Card Container */}
           <motion.div
-            className="md:hidden flex-shrink-0 w-full md:w-[250px] lg:w-[300px] xl:w-[350px] h-[500px] overflow-hidden border-none"
-            initial={{ x: 20, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            viewport={{ once: true }}
+            className="relative w-full border-[3px] md:border-[5px] rounded-[28px] sm:rounded-[32px] p-4 min-[400px]:p-5 sm:p-8 md:p-12 shadow-sm flex flex-col min-[401px]:flex-row items-stretch justify-between min-h-[340px] sm:min-h-[380px] md:min-h-[434px] mt-2 min-[400px]:mt-3 sm:mt-4 md:mt-6 lg:mt-8 overflow-hidden min-[401px]:overflow-visible"
+            style={{
+              borderColor: isDarkMode ? '#FFFFFF' : '#6D28B2',
+              background: isDarkMode
+                ? "linear-gradient(169.55deg, rgba(34, 2, 57, 0.95) 7.79%, rgba(95, 6, 159, 0.95) 98.56%)"
+                : "linear-gradient(169.55deg, rgba(217, 217, 217, 0) 7.79%, rgba(109, 40, 178, 0.2) 98.56%)",
+            }}
+            variants={fadeInUp}
           >
-            <motion.img
-              src={ceo}
-              alt="CEO"
-              className="w-full h-full object-cover object-top"
-              initial={{ scale: 1.1 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            />
+            {/* Paragraph Text */}
             <motion.div
-              className="absolute inset-0 bg-purple-500/10 mix-blend-multiply"
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.div>
+              className="w-full min-[401px]:w-[54%] md:w-[58%] lg:w-[60%] z-10 text-left text-[#6D28B2] dark:text-white text-[12px] min-[400px]:text-[13px] sm:text-base md:text-[20px] leading-[135%] sm:leading-[130%] font-semibold space-y-2 min-[400px]:space-y-3 min-[401px]:space-y-0"
+              style={{ fontFamily: "'Proxima Nova', sans-serif" }}
+              initial={{ x: -20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              {/* Paragraph 1 */}
+              <p className="w-full">
+                The idea for PeakTew stemmed from the observation of society’s
+                growing disconnect caused by excessive phone usage and social
+                media addiction. Recognizing the detrimental effects of this
+                phenomenon on mental health and social well-being, we set out to
+                create a solution that would reconnect people with the real world.
+              </p>
 
-        </motion.div>
+              {/* Paragraph 2 */}
+              <p className="w-[50%] min-[400px]:w-[52%] min-[401px]:w-full pt-1 sm:pt-3">
+                Thus, PeakTew was born with a mission to break the cycle of mobile
+                phone addiction and inspire individuals to step out of their
+                comfort zones. Since our inception, we have remained steadfast in
+                our commitment to promoting genuine human connections and tackling
+                the negative effects of isolation.
+              </p>
+            </motion.div>
+
+            {/* CEO Image */}
+            <motion.div
+              className="absolute right-0 bottom-0 top-0 min-[401px]:top-[-80px] sm:top-[-100px] md:top-[-140px] lg:top-[-180px] w-[50%] min-[400px]:w-[48%] min-[401px]:w-[46%] md:w-[42%] max-w-[460px] pointer-events-none z-20 flex justify-end items-end"
+              initial={{ x: 20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="w-full h-full flex justify-end items-end overflow-hidden rounded-br-[22px] sm:rounded-br-[28px]">
+                <img
+                  src={ceo}
+                  alt="CEO"
+                  className="w-full h-auto min-[401px]:h-[115%] object-contain object-bottom select-none pointer-events-auto transform translate-y-0 min-[401px]:translate-y-1 scale-100 min-[401px]:scale-105 origin-bottom"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
       </motion.section>
 
       {/* Milestones Section */}
