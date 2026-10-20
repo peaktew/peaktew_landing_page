@@ -135,21 +135,22 @@ const StoryPage = () => {
 
             {/* Content Paragraphs */}
             <motion.div
-              className="space-y-4 sm:space-y-6 text-[#1A1A1A] !text-[#1A1A1A] text-xs sm:text-sm md:text-base leading-relaxed max-w-3xl mx-auto font-medium"
+              className="space-y-4 sm:space-y-6 text-[#220239] text-[12px] min-[400]:text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto font-semibold"
+              style={{ fontFamily: "'Proxima Nova', sans-serif" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.8 }}
             >
-              <p className="text-[#1A1A1A] !text-[#1A1A1A]">
+              <p>
                 Founded in January 2023, PeakTew is an award-winning next-generation social network that notifies and physically connects its users to people, places, and events in their immediate surroundings. A disruptive Blue Ocean start-up that reinvents the social network industry by solving Gen Z’s desire to socialize, while alleviating phone addiction and mental health issues.
               </p>
-              <p className="text-[#1A1A1A] !text-[#1A1A1A]">
+              <p>
                 Its innovative app features unique designs and technologies that have earned it prestigious recognition, attracting investors & advisors from Silicon Valley. Incubated in ventures across the USA, France, and the UK, PeakTew is on the fast track to becoming a unicorn company, according to multiple industry professionals.
               </p>
-              <p className="text-[#1A1A1A] !text-[#1A1A1A]">
+              <p>
                 PeakTew is passionate about delivering excellence and offers services that cater to all stages of life, every moment of the day. The startup is committed to social responsibility as it aligns itself with UN Sustainable Development Goals N°3-Good Health and Well-being, N°11-Sustainable Cities and Communities, and N°12-Responsible Consumption and Production.
               </p>
-              <p className="font-semibold text-[#1A1A1A] !text-[#1A1A1A] pt-2">
+              <p>
                 Embark with PeakTew for an exciting journey!
               </p>
             </motion.div>
@@ -210,7 +211,7 @@ const StoryPage = () => {
           >
             {/* Paragraph Text */}
             <motion.div
-              className="w-full min-[401px]:w-[54%] md:w-[58%] lg:w-[60%] z-10 text-left text-[#6D28B2] dark:text-white text-[12px] min-[400px]:text-[13px] sm:text-base md:text-[20px] leading-[135%] sm:leading-[130%] font-semibold space-y-2 min-[400px]:space-y-3 min-[401px]:space-y-0"
+              className="w-full min-[401px]:w-[54%] md:w-[58%] lg:w-[60%] z-10 text-left text-[#6D28B2] dark:text-white text-[12px] min-[400]:text-sm sm:text-base md:text-lg lg:text-xl leading-[135%] sm:leading-[130%] font-semibold space-y-2 min-[400px]:space-y-3 min-[401px]:space-y-0"
               style={{ fontFamily: "'Proxima Nova', sans-serif" }}
               initial={{ x: -20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
@@ -227,7 +228,7 @@ const StoryPage = () => {
               </p>
 
               {/* Paragraph 2 */}
-              <p className="w-[50%] min-[400px]:w-[52%] min-[401px]:w-full pt-1 sm:pt-3">
+              <p className="w-[55%] min-[400px]:w-[52%] min-[401px]:w-full pt-1 sm:pt-3">
                 Thus, PeakTew was born with a mission to break the cycle of mobile
                 phone addiction and inspire individuals to step out of their
                 comfort zones. Since our inception, we have remained steadfast in
@@ -238,7 +239,7 @@ const StoryPage = () => {
 
             {/* CEO Image */}
             <motion.div
-              className="absolute right-0 bottom-0 top-0 min-[401px]:top-[-80px] sm:top-[-100px] md:top-[-140px] lg:top-[-180px] w-[50%] min-[400px]:w-[48%] min-[401px]:w-[46%] md:w-[42%] max-w-[460px] pointer-events-none z-20 flex justify-end items-end"
+              className="absolute -right-4 min-[401px]:right-0 bottom-0 top-0 min-[401px]:top-[-80px] sm:top-[-100px] md:top-[-140px] lg:top-[-180px] w-[50%] min-[400px]:w-[48%] min-[401px]:w-[46%] md:w-[42%] max-w-[460px] pointer-events-none z-20 flex justify-end items-end"
               initial={{ x: 20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
