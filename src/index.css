@@ -509,6 +509,13 @@
     overflow: hidden;
   }
 
+  /* Restore the immersive desktop scale that preceded the iPad overflow fix.
+     Tablet canvases remain height-bound; desktop scales from viewport width
+     and is intentionally cropped by the hero shell. */
+  .hero-globe {
+    height: max(100%, calc((100vw - 2rem) * 0.8));
+  }
+
   .hero-content h1,
   .hero-copy {
     filter: none;

@@ -50,7 +50,10 @@ const compactGlobeConfig = {
   cameraZ: 355,
 };
 
-const compactGlobeQuery = "(max-width: 1023px)";
+// Keep tablet camera framing aligned with the xl desktop canvas breakpoint.
+// This prevents 1024–1279px viewports from receiving a desktop camera inside
+// the smaller tablet canvas.
+const compactGlobeQuery = "(max-width: 1279px)";
 
 const getIsCompactViewport = () =>
   typeof window !== "undefined" && window.matchMedia(compactGlobeQuery).matches;
