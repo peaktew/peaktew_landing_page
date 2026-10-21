@@ -2,12 +2,15 @@ import React from 'react';
 import { useDarkMode } from '../components/DarkModeContext';
 import big_ring from '../assets/full_big_ring.webp';
 import ceo from '../assets/ceo.webp';
-import star from '../assets/star.png';
-import plus from '../assets/plus.png';
-import pipes from '../assets/pipes.png';
-import blob from '../assets/blob.png';
-import loop from '../assets/loop.png';
-import light from '../assets/light.png';
+import spiral from '../assets/milestones/spiral.png';
+import star from '../assets/milestones/star.png';
+import bubble from '../assets/milestones/bubble.png';
+import ribbon from '../assets/milestones/ribbon.png';
+import tunnel from '../assets/milestones/tunnel.png';
+import blob from '../assets/milestones/blob.png';
+import squiggle from '../assets/milestones/squiggle.png';
+import crystal from '../assets/milestones/crystal.png';
+import loops from '../assets/milestones/loops.png';
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -76,7 +79,7 @@ const StoryPage = () => {
 
       {/* Hero Section */}
       <motion.section
-        className="relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] pt-16 sm:pt-24 md:pt-28 lg:pt-32 pb-16 sm:pb-24 lg:pb-32 flex flex-col items-center justify-start"
+        className="relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] pt-16 sm:pt-24 md:pt-28 lg:pt-32 flex flex-col items-center justify-start pb-20 sm:pb-32 lg:pb-50"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -161,7 +164,7 @@ const StoryPage = () => {
 
       {/* CEO Section */}
       <motion.section
-        className="w-full bg-white dark:bg-[#220239] px-3 xs:px-4 sm:px-6 py-2 sm:py-4 md:py-6 flex flex-col items-center relative transition-colors duration-500"
+        className="w-full bg-white dark:bg-[#220239] px-3 xs:px-4 sm:px-6 flex flex-col items-center relative transition-colors duration-500 pb-20 sm:pb-32 lg:pb-50"
         initial="hidden"
         whileInView="visible"
         variants={staggerContainer}
@@ -173,7 +176,7 @@ const StoryPage = () => {
             className="mb-2 sm:mb-4 md:mb-6 lg:mb-8 select-none inline-block bg-clip-text text-transparent !text-transparent pb-2"
             style={{
               backgroundImage: isDarkMode
-                ? "linear-gradient(180deg, #FFFFFF 0%, #A62AD2 60%, #6E1CBF 100%)"
+                ? "linear-gradient(174.32deg, #FFFFFF -42.01%, #9C65D4 120.23%, #6E1CBF 178.24%, #470974 179.09%)"
                 : "linear-gradient(180deg, #A62AD2 0%, #6E1CBF 40%, #470974 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -259,241 +262,194 @@ const StoryPage = () => {
 
       {/* Milestones Section */}
       <motion.section
-        className="bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 relative"
+        className="w-full relative transition-colors duration-500 pb-12 sm:pb-20 flex flex-col items-center overflow-hidden"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        <div className="max-w-7xl mx-auto">
+        {/* Section Title Header */}
+        <div className="max-w-[1280px] w-full px-4 xs:px-6 sm:px-8 md:px-12 flex flex-col items-start relative z-10">
           <motion.h2
-            className="text-[90px] sm:text-4xl md:text-[72px] font-bold text-left text-purple-700 mb-12 sm:mb-16 md:mb-20 lg:mb-24"
+            className="font-extrabold text-[clamp(2.5rem,5.3vw+1rem,5.5rem)] leading-[1.2] lg:leading-[127px] tracking-[-0.4px] text-left inline-block bg-clip-text text-transparent !text-transparent select-none"
+            style={{
+              fontFamily: "'Proxima Nova', sans-serif",
+              backgroundImage: isDarkMode
+                ? "linear-gradient(174.32deg, #FFFFFF -42.01%, #9C65D4 120.23%, #6E1CBF 178.24%, #470974 179.09%)"
+                : "linear-gradient(177.11deg, #A62AD2 2.4%, #6E1CBF 30.78%, #470974 97.6%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
             variants={fadeInUp}
           >
-            Peaks That We Hit
+            <span className="block min-[520px]:hidden">
+              Peaks That<br />
+              We Hit
+            </span>
+            <span className="hidden min-[520px]:inline">
+              Peaks That We Hit
+            </span>
           </motion.h2>
+        </div>
 
-          <div className="relative">
-            {/* Left fade + arrow */}
-            <div className={`absolute left-0 top-0 bottom-6 w-24 z-10 pointer-events-none bg-gradient-to-r from-white to-transparent transition-opacity duration-300 ${canScrollLeft ? 'opacity-100' : 'opacity-0'}`} />
-            <button
-              onClick={() => scroll('left')}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border-2 border-purple-300 shadow-lg flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-200 ${canScrollLeft ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-              aria-label="Scroll left"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
-              </svg>
-            </button>
+        {/* Gradient Background Container */}
+        <div
+          className="w-screen relative left-1/2 -translate-x-1/2 py-4 sm:py-8 transition-all duration-500 flex justify-center"
+          style={{
+            background: isDarkMode
+              ? "linear-gradient(180deg, #220239 0%, #6D28B2 50%, #220239 100%)"
+              : "transparent"
+          }}
+        >
+          {/* Inner Track Content Wrapper */}
+          <div className="max-w-[1280px] w-full px-4 xs:px-6 sm:px-8 md:px-12 relative">
+            <div className="relative w-full">
 
-            {/* Right fade + arrow */}
-            <div className={`absolute right-0 top-0 bottom-6 w-24 z-10 pointer-events-none bg-gradient-to-l from-white to-transparent transition-opacity duration-300 ${canScrollRight ? 'opacity-100' : 'opacity-0'}`} />
-            <button
-              onClick={() => scroll('right')}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border-2 border-purple-300 shadow-lg flex items-center justify-center text-purple-600 hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all duration-200 ${canScrollRight ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
-              aria-label="Scroll right"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-              </svg>
-            </button>
+              {/* Left Floating Arrow */}
+              <button
+                onClick={() => scroll('left')}
+                className={`absolute -left-2 sm:-left-5 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-11 sm:h-11 rounded-full ${isDarkMode
+                  ? "bg-white/20 backdrop-blur-xl border border-white/40 text-white hover:bg-white/30 active:scale-95 shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+                  : "bg-white border border-purple-200 text-[#6D28B2] hover:bg-purple-50 active:scale-95 shadow-lg"
+                  } transition-all duration-200 flex items-center justify-center ${canScrollLeft ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-90'
+                  }`}
+                aria-label="Scroll left"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+              </button>
 
-            {/* Scroll track — hide native scrollbar */}
-            <div
-              ref={scrollRef}
-              onScroll={updateScrollState}
-              className="milestone-track overflow-x-auto pb-6 px-14"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              <style>{`.milestone-track::-webkit-scrollbar { display: none; }`}</style>
-              <div className="flex space-x-10" style={{ width: "max-content" }}>
+              {/* Right Floating Arrow */}
+              <button
+                onClick={() => scroll('right')}
+                className={`absolute -right-2 sm:-right-5 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-11 sm:h-11 rounded-full ${isDarkMode
+                  ? "bg-white/20 backdrop-blur-xl border border-white/40 text-white hover:bg-white/30 active:scale-95 shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+                  : "bg-white border border-purple-200 text-[#6D28B2] hover:bg-purple-50 active:scale-95 shadow-lg"
+                  } transition-all duration-200 flex items-center justify-center ${canScrollRight ? 'opacity-100 pointer-events-auto scale-100' : 'opacity-0 pointer-events-none scale-90'
+                  }`}
+                aria-label="Scroll right"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4 sm:w-5 sm:h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
 
-                {/* Milestone 1 */}
-                <motion.div
-                  className="relative w-96 flex-shrink-0"
-                  variants={fadeInUp}
-                  whileHover={{ y: -10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="flex flex-col items-center h-full">
-                    <div className="text-center mb-5">
-                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>01</div>
-                      <div className="text-base text-purple-600 mt-1">January 2023</div>
-                    </div>
-                    <motion.div
-                      className="relative z-10 -mb-8"
-                      whileHover={{ rotate: 15, scale: 1.1 }}
-                      transition={{ type: "spring" }}
-                    >
-                      <img src={star} alt="Star Icon" className="w-24 h-24 object-contain" />
-                    </motion.div>
-                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">The Spark</h3>
-                      <p className="!text-black text-base leading-relaxed">
-                        PeakTew started with one mission: making real-life friendships easier in a
-                        world obsessed with swipes and likes. It wasn't just a start-up—it was a
-                        movement to bring people together offline.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
+              {/* Horizontal Scroll Track */}
+              <div
+                ref={scrollRef}
+                onScroll={updateScrollState}
+                className="milestone-track overflow-x-auto py-6 sm:py-8"
+                style={{
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent)',
+                  maskImage: 'linear-gradient(to right, transparent, black 24px, black calc(100% - 24px), transparent)'
+                }}
+              >
+                <style>{`.milestone-track::-webkit-scrollbar { display: none; }`}</style>
 
-                {/* Milestone 2 */}
-                <motion.div
-                  className="relative w-96 flex-shrink-0"
-                  variants={fadeInUp}
-                  whileHover={{ y: -10 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 0.2 }}
-                >
-                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                  <div className="flex flex-col items-center h-full">
-                    <div className="text-center mb-5">
-                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>02</div>
-                      <div className="text-base text-purple-600 mt-1">June 2023</div>
-                    </div>
-                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">Defining Our Identity</h3>
-                      <p className="!text-black text-base leading-relaxed">
-                        The name "PeakTew" captured both the pinnacle of activity and the excitement of
-                        the moment. However, the initial app design leaned too heavily into dating app
-                        territory. It was clear we needed a new direction, and the redesign began.
-                      </p>
-                    </div>
-                    <motion.img
-                      src={plus}
-                      alt="Plus Icon"
-                      className="absolute -bottom-6 left-3 w-24 h-24 object-contain"
-                      initial={{ rotate: 0 }}
-                      whileHover={{ rotate: 90 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </div>
-                </motion.div>
+                <div className="flex space-x-5 sm:space-x-12 px-3 sm:px-8" style={{ width: "max-content" }}>
+                  {[
+                    { num: "01", date: "January 2023", title: "The Spark", text: "PeakTew started with one mission: making real-life friendships easier in a world obsessed with swipes and likes. It wasn't just a start-up—it was a movement to bring people together offline.", icon: spiral },
+                    { num: "02", date: "June 2023", title: "Defining Our Identity", text: "The name \"PeakTew\" captured both the pinnacle of activity and the excitement of the moment. However, the initial app design leaned too heavily into dating app territory. It was clear we needed a new direction, and the redesign began.", icon: star },
+                    { num: "03", date: "September 2023-\nFebruary 2024", title: "The Transformation", text: "This was our turning point. The app underwent a complete UI/UX overhaul, and our brand identity took shape. Guided by user feedback, we started building a product people genuinely wanted.", icon: bubble },
+                    { num: "04", date: "July 2024", title: "Preparing for Launching", text: "With the launch approaching, we refined our design and sharpened our brand identity. PeakTew evolved beyond an app—it was ready to make an impact.", icon: ribbon },
+                    { num: "05", date: "October 2024", title: "The SEC Pitch Stage", text: "At the SEC Pitch Competition, we unveiled PeakTew's Alpha MVP: a hybrid platform designed to move people from digital notifications to real-life interactions. No endless swiping—just authentic connections.", icon: tunnel },
+                    { num: "06", date: "January 2025", title: "Refining the Direction", text: "In early 2025, We sharpened its product vision. Moving away from initial assumptions and redefining the platform around meaningful, real-world interactions.", icon: blob },
+                    { num: "07", date: "June 2025", title: "Building the Foundations", text: "As the year progressed, the team refined the brand, strengthened the product, and laid the groundwork across design, technology, and strategy for future launch and growth.", icon: squiggle },
+                    { num: "08", date: "January 2026", title: "Activating the Launch", text: "In 2026, PeakTew began turning strategy into action—rolling out new features, preparing campus-based launch initiatives, and driving early user acquisition across key locations.", icon: crystal },
+                    { num: "09", date: "Ongoing", title: "Growing in Motion", text: "With continuous product updates, social growth, and expanding outreach, PeakTew is steadily building traction—shaping a platform designed to connect people beyond the screen.", icon: loops }
+                  ].map((item, index) => {
+                    {/* Alternating Logic: Odd item (Lower position) Even item (Higher position) */ }
+                    const isEven = index % 2 === 1;
 
-                {/* Milestone 3 */}
-                <motion.div
-                  className="relative w-96 flex-shrink-0"
-                  variants={fadeInUp}
-                  whileHover={{ y: -10 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 0.4 }}
-                >
-                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                  <div className="flex flex-col items-center h-full">
-                    <div className="text-center mb-5">
-                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>03</div>
-                      <div className="text-base text-purple-600 mt-1">Sept 2023 – Feb 2024</div>
-                    </div>
-                    <motion.div
-                      className="relative z-10 -mb-8"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring" }}
-                    >
-                      <img src={pipes} alt="Pipes Icon" className="w-24 h-24 object-contain" />
-                    </motion.div>
-                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">The Transformation</h3>
-                      <p className="!text-black text-base leading-relaxed">
-                        This was our turning point. We underwent a complete overhaul and our brand
-                        identity shifted. Guided by user feedback, we began building a product people
-                        truly wanted.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
+                    return (
+                      <motion.div
+                        key={item.num}
+                        className="relative w-[180px] sm:w-100 flex-shrink-0"
+                        variants={fadeInUp}
+                        whileHover={{ y: -6 }}
+                        transition={{ type: "spring", stiffness: 300, delay: index * 0.05 }}
+                      >
+                        {/* Vertical dashed line dividers */}
+                        {index > 0 && (
+                          <div
+                            className="hidden md:block absolute -left-5 top-4 bottom-4 w-[0.5px] border-l border-dashed transition-colors duration-300"
+                            style={{
+                              borderColor: isDarkMode ? "rgba(255, 255, 255, 0.4)" : "rgba(109, 40, 178, 0.2)"
+                            }}
+                          />
+                        )}
 
-                {/* Milestone 4 */}
-                <motion.div
-                  className="relative w-96 flex-shrink-0"
-                  variants={fadeInUp}
-                  whileHover={{ y: -10 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 0.6 }}
-                >
-                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                  <div className="flex flex-col items-center h-full">
-                    <div className="text-center mb-5">
-                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>04</div>
-                      <div className="text-base text-purple-600 mt-1">July 2024</div>
-                    </div>
-                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">Preparing for Launch</h3>
-                      <p className="!text-black text-base leading-relaxed">
-                        With the launch approaching, we refined our design and sharpened our brand
-                        identity. PeakTew evolved beyond an app—it was ready to make an impact.
-                      </p>
-                    </div>
-                    <motion.img
-                      src={blob}
-                      alt="Blob Icon"
-                      className="absolute bottom-10 right-3 w-28 h-28 object-contain"
-                      initial={{ rotate: 0 }}
-                      whileHover={{ rotate: 90 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </div>
-                </motion.div>
+                        {/* Calibrated Container (420px mobile / 700px desktop) */}
+                        <div className="flex flex-col items-start h-[420px] sm:h-[700px]">
 
-                {/* Milestone 5 */}
-                <motion.div
-                  className="relative w-96 flex-shrink-0"
-                  variants={fadeInUp}
-                  whileHover={{ y: -10 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 0.8 }}
-                >
-                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                  <div className="flex flex-col items-center h-full">
-                    <div className="text-center mb-5">
-                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>05</div>
-                      <div className="text-base text-purple-600 mt-1">October 2024</div>
-                    </div>
-                    <motion.div
-                      className="relative z-0 -mb-4"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring" }}
-                    >
-                      <img src={loop} alt="Loop Icon" className="w-24 h-24 object-contain" />
-                    </motion.div>
-                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">The SEC Pitch Stage</h3>
-                      <p className="!text-black text-base leading-relaxed">
-                        At the SEC Pitch Competition, we unveiled PeakTew's Alpha MVP: a hybrid platform
-                        designed to move people from digital notifications to real-life interactions. No
-                        endless swiping—just authentic connections.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
+                          {/* Header: Number & Date */}
+                          <div className="text-left flex-shrink-0 mb-1">
+                            <div className="font-['Proxima_Nova',sans-serif] font-semibold text-[53.65px] sm:text-[90px] leading-[73.32px] sm:leading-[120px] tracking-[-0.18px] uppercase transition-colors duration-300 text-[#6D28B2]">
+                              {item.num}
+                            </div>
 
-                {/* Milestone 6 */}
-                <motion.div
-                  className="relative w-96 flex-shrink-0"
-                  variants={fadeInUp}
-                  whileHover={{ y: -10 }}
-                  transition={{ type: "spring", stiffness: 300, delay: 1.0 }}
-                >
-                  <div className="hidden md:block absolute -left-5 top-8 bottom-8 w-px border-l-2 border-dashed border-purple-300" />
-                  <div className="flex flex-col items-center h-full">
-                    <div className="text-center mb-5">
-                      <div className={`text-5xl font-extrabold ${isDarkMode ? "!text-purple-700" : "text-purple-700"}`}>06</div>
-                      <div className="text-base text-purple-600 mt-1">Ongoing</div>
-                    </div>
-                    <div className="bg-[#F6F6F6] border-4 border-white rounded-2xl shadow-lg p-8 w-full">
-                      <h3 className="!text-purple-600 font-semibold text-xl mb-4">Growth & Recognition</h3>
-                      <p className="!text-black text-base leading-relaxed">
-                        We've joined 4 incubators, secured the USC Proving Ground Prize, and expanded to
-                        a team of 21 people from 13 countries. With 1.2k+ followers and growing
-                        influence, PeakTew is just getting started.
-                      </p>
-                    </div>
-                    <motion.img
-                      src={light}
-                      alt="Light Icon"
-                      className="absolute bottom-10 right-3 w-28 h-28 object-contain"
-                      initial={{ rotate: 0 }}
-                      whileHover={{ rotate: 90 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                  </div>
-                </motion.div>
+                            <div className="font-['Proxima_Nova',sans-serif] font-semibold text-[13.41px] sm:text-[24px] leading-[19.67px] sm:leading-[1.2] tracking-[-0.18px] transition-colors duration-300 text-[#6D28B2] whitespace-pre-line mb-6 sm:mb-10">
+                              {item.date}
+                            </div>
+                          </div>
 
+                          {/* Card Wrapper */}
+                          <div className={`relative w-full flex-1 flex flex-col ${isEven ? 'justify-start pt-1.5' : 'justify-end pb-1.5'}`}>
+
+                            {/* Milestone Card with Icons */}
+                            <div
+                              className="rounded-lg p-3.5 sm:p-6 w-full transition-all duration-300 relative overflow-visible"
+                              style={{
+                                background: isDarkMode
+                                  ? "radial-gradient(100% 359.18% at 0% 0%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%)"
+                                  : "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 225, 255, 0.8) 100%)",
+                                borderColor: isDarkMode ? "rgba(255, 255, 255, 0.6)" : "rgba(109, 40, 178, 0.18)",
+                                boxShadow: isDarkMode
+                                  ? "0 12px 32px rgba(0,0,0,0.35), 0 0 25px rgba(166, 42, 210, 0.25)"
+                                  : "0 8px 24px rgba(109, 40, 178, 0.08)",
+                                backdropFilter: "blur(16px)",
+                                WebkitBackdropFilter: "blur(16px)",
+                              }}
+                            >
+                              {/* Icon for Odd Cards: overlap top border */}
+                              {!isEven && item.icon && (
+                                <motion.img
+                                  src={item.icon}
+                                  alt="Icon"
+                                  className="absolute -top-1 right-4 -translate-y-5/6 w-25 h-25 sm:w-45 sm:h-45 object-contain z-20 pointer-events-none drop-shadow-md"
+                                  whileHover={{ rotate: 15, scale: 1.1 }}
+                                />
+                              )}
+
+                              <h3 className="mb-2 sm:mb-4 font-['Proxima_Nova',sans-serif] font-extrabold text-[11.18px] sm:text-[16px] leading-[19.67px] sm:leading-[1.3] tracking-[-0.18px] !text-[#6D28B2] transition-colors duration-300">
+                                {item.title}
+                              </h3>
+
+                              <p className="font-['Proxima_Nova',sans-serif] font-medium text-[9px] sm:text-[20px] leading-[20px] sm:leading-[2] tracking-[-0.18px] text-black transition-colors duration-300">
+                                {item.text}
+                              </p>
+
+                              {/* Icon for Even Cards: overlap bottom border */}
+                              {isEven && item.icon && (
+                                <motion.img
+                                  src={item.icon}
+                                  alt="Icon"
+                                  className="absolute -bottom-1 left-4 translate-y-6/7 w-25 h-25 sm:w-45 sm:h-45 object-contain z-20 pointer-events-none drop-shadow-md"
+                                  whileHover={{ rotate: 90 }}
+                                  transition={{ duration: 0.5 }}
+                                />
+                              )}
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
