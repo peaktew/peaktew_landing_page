@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDarkMode } from '../components/DarkModeContext';
-import big_ring from '../assets/full_big_ring.webp';
+import big_ring from '../assets/big_ring.webp';
+import big_ring_dark from '../assets/big_ring_dark.webp';
 import ceo from '../assets/ceo.webp';
 import spiral from '../assets/milestones/spiral.png';
 import star from '../assets/milestones/star.png';
@@ -50,7 +51,10 @@ const StoryPage = () => {
   };
 
   return (
-    <div className="w-full overflow-x-hidden flex flex-col items-center">
+    <div
+      className="w-full overflow-x-hidden flex flex-col items-center transition-colors duration-500"
+      style={{ backgroundColor: isDarkMode ? '#220239' : '#FFFFFF' }}
+    >
       {/* Dark Mode Toggle - Top Right */}
       <div className="fixed top-4 right-4 z-50 hidden md:block">
         <label className="relative inline-flex items-center cursor-pointer select-none">
@@ -61,8 +65,15 @@ const StoryPage = () => {
             className="sr-only peer"
             aria-label="Toggle dark mode"
           />
-          <div className="w-14 h-8 bg-gray-200 dark:bg-slate-700 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 peer-checked:bg-purple-600 flex items-center px-1">
-            <span className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center bg-white dark:bg-slate-900 shadow-md transform ${isDarkMode ? 'translate-x-6' : 'translate-x-0'}`}>
+          <div
+            className="w-14 h-8 rounded-full peer-focus:ring-2 peer-focus:ring-purple-400 transition-colors duration-300 flex items-center px-1"
+            style={{ backgroundColor: isDarkMode ? '#7c3aed' : '#e5e7eb' }}
+          >
+            <span
+              className={`transition-transform duration-300 w-6 h-6 rounded-full flex items-center justify-center shadow-md transform ${isDarkMode ? 'translate-x-6' : 'translate-x-0'
+                }`}
+              style={{ backgroundColor: isDarkMode ? '#0f172a' : '#ffffff' }}
+            >
               {!isDarkMode ? (
                 <svg className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
@@ -79,7 +90,8 @@ const StoryPage = () => {
 
       {/* Hero Section */}
       <motion.section
-        className="relative w-full overflow-hidden transition-colors duration-500 bg-white dark:bg-[#220239] pt-16 sm:pt-24 md:pt-28 lg:pt-32 flex flex-col items-center justify-start pb-20 sm:pb-32 lg:pb-50"
+        className="relative w-full overflow-hidden transition-colors duration-500 pt-16 sm:pt-24 md:pt-28 lg:pt-32 flex flex-col items-center justify-start pb-20 sm:pb-32 lg:pb-50"
+        style={{ backgroundColor: isDarkMode ? '#220239' : '#FFFFFF' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -92,23 +104,20 @@ const StoryPage = () => {
           transition={{ duration: 2, ease: "easeOut" }}
         >
           <img
-            src={big_ring}
+            src={isDarkMode ? big_ring_dark : big_ring}
             alt="Bubble Background"
             className="w-[120%] max-w-none lg:w-full md:max-w-none h-auto object-contain opacity-95 select-none"
-          />
-          {/* Bottom Fade Gradient*/}
-          <div
-            className={`absolute bottom-0 left-0 w-full h-3/4 sm:h-1/4 pointer-events-none bg-gradient-to-b ${isDarkMode
-              ? "from-transparent via-[#220239]/90 to-[#220239]"
-              : "from-transparent via-white/90 to-white"
-              }`}
+            style={{
+              WebkitMaskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%)",
+              maskImage: "linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 95%)"
+            }}
           />
         </motion.div>
 
         {/* Content Container */}
         <div className="relative z-10 flex items-center justify-center w-full px-3 sm:px-6 mt-2 sm:mt-6 md:mt-16 lg:mt-24">
           <motion.div
-            className="bg-white/40 dark:bg-white/40 backdrop-blur-lg rounded-3xl shadow-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] xl:w-[70%] max-w-[1014px] p-5 sm:p-8 md:p-12 text-center border border-white/30"
+            className="bg-white/40 backdrop-blur-lg rounded-3xl shadow-2xl w-full sm:w-[90%] md:w-[85%] lg:w-[75%] xl:w-[70%] max-w-[1014px] p-5 sm:p-8 md:p-12 text-center border border-white/30"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -164,7 +173,8 @@ const StoryPage = () => {
 
       {/* CEO Section */}
       <motion.section
-        className="w-full bg-white dark:bg-[#220239] px-3 xs:px-4 sm:px-6 flex flex-col items-center relative transition-colors duration-500 pb-20 sm:pb-32 lg:pb-50"
+        className="w-full px-3 xs:px-4 sm:px-6 flex flex-col items-center relative transition-colors duration-500 pb-20 sm:pb-32 lg:pb-50"
+        style={{ backgroundColor: isDarkMode ? '#220239' : '#FFFFFF' }}
         initial="hidden"
         whileInView="visible"
         variants={staggerContainer}
@@ -214,8 +224,11 @@ const StoryPage = () => {
           >
             {/* Paragraph Text */}
             <motion.div
-              className="w-full min-[401px]:w-[54%] md:w-[58%] lg:w-[60%] z-10 text-left text-[#6D28B2] dark:text-white text-[12px] min-[400]:text-sm sm:text-base md:text-lg lg:text-xl leading-[135%] sm:leading-[130%] font-semibold space-y-2 min-[400px]:space-y-3 min-[401px]:space-y-0"
-              style={{ fontFamily: "'Proxima Nova', sans-serif" }}
+              className="w-full min-[401px]:w-[54%] md:w-[58%] lg:w-[60%] z-10 text-left text-[12px] min-[400]:text-sm sm:text-base md:text-lg lg:text-xl leading-[135%] sm:leading-[130%] font-semibold space-y-2 min-[400px]:space-y-3 min-[401px]:space-y-0"
+              style={{
+                fontFamily: "'Proxima Nova', sans-serif",
+                color: isDarkMode ? '#FFFFFF' : '#6D28B2'
+              }}
               initial={{ x: -20, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
