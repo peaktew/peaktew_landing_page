@@ -489,6 +489,12 @@
     min-height: 600px;
   }
 
+  /* Give large tablet and small-laptop layouts the same immersive presence as
+     desktop, while the compact camera keeps the atmosphere inside the canvas. */
+  .hero-globe {
+    height: 100%;
+  }
+
   .hero-content {
     top: clamp(40%, calc(40% + 31.25vw - 320px), 50%);
   }
