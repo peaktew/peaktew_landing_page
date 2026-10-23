@@ -403,7 +403,7 @@ const StoryPage = () => {
                               {item.num}
                             </div>
 
-                            <div className="font-['Proxima_Nova',sans-serif] font-semibold text-[13.41px] sm:text-[24px] leading-[19.67px] sm:leading-[1.2] tracking-[-0.18px] transition-colors duration-300 text-[#6D28B2] whitespace-pre-line mb-6 sm:mb-10">
+                            <div className="font-['Proxima_Nova',sans-serif] font-semibold text-[13.41px] sm:text-[30px] leading-[19.67px] sm:leading-[1.2] tracking-[-0.18px] transition-colors duration-300 text-[#6D28B2] whitespace-pre-line mb-6 sm:mb-10">
                               {item.date}
                             </div>
                           </div>
@@ -436,7 +436,11 @@ const StoryPage = () => {
                                 />
                               )}
 
-                              <h3 className="mb-2 sm:mb-4 font-['Proxima_Nova',sans-serif] font-extrabold text-[11.18px] sm:text-[16px] leading-[19.67px] sm:leading-[1.3] tracking-[-0.18px] !text-[#6D28B2] transition-colors duration-300">
+                              <h3
+                                className={`mb-2 sm:mb-4 font-['Proxima_Nova',sans-serif] leading-[19.67px] sm:leading-[1.3] tracking-[-0.18px] !text-[#6D28B2] transition-colors duration-300
+                                  ${isDarkMode ? 'sm:text-[22px] font-extrabold text-[10px]' : 'sm:text-[25px] font-semibold text-[12px]'}
+                                `}
+                              >
                                 {item.title}
                               </h3>
 
