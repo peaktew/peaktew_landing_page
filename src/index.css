@@ -489,8 +489,7 @@
     min-height: 600px;
   }
 
-  /* Give large tablet and small-laptop layouts the same immersive presence as
-     desktop, while the compact camera keeps the atmosphere inside the canvas. */
+  /* Keep the 1024–1032px iPad range height-bound. */
   .hero-globe {
     height: 100%;
   }
@@ -509,17 +508,18 @@
   }
 }
 
+/* Start the large globe immediately above the iPad Pro portrait width rather
+   than at Tailwind's 1024px lg or 1280px xl breakpoint. */
+@media (min-width: 1033px) {
+  .hero-globe {
+    height: max(100%, calc((100vw - 2rem) * 0.8));
+  }
+}
+
 @media (min-width: 1280px) {
   .hero-shell {
     height: 100svh;
     overflow: hidden;
-  }
-
-  /* Restore the immersive desktop scale that preceded the iPad overflow fix.
-     Tablet canvases remain height-bound; desktop scales from viewport width
-     and is intentionally cropped by the hero shell. */
-  .hero-globe {
-    height: max(100%, calc((100vw - 2rem) * 0.8));
   }
 
   .hero-content h1,

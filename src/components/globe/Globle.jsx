@@ -50,10 +50,9 @@ const compactGlobeConfig = {
   cameraZ: 355,
 };
 
-// Keep tablet camera framing aligned with the xl desktop canvas breakpoint.
-// This prevents 1024–1279px viewports from receiving a desktop camera inside
-// the smaller tablet canvas.
-const compactGlobeQuery = "(max-width: 1279px)";
+// Keep the iPad Pro portrait width in the compact treatment. The larger globe
+// begins one pixel above it instead of relying on Tailwind's 1024px lg value.
+const compactGlobeQuery = "(max-width: 1032px)";
 
 const getIsCompactViewport = () =>
   typeof window !== "undefined" && window.matchMedia(compactGlobeQuery).matches;
