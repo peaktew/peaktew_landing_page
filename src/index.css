@@ -74,14 +74,6 @@
   background-image: linear-gradient(105deg, #210b29 0%, #43144f 48%, #8723a9 100%);
 }
 
-.dark .heading-gradient--ink {
-  background-image: linear-gradient(180deg, #dfc1f2 0%, #b37bdc 100%);
-}
-
-.dark .heading-gradient--violet {
-  background-image: linear-gradient(180deg, #bd83e2 0%, #9144ce 58%, #792ab8 100%);
-}
-
 /* Hero content stays visible while transform-only entrance motion runs. */
 .hero-line-enter,
 .hero-copy-enter {
@@ -202,6 +194,10 @@
 .dark header {
   background-color: #220239 !important;
   border-bottom-color: #334155 !important;
+}
+
+.dark .site-navbar {
+  background-color: transparent !important;
 }
 
 .dark footer {
@@ -391,4 +387,182 @@
     rgba(34, 2, 57, 0) 0%,
     #220239ac 100%
   );
+}
+
+/* Landing hero: keep the globe, mascot, and curve in one fluid composition. */
+.hero-shell {
+  height: calc(77svh - 4rem);
+  min-height: 520px;
+  overflow: visible;
+}
+
+.hero-content {
+  top: 35%;
+  left: 0 !important;
+  transform: none !important;
+  translate: 0 -50% !important;
+}
+
+.hero-globe-stage {
+  height: 100%;
+}
+
+.hero-globe {
+  width: 100%;
+  height: min(100%, max(430px, 118vw));
+  min-height: 0;
+}
+
+.hero-curve {
+  top: 61svh;
+}
+
+.hero-mascot {
+  top: calc(61svh - 4.75rem);
+  right: 0.5rem;
+  width: clamp(118px, 34vw, 150px);
+  transform: rotate(30deg);
+}
+
+@media (max-width: 639px) {
+  .notification-card {
+    top: calc(var(--notification-top) - 6%) !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-shell {
+    height: calc(77svh - 5rem);
+    min-height: 570px;
+  }
+
+  .hero-globe {
+    height: min(100%, max(520px, calc((100vw - 2rem) * 0.8)));
+  }
+
+  .hero-curve {
+    top: 63svh;
+  }
+
+  .hero-mascot {
+    top: calc(63svh - 9.5rem);
+    right: 0;
+    width: clamp(210px, 30vw, 280px);
+    transform: rotate(40deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-shell {
+    height: calc(70svh - 5rem);
+  }
+
+  .hero-content {
+    top: 38%;
+  }
+
+  /* The iPad headline crosses both the white globe and dark hero background.
+     A restrained light edge preserves the gradient while retaining contrast. */
+  .hero-content h1 {
+    filter:
+      drop-shadow(0 0 1px rgba(255, 255, 255, 0.95))
+      drop-shadow(0 0 9px rgba(255, 255, 255, 0.72));
+  }
+
+  .hero-copy {
+    filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.85));
+  }
+
+  .hero-curve {
+    top: 60svh;
+  }
+
+  .hero-mascot {
+    top: calc(60svh - 10rem);
+    width: 300px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-shell {
+    height: calc(85svh - 5rem);
+    min-height: 600px;
+  }
+
+  /* Keep the 1024–1032px iPad range height-bound. */
+  .hero-globe {
+    height: 100%;
+  }
+
+  .hero-content {
+    top: clamp(40%, calc(40% + 31.25vw - 320px), 50%);
+  }
+
+  .hero-curve {
+    top: clamp(75vh, calc(15vh + 46.875vw), 90vh);
+  }
+
+  .hero-mascot {
+    top: calc(clamp(75vh, calc(15vh + 46.875vw), 90vh) - 10rem);
+    width: 300px;
+  }
+}
+
+/* Start the large globe immediately above the iPad Pro portrait width rather
+   than at Tailwind's 1024px lg or 1280px xl breakpoint. */
+@media (min-width: 1033px) {
+  .hero-globe {
+    height: max(100%, calc((100vw - 2rem) * 0.8));
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-shell {
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero-content h1,
+  .hero-copy {
+    filter: none;
+  }
+}
+
+/* Keep the hero readable on phones and tablets held in short landscape mode. */
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 1199px) {
+  .hero-shell {
+    height: calc(100svh - 5rem) !important;
+    min-height: 220px;
+  }
+
+  .hero-globe {
+    height: 100%;
+    min-height: 0 !important;
+  }
+
+  .hero-content {
+    top: 48% !important;
+  }
+
+  .hero-title-line {
+    font-size: clamp(28px, 8svh, 40px) !important;
+  }
+
+  .hero-copy {
+    margin-top: 0.5rem !important;
+  }
+
+  .hero-copy p {
+    max-width: 42rem;
+    font-size: clamp(10px, 2.8svh, 13px) !important;
+  }
+
+  .hero-mascot {
+    top: calc(100svh - 10.5rem) !important;
+    width: clamp(90px, 16svh, 125px) !important;
+  }
+
+  .hero-curve {
+    top: calc(100svh - 7.5rem) !important;
+  }
 }

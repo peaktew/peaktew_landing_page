@@ -43,10 +43,46 @@ const globeConfig = {
   initialRotationX: 0,
 };
 
+const compactGlobeConfig = {
+  ...globeConfig,
+  // Preserve the original glow size while the wider camera prevents clipping.
+  atmosphereAltitude: 0.3,
+  cameraZ: 355,
+};
+
+// Keep the iPad Pro portrait width in the compact treatment. The larger globe
+// begins one pixel above it instead of relying on Tailwind's 1024px lg value.
+const compactGlobeQuery = "(max-width: 1032px)";
+
+const getIsCompactViewport = () =>
+  typeof window !== "undefined" && window.matchMedia(compactGlobeQuery).matches;
+
 export function GlobeDemo() {
   const containerRef = useRef(null);
   const [shouldLoadGlobe, setShouldLoadGlobe] =
     useState(false);
+  const [isCompactViewport, setIsCompactViewport] = useState(
+    getIsCompactViewport
+  );
+  const activeGlobeConfig = isCompactViewport
+    ? compactGlobeConfig
+    : globeConfig;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(compactGlobeQuery);
+    const handleViewportChange = (event) => {
+      setIsCompactViewport(event.matches);
+    };
+
+    // Synchronize once in case the viewport changed between initialization
+    // and effect setup, then keep React in sync with DevTools/orientation.
+    setIsCompactViewport(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleViewportChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleViewportChange);
+    };
+  }, []);
 
   useEffect(() => {
     const element = containerRef.current;
@@ -73,17 +109,14 @@ export function GlobeDemo() {
   return (
     <div
       ref={containerRef}
-      className="relative mx-auto overflow-hidden"
-      style={{
-        width: "calc(100vw - 32px)",
-        aspectRatio: "2 / 1.6",
-        borderRadius: "30px",
-        minHeight: "400px",
-      }}
+      className="hero-globe relative mx-auto w-screen overflow-visible sm:w-[calc(100vw-32px)]"
     >
       {shouldLoadGlobe && (
         <Suspense fallback={null}>
-          <World globeConfig={globeConfig} />
+          <World
+            key={isCompactViewport ? "compact" : "desktop"}
+            globeConfig={activeGlobeConfig}
+          />
         </Suspense>
       )}
     </div>

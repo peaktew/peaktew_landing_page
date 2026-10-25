@@ -47,11 +47,11 @@ const NotificationCard = ({
 }) => {
   return (
     <motion.picture
-      className={`absolute w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] ${className}`}
-      style={{ top, left, right }}
+      className={`notification-card absolute z-10 w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] ${className}`}
+      style={{ "--notification-top": top, top: "var(--notification-top)", left, right }}
       initial={{ x: initialX, y: initialY, opacity: 0, rotate }}
       whileInView={{ x: 0, y: 0, opacity: 1, rotate }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "160px 0px" }}
       transition={{
         type: "spring",
         stiffness: 50,
@@ -141,18 +141,18 @@ const LandingPage = () => {
   // Animation variants for dark mode transition
 
   return (
-    <div className="relative overflow-hidden transition-colors duration-500 bg-white">
+    <div className="landing-page relative overflow-x-clip transition-colors duration-500 bg-white">
       {/* Theme Toggle */}
 
       {/* Globe Section */}
 
       <motion.div
-        className="mx-auto px-4 w-full h-[calc(92svh-4rem)] sm:h-[calc(92svh-5rem)] md:h-[calc(85svh-5rem)] xl:h-screen overflow-hidden relative"
+        className="hero-shell relative mx-auto w-full px-0 sm:px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <section style={{ position: "relative", zIndex: 1 }}>
+        <section className="hero-globe-stage relative z-[1]">
           <GlobeDemo />
         </section>
         {/* Dark Mode Toggle - Top Right */}
@@ -197,16 +197,16 @@ const LandingPage = () => {
         </div>
 
         {/* Hero Text */}
-        <div className="absolute lg:top-[50%] top-[35%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
+        <div className="hero-content absolute left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
           <h1 className="flex flex-col items-center text-center font-metro-600 leading-none">
-            <span className="hero-line-enter heading-gradient heading-gradient--ink text-[45px] md:text-7xl lg:text-8xl xl:text-[96px]">
+            <span className="hero-title-line hero-line-enter heading-gradient heading-gradient--ink text-[clamp(30px,8.8vw,40px)] sm:text-[45px] md:text-7xl lg:text-8xl xl:text-[96px]">
               Take The Fun
             </span>
-            <span className="hero-line-enter hero-line-enter--second heading-gradient heading-gradient--violet whitespace-nowrap text-[clamp(32px,10vw,45px)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] my-2 sm:my-4">
+            <span className="hero-title-line hero-line-enter hero-line-enter--second heading-gradient heading-gradient--violet whitespace-nowrap text-[clamp(32px,9.6vw,46px)] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[100px] my-2 sm:my-4">
               To The Real World
             </span>
           </h1>
-          <div className="hero-copy-enter mt-6">
+          <div className="hero-copy hero-copy-enter mt-6">
             <p
               className="mx-auto w-full max-w-[31em] text-center text-[11px] font-metro-600 sm:text-xs md:text-xl lg:text-2xl"
               style={{ color: isDarkMode ? "#220239" : "#220239" }}
@@ -221,14 +221,14 @@ const LandingPage = () => {
         src={mascot}
         alt="mascot"
         fetchPriority="high"
-        className="absolute right-0 top-[64vh] z-[1] w-[120px] rotate-[40deg] pointer-events-none sm:top-[72vh] sm:w-[225px] md:top-[60vh] md:w-[300px] xl:top-[70vh]"
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
+        className="hero-mascot absolute z-[1] pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}
       />
 
       <motion.section
-        className="absolute top-[76vh] md:top-[75vh] xl:top-[90vh] left-0 w-screen max-w-none pointer-events-none z-2 overflow-visible"
+        className="hero-curve absolute left-0 z-[2] w-screen max-w-none overflow-visible pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
@@ -444,6 +444,7 @@ const LandingPage = () => {
             delay={0.1}
             top="5%"
             left="15%"
+            className="hidden sm:block"
           />
           <NotificationCard
             mobileSrc={not2Mobile}
@@ -454,7 +455,7 @@ const LandingPage = () => {
             delay={0.2}
             top="12%"
             right="20%"
-            className="z-10"
+            className="hidden sm:block z-10"
           />
           <NotificationCard
             mobileSrc={not3Mobile}
@@ -509,7 +510,7 @@ const LandingPage = () => {
 
           {/* Review Bubbles */}
           <motion.div
-            className="absolute left-[10%] bottom-[44%] w-[200px] sm:left-[15%] sm:bottom-[46%] sm:w-[260px] md:left-[20%] md:bottom-[40%] lg:left-[30%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[5%] bottom-[44%] w-[200px] sm:left-[15%] sm:bottom-[46%] sm:w-[260px] md:left-[20%] md:bottom-[40%] lg:left-[30%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -521,7 +522,8 @@ const LandingPage = () => {
                 .map((_, i) => (
                   <svg
                     key={i}
-                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    className="w-3 h-3 sm:w-4 sm:h-4"
+                    fill="#facc15"
                     viewBox="0 0 20 20"
                   >
                     <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
@@ -547,7 +549,7 @@ const LandingPage = () => {
           </motion.div>
 
           <motion.div
-            className="absolute left-[50%] bottom-[23%] w-[200px] sm:left-[55%] sm:bottom-[23%] sm:w-[260px] md:left-[60%] md:bottom-[32%] lg:left-[62%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[45%] bottom-[18%] w-[200px] sm:left-[55%] sm:bottom-[23%] sm:w-[260px] md:left-[60%] md:bottom-[32%] lg:left-[62%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -559,7 +561,8 @@ const LandingPage = () => {
                 .map((_, i) => (
                   <svg
                     key={i}
-                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    className="w-3 h-3 sm:w-4 sm:h-4"
+                    fill="#facc15"
                     viewBox="0 0 20 20"
                   >
                     <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />
@@ -585,7 +588,7 @@ const LandingPage = () => {
           </motion.div>
 
           <motion.div
-            className="absolute left-[5%] bottom-[5%] w-[200px] sm:left-[10%] sm:bottom-[5%] sm:w-[260px] md:left-[15%] md:bottom-[15%] lg:left-[22%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
+            className="absolute left-[5%] bottom-[2%] w-[200px] sm:left-[10%] sm:bottom-[5%] sm:w-[260px] md:left-[15%] md:bottom-[15%] lg:left-[22%] px-3 sm:px-4 py-2 sm:py-3 z-30 rounded-2xl border border-white/30 bg-white/20 dark:bg-[#1a1a2e]/20 backdrop-blur-xl shadow-xl"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -597,7 +600,8 @@ const LandingPage = () => {
                 .map((_, i) => (
                   <svg
                     key={i}
-                    className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current"
+                    className="w-3 h-3 sm:w-4 sm:h-4"
+                    fill="#facc15"
                     viewBox="0 0 20 20"
                   >
                     <path d="M10 15l-5.878 3.09L5.64 12.27.763 8.41l6.318-.92L10 2l2.919 5.49 6.318.92-4.878 3.86 1.518 5.82z" />

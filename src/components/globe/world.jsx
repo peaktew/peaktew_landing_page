@@ -157,7 +157,7 @@ export function Globe({ globeConfig }) {
                 gradient
               );
 
-              // Purple geographic texture
+              // Use the texture as a geographic mask, but render land in black.
 
               vec4 pattern = texture2D(
                 patternTexture,
@@ -167,9 +167,11 @@ export function Globe({ globeConfig }) {
               float patternAlpha =
                 pattern.a * patternStrength;
 
+              vec3 landColor = vec3(0.0);
+
               vec3 finalColor = mix(
                 baseColor,
-                pattern.rgb,
+                landColor,
                 patternAlpha
               );
 
@@ -236,7 +238,7 @@ export function World({ globeConfig }) {
   return (
     <Canvas
       camera={{
-        position: [0, 0, 300],
+        position: [0, 0, globeConfig.cameraZ ?? 300],
         fov: 40,
         near: 0.1,
         far: 1000,
