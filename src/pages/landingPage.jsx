@@ -197,7 +197,7 @@ const LandingPage = () => {
         </div>
 
         {/* Hero Text */}
-        <div className="hero-content absolute left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full px-4 z-10">
+        <div className="hero-content absolute flex flex-col items-center w-full px-4 z-10">
           <h1 className="flex flex-col items-center text-center font-metro-600 leading-none">
             <span className="hero-title-line hero-line-enter heading-gradient heading-gradient--ink text-[clamp(30px,8.8vw,40px)] sm:text-[45px] md:text-7xl lg:text-8xl xl:text-[96px]">
               Take The Fun
