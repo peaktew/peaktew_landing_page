@@ -39,46 +39,21 @@ export default function Footer() {
 
           <div className="flex flex-col sm:flex-row gap-10 text-sm sm:text-base">
             <div>
-              <p className="font-metro-600 mb-2">Website</p>
+              <p className="font-metro-600 mb-2">Legal</p>
               <ul className="space-y-1 text-gray-600 font-metro-300">
                 <li>
                   <Link
-                    to={"/web-terms-conditions"}
+                    to={"/terms-of-service"}
                     onClick={() => scrollToTop()}
                   >
                     <p className="hover:text-purple-700 transition-colors duration-300">
-                      Terms & Conditions
+                      Terms of Service
                     </p>
                   </Link>
                 </li>
                 <li>
                   <Link
-                    to={"/web-privacy-policy"}
-                    onClick={() => scrollToTop()}
-                  >
-                    <p className="hover:text-purple-700 transition-colors duration-300">
-                      Private Policy
-                    </p>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-metro-600 mb-2">App</p>
-              <ul className="space-y-1 text-gray-600 font-metro-300">
-                <li>
-                  <Link
-                    to={"/app-terms-conditions"}
-                    onClick={() => scrollToTop()}
-                  >
-                    <p className="hover:text-purple-700 transition-colors duration-300">
-                      Terms & Condition
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to={"/app-privacy-policy"}
+                    to={"/privacy-policy"}
                     onClick={() => scrollToTop()}
                   >
                     <p className="hover:text-purple-700 transition-colors duration-300">
@@ -88,6 +63,8 @@ export default function Footer() {
                 </li>
               </ul>
             </div>
+
+
           </div>
         </div>
 
