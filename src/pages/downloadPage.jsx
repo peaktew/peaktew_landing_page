@@ -154,7 +154,7 @@ const DownloadPage = () => {
         
         {/* Contact Card with glassmorphism */}
         <motion.div
-          className="relative z-10 max-w-5xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
+          className="relative z-10 max-w-5xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
           variants={cardVariants}
           initial="hidden"
           animate="visible"

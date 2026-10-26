@@ -210,7 +210,7 @@ const ContactPage = () => {
         />
         {/* Contact Card with glassmorphism */}
         <motion.div
-          className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-white/30"
+          className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 md:p-10 flex flex-col gap-6 border border-white/30"
           variants={cardVariants}
           initial="hidden"
           animate="visible"
@@ -234,7 +234,7 @@ const ContactPage = () => {
             </motion.h2>
           </motion.div>
 
-          <div className="flex-1 flex flex-col md:flex-row gap- px-5">
+          <div className="flex-1 flex flex-col md:flex-row gap-16 md:gap-2">
             <motion.div
               className="flex-1 flex flex-col pr-6"
               variants={containerVariants}
@@ -265,7 +265,7 @@ const ContactPage = () => {
 
             {/* Form */}
             <motion.form
-              className="flex-1 flex flex-col gap-4"
+              className="flex-1 flex flex-col gap-8 bg-white p-6 rounded-lg"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -277,7 +277,7 @@ const ContactPage = () => {
                 required
                 onChange={handleChange}
                 name="name"
-                className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
+                className="p-3 text-[#220239] rounded-md bg-white/40 border border-black focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
                   scale: 1.02,
@@ -291,7 +291,7 @@ const ContactPage = () => {
                 required
                 name="email"
                 onChange={handleChange}
-                className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
+                className="p-3 text-[#220239] rounded-md bg-white/40 border border-black focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
                   scale: 1.02,
@@ -305,7 +305,7 @@ const ContactPage = () => {
                 minLength={10}
                 onChange={handleChange}
                 rows="4"
-                className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
+                className="p-3 text-[#220239] rounded-md bg-white/40 border border-black focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
                   scale: 1.02,
@@ -314,7 +314,7 @@ const ContactPage = () => {
               ></motion.textarea>
               <motion.button
                 type="submit"
-                className="bg-black text-white py-2 rounded-md hover:bg-peakPurple transition-colors"
+                className="bg-black text-white py-3 rounded-md hover:bg-peakPurple transition-colors"
                 variants={itemVariants}
                 whileHover={hoverEffect}
                 whileTap={tapEffect}
