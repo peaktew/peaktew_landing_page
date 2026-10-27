@@ -97,8 +97,9 @@ const AboutPage = () => {
         </label>
       </div>
 
+      {/* Meet PeakTew */}
       <motion.section
-        className="w-full min-h-screen flex flex-col gap-20 px-[100px] py-20 overflow-x-hidden z-10 transition-colors duration-500 bg-white"
+        className="w-full min-h-screen flex flex-col gap-12 md:gap-10 lg:gap-20 px-4 md:px-[100px] py-16 md:py-20 overflow-x-hidden z-10 transition-colors duration-500 bg-white"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -112,9 +113,19 @@ const AboutPage = () => {
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
 
+        {/* Title */}
         <motion.div className="w-full max-w-6xl" variants={itemVariants}>
           <motion.h1
-            className="text-[min(10vw,128px)] font-metro-600 text-[#6D28B2] mb-10 leading-none"
+            className="text-[40px] md:text-[clamp(48px,8vw,128px)] font-extrabold leading-[48px] md:leading-[165px] tracking-[0px] md:tracking-[-0.4px]"
+            style={{
+              backgroundImage: isDarkMode
+                ? "linear-gradient(174.32deg, #FFFFFF -42.01%, #9C65D4 120.23%, #6E1CBF 178.24%, #470974 179.09%)"
+                : "linear-gradient(177.11deg, #A62AD2 2.4%, #6E1CBF 30.78%, #470974 97.6%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -123,12 +134,14 @@ const AboutPage = () => {
           </motion.h1>
         </motion.div>
 
+        {/* Paragraphs */}
         <motion.div
-          className="w-full max-w-[95%] flex flex-col gap-6"
+          className="w-full flex flex-col gap-6 font-semibold"
           variants={containerVariants}
         >
           <motion.div
-            className="font-metro-600 text-[#220239] text-[16px] space-y-6"
+            className="text-[14px] md:text-[24px] leading-[20px] md:leading-[130%] space-y-6 text-[#220239]"
+            style={{ fontFamily: "'Proxima Nova', sans-serif" }}
             variants={itemVariants}
           >
             <p>
