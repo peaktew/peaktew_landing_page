@@ -134,18 +134,18 @@ const DownloadPage = () => {
         </label>
       </div>
 
-      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
+      <div className="relative min-h-screen flex items-end justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
         {/* Top Gradient */}
-        <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
+        {/* <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div> */}
 
         {/* Bottom Gradient */}
-        <div className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
+        <div className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${isDarkMode ? "bg-[linear-gradient(to_top,#220239_0%,#220239_20%,rgba(34,2,57,0.8)_40%,transparent_70%)]" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
 
         {/* Animated Donut Rings */}
         <motion.img
           src={full_ring}
           alt="ring"
-          className="absolute top-[50%] left-[40%] w-32 sm:w-48 md:w-64 opacity-100 scale-[300%] sm:scale-[400%] md:scale-[500%] lg:scale-[600%]"
+          className="absolute lg:top-[65%] xl:top-[80%] md:top-[50%] top-[15%]  left-[40%] w-32 md:w-64 lg:w-80 opacity-100 scale-[300%] sm:scale-[400%] md:scale-[500%] lg:scale-[600%]"
           variants={ringVariants}
           initial="initial"
           animate="animate"
@@ -154,7 +154,7 @@ const DownloadPage = () => {
         
         {/* Contact Card with glassmorphism */}
         <motion.div
-          className="relative z-10 max-w-5xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
+          className=" relative z-10 max-w-5xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
           variants={cardVariants}
           initial="hidden"
           animate="visible"
@@ -169,11 +169,11 @@ const DownloadPage = () => {
             initial="hidden"
             animate="visible"
           >
-            <motion.h2 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-metro-600 text-[#6D28B2] mb-0 text-left"
+            <motion.h2
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-extrabold font-metro-600 mb-0 text-left bg-[linear-gradient(to_bottom,#A62AD2_0%,#6E1CBF_50%,#470974_100%)] bg-clip-text text-transparent"
               variants={itemVariants}
             >
-              Where Social <br/> Meets Real Life
+              Where Social <br /> Meets Real Life
             </motion.h2>
           </motion.div>
           

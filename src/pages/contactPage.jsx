@@ -187,7 +187,7 @@ const ContactPage = () => {
         <motion.img
           src={full_ring}
           alt="ring"
-          className="absolute top-30 left-20 w-64 opacity-100 scale-[300%]"
+          className="absolute top-0 md:top-70 left-20 w-64 opacity-100 scale-[300%]"
           variants={ringVariants}
           initial="initial"
           animate="animate"
@@ -195,7 +195,7 @@ const ContactPage = () => {
         <motion.img
           src={full_ring}
           alt="ring"
-          className="absolute bottom-40 right-20 w-64 opacity-100 scale-[300%]"
+          className="absolute bottom-0 right-20 w-64 opacity-100 scale-[300%]"
           variants={ringVariants}
           initial="initial"
           animate="animate"
@@ -227,7 +227,7 @@ const ContactPage = () => {
             animate="visible"
           >
             <motion.h2
-              className="text-[min(10vw,100px)] font-metro-600 text-[#6D28B2] mb-0 text-left"
+              className="text-[min(10vw,100px)] font-extrabold font-metro-600 mb-0 text-left bg-[linear-gradient(to_bottom,#A62AD2_0%,#6E1CBF_50%,#470974_100%)] bg-clip-text text-transparent"
               variants={itemVariants}
             >
               Get In Touch
