@@ -30,7 +30,7 @@ export default function Footer() {
             <p className="footer-eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
             <h2>Ready to discover<br /><span>what’s possible?</span></h2>
           </div>
-          <Link className="footer-cta" to="/download" target="_blank" rel="noopener noreferrer">
+          <Link className="footer-cta" to="/download">
             Discover PeakTew <span aria-hidden="true">↗</span>
           </Link>
         </div>
