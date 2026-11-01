@@ -124,6 +124,7 @@
   .footer-invitation { align-items: flex-start; flex-direction: column; padding: 28px 24px; gap: 24px; }
   .footer-details { grid-template-columns: 1fr 1fr; gap: 28px 20px; padding: 32px 0; }
   .footer-brand { grid-column: 1 / -1; }
+  .footer-socials { display: grid; grid-template-columns: repeat(2, 44px); }
   .footer-bottom { align-items: flex-start; flex-direction: column-reverse; gap: 20px; }
 }
 @media (max-width: 359px) {

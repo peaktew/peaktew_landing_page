@@ -65,8 +65,8 @@ export default function Footer() {
           </div>
           <nav aria-label="Footer legal links">
             <h3>Legal</h3>
-            <Link to="/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Service</Link>
-            <Link to="/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</Link>
+            <Link to="/terms-of-service">Terms of Service</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </nav>
 
           <div className="footer-connect">
