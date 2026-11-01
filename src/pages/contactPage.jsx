@@ -168,46 +168,35 @@ const ContactPage = () => {
           <LoadingIndicator isLoading={isLoading}/>
         </div>
       
-      <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
-        {/* Top Gradient */}
+      <div className="relative isolate min-h-screen flex items-center justify-center px-4 pt-[clamp(7rem,16vw,14rem)] pb-[clamp(6rem,12vw,11rem)] overflow-hidden transition-colors duration-500 bg-white mb-30">
+        {/* Keep the exposed rings crisp; only the card blurs its backdrop. */}
         <div
-          className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${
-            isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"
-          } z-20 pointer-events-none`}
-        ></div>
-
-        {/* Bottom Gradient */}
+          className="pointer-events-none absolute top-[clamp(2rem,5vw,5rem)] -left-[8%] w-[clamp(16rem,44vw,44rem)] aspect-square"
+          aria-hidden="true"
+        >
+          <motion.img
+            src={full_ring}
+            alt=""
+            className="block h-auto w-full"
+            variants={ringVariants}
+            initial="initial"
+            animate="animate"
+          />
+        </div>
         <div
-          className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${
-            isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"
-          }t z-20 pointer-events-none`}
-        ></div>
-
-        {/* Animated Donut Rings */}
-        <motion.img
-          src={full_ring}
-          alt="ring"
-          className="absolute top-0 md:top-70 left-20 w-64 opacity-100 scale-[300%]"
-          variants={ringVariants}
-          initial="initial"
-          animate="animate"
-        />
-        <motion.img
-          src={full_ring}
-          alt="ring"
-          className="absolute bottom-0 right-20 w-64 opacity-100 scale-[300%]"
-          variants={ringVariants}
-          initial="initial"
-          animate="animate"
-          style={{ rotate: 180 }} // Start with different rotation
-        />
-        <div
-          className={`absolute inset-0 bg-gradient-to-t ${
-            isDarkMode
-              ? "from-[#2202396d] to-[#220239]"
-              : "from-white  to-transparent"
-          }`}
-        />
+          className="pointer-events-none absolute bottom-[clamp(2rem,4vw,4rem)] -right-[1%] w-[clamp(16rem,44vw,44rem)] aspect-square"
+          aria-hidden="true"
+        >
+          <motion.img
+            src={full_ring}
+            alt=""
+            className="block h-auto w-full"
+            variants={ringVariants}
+            initial="initial"
+            animate="animate"
+            style={{ rotate: 180 }}
+          />
+        </div>
         {/* Contact Card with glassmorphism */}
         <motion.div
           className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 md:p-10 flex flex-col gap-6 border border-white/30"
