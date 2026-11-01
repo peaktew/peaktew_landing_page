@@ -30,7 +30,7 @@ export default function Footer() {
             <p className="footer-eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
             <h2>Ready to discover<br /><span>what’s possible?</span></h2>
           </div>
-          <Link className="footer-cta" to="/download">
+          <Link className="footer-cta"to="/download"  onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "instant" })}>
             Discover PeakTew <span aria-hidden="true">↗</span>
           </Link>
         </div>
