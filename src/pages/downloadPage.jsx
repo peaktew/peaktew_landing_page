@@ -134,7 +134,7 @@ const DownloadPage = () => {
         </label>
       </div>
 
-      <div className="relative min-h-screen flex items-end justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
+      <div className="relative isolate min-h-screen flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-[clamp(5rem,12vw,11rem)] pb-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
         {/* Top Gradient */}
         {/* <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div> */}
 
@@ -142,14 +142,19 @@ const DownloadPage = () => {
         <div className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${isDarkMode ? "bg-[linear-gradient(to_top,#220239_0%,#220239_20%,rgba(34,2,57,0.8)_40%,transparent_70%)]" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
 
         {/* Animated Donut Rings */}
-        <motion.img
-          src={full_ring}
-          alt="ring"
-          className="absolute lg:top-[65%] xl:top-[80%] md:top-[50%] top-[15%]  left-[40%] w-32 md:w-64 lg:w-80 opacity-100 scale-[300%] sm:scale-[400%] md:scale-[500%] lg:scale-[600%]"
-          variants={ringVariants}
-          initial="initial"
-          animate="animate"
-        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-4 left-1/2 w-[96%] max-w-[1500px] -translate-x-1/2 sm:top-6"
+        >
+          <motion.img
+            src={full_ring}
+            alt=""
+            className="block h-auto w-full"
+            variants={ringVariants}
+            initial="initial"
+            animate="animate"
+          />
+        </div>
         <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
         
         {/* Contact Card with glassmorphism */}

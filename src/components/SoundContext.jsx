@@ -25,7 +25,9 @@ export const SoundProvider = ({ children }) => {
     }
     return false;
   });
+  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  const playAttemptRef = useRef(0);
   const isMutedRef = useRef(isMuted);
 
   isMutedRef.current = isMuted;
@@ -37,54 +39,58 @@ export const SoundProvider = ({ children }) => {
       audio.volume = 0.5;
       audio.muted = isMutedRef.current;
       audio.preload = "auto";
+      audio.addEventListener("playing", () => {
+        setIsPlaying(!audio.paused && !audio.muted);
+      });
+      const markStopped = () => setIsPlaying(false);
+      audio.addEventListener("pause", markStopped);
+      audio.addEventListener("ended", markStopped);
+      audio.addEventListener("error", markStopped);
       audioRef.current = audio;
     }
 
     return audioRef.current;
   }, []);
 
-  // Defer the music request until the visitor interacts with the page.
-  useEffect(() => {
-    const startAudio = () => {
-      const audio = initializeAudio();
-      if (!isMutedRef.current) {
-        audio.play().catch(() => {});
-      }
-      interactionEvents.forEach((eventName) =>
-        window.removeEventListener(eventName, startAudio),
-      );
-    };
-
-    const interactionEvents = ["pointerdown", "touchstart", "keydown", "scroll"];
-    interactionEvents.forEach((eventName) =>
-      window.addEventListener(eventName, startAudio, {
-        once: true,
-        passive: eventName !== "keydown",
-      }),
+  const startPlayback = useCallback(() => {
+    const audio = initializeAudio();
+    const attempt = ++playAttemptRef.current;
+    audio.muted = false;
+    // Call play synchronously inside the gesture, before any effects or awaits.
+    audio.play().then(
+      () => {
+        if (attempt === playAttemptRef.current) {
+          setIsPlaying(!audio.paused && !audio.muted);
+        }
+      },
+      () => {
+        if (attempt === playAttemptRef.current) setIsPlaying(false);
+      },
     );
-
-    return () =>
-      interactionEvents.forEach((eventName) =>
-        window.removeEventListener(eventName, startAudio),
-      );
   }, [initializeAudio]);
 
-  // Keep an initialized player in sync with the mute control.
+  // Scroll is not a playback permission gesture. Keep listening after a
+  // rejected attempt so a later click/key can still start the music.
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    audio.muted = isMuted;
-    if (isMuted) {
-      audio.pause();
-    } else {
-      audio.play().catch(() => {});
-    }
-  }, [isMuted]);
+    const startAudio = (event) => {
+      if (event.target instanceof Element && event.target.closest("[data-sound-toggle]")) return;
+      if (event.type === "keydown" && (event.repeat || !["Enter", " "].includes(event.key))) return;
+      if (!isMutedRef.current && audioRef.current?.paused !== false) {
+        startPlayback();
+      }
+    };
+    window.addEventListener("click", startAudio);
+    window.addEventListener("keydown", startAudio);
+    return () => {
+      window.removeEventListener("click", startAudio);
+      window.removeEventListener("keydown", startAudio);
+    };
+  }, [startPlayback]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
+      playAttemptRef.current += 1;
       if (audioRef.current) {
         audioRef.current.pause();
       }
@@ -96,12 +102,23 @@ export const SoundProvider = ({ children }) => {
   }, [isMuted]);
 
   const toggleMute = () => {
-    initializeAudio();
-    setIsMuted((prev) => !prev);
+    const audio = initializeAudio();
+    if (!audio.paused && !audio.muted && !isMutedRef.current) {
+      playAttemptRef.current += 1;
+      isMutedRef.current = true;
+      setIsMuted(true);
+      audio.muted = true;
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      isMutedRef.current = false;
+      setIsMuted(false);
+      startPlayback();
+    }
   };
 
   return (
-    <SoundContext.Provider value={{ isMuted, toggleMute }}>
+    <SoundContext.Provider value={{ isMuted, isPlaying, toggleMute }}>
       {children}
     </SoundContext.Provider>
   );
