@@ -197,12 +197,6 @@ const ContactPage = () => {
             style={{ rotate: 180 }}
           />
         </div>
-        {isDarkMode && (
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#2202396d] to-[#220239]"
-          />
-        )}
         {/* Contact Card with glassmorphism */}
         <motion.div
           className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 md:p-10 flex flex-col gap-6 border border-white/30"
