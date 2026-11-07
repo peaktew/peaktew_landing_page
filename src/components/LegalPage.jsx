@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import DarkModeToggle from './DarkModeToggle';
 import './LegalPage.css';
 
 export default function LegalPage({ title, children }) {
@@ -8,6 +9,8 @@ export default function LegalPage({ title, children }) {
   }, [title]);
 
   return (
+    <>
+    <DarkModeToggle />
     <main className="legal-page">
       <article className="legal-document">
         <h1>PeakTew {title}</h1>
@@ -18,5 +21,6 @@ export default function LegalPage({ title, children }) {
         {children}
       </article>
     </main>
+    </>
   );
 }

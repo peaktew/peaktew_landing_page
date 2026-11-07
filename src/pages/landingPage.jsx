@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import person from "../assets/Landing_page/three_person.png";
+import { HomeFaq } from "./communityPage";
 // import Ellipse2 from "../assets/Landing_page/Ellipse 2.png";
 // import Ellipse3 from "../assets/Landing_page/Ellipse 3.webp";
 import not1Mobile from "../assets/Landing_page/not1-400.png";
@@ -789,6 +790,7 @@ const LandingPage = () => {
           )}
         </motion.div>
       </motion.div>
+      <HomeFaq />
     </div>
   );
 };
