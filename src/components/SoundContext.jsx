@@ -20,10 +20,7 @@ export const useSound = () => {
 export const SoundProvider = ({ children }) => {
   const [isMuted, setIsMuted] = useState(() => {
     const saved = localStorage.getItem("siteMuted");
-    if (saved !== null) {
-      return JSON.parse(saved);
-    }
-    return false;
+    return saved === "true";
   });
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
@@ -47,6 +44,7 @@ export const SoundProvider = ({ children }) => {
       audio.addEventListener("ended", markStopped);
       audio.addEventListener("error", markStopped);
       audioRef.current = audio;
+      audio.load();
     }
 
     return audioRef.current;
@@ -56,34 +54,49 @@ export const SoundProvider = ({ children }) => {
     const audio = initializeAudio();
     const attempt = ++playAttemptRef.current;
     audio.muted = false;
-    // Call play synchronously inside the gesture, before any effects or awaits.
     audio.play().then(
       () => {
         if (attempt === playAttemptRef.current) {
           setIsPlaying(!audio.paused && !audio.muted);
         }
       },
-      () => {
-        if (attempt === playAttemptRef.current) setIsPlaying(false);
+      (error) => {
+        if (attempt === playAttemptRef.current) {
+          setIsPlaying(false);
+          console.error("Background audio could not start while sound is enabled.", error);
+        }
       },
     );
   }, [initializeAudio]);
 
-  // Scroll is not a playback permission gesture. Keep listening after a
-  // rejected attempt so a later click/key can still start the music.
   useEffect(() => {
-    const startAudio = (event) => {
+    const audio = initializeAudio();
+
+    if (isMuted) {
+      playAttemptRef.current += 1;
+      audio.muted = true;
+      audio.pause();
+      setIsPlaying(false);
+      return;
+    }
+
+    audio.muted = false;
+    if (audio.paused) startPlayback();
+  }, [initializeAudio, isMuted, startPlayback]);
+
+  useEffect(() => {
+    const retryPlayback = (event) => {
+      if (isMutedRef.current) return;
       if (event.target instanceof Element && event.target.closest("[data-sound-toggle]")) return;
       if (event.type === "keydown" && (event.repeat || !["Enter", " "].includes(event.key))) return;
-      if (!isMutedRef.current && audioRef.current?.paused !== false) {
-        startPlayback();
-      }
+      if (audioRef.current?.paused !== false) startPlayback();
     };
-    window.addEventListener("click", startAudio);
-    window.addEventListener("keydown", startAudio);
+
+    window.addEventListener("click", retryPlayback);
+    window.addEventListener("keydown", retryPlayback);
     return () => {
-      window.removeEventListener("click", startAudio);
-      window.removeEventListener("keydown", startAudio);
+      window.removeEventListener("click", retryPlayback);
+      window.removeEventListener("keydown", retryPlayback);
     };
   }, [startPlayback]);
 
@@ -101,9 +114,14 @@ export const SoundProvider = ({ children }) => {
     localStorage.setItem("siteMuted", JSON.stringify(isMuted));
   }, [isMuted]);
 
-  const toggleMute = () => {
-    const audio = initializeAudio();
-    if (!audio.paused && !audio.muted && !isMutedRef.current) {
+  const toggleMute = useCallback(() => {
+    const audio = audioRef.current;
+
+    if (isMutedRef.current) {
+      isMutedRef.current = false;
+      setIsMuted(false);
+      startPlayback();
+    } else if (audio && !audio.paused && !audio.muted) {
       playAttemptRef.current += 1;
       isMutedRef.current = true;
       setIsMuted(true);
@@ -111,11 +129,9 @@ export const SoundProvider = ({ children }) => {
       audio.pause();
       setIsPlaying(false);
     } else {
-      isMutedRef.current = false;
-      setIsMuted(false);
       startPlayback();
     }
-  };
+  }, [startPlayback]);
 
   return (
     <SoundContext.Provider value={{ isMuted, isPlaying, toggleMute }}>

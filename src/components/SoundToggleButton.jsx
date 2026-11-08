@@ -3,7 +3,7 @@ import { useDarkMode } from "./DarkModeContext";
 import { useSound } from "./SoundContext";
 
 const SoundToggleButton = () => {
-  const { isPlaying, toggleMute } = useSound();
+  const { isMuted, isPlaying, toggleMute } = useSound();
   const { isDarkMode } = useDarkMode();
 
   return (
@@ -11,8 +11,8 @@ const SoundToggleButton = () => {
       type="button"
       data-sound-toggle
       onClick={toggleMute}
-      aria-label={isPlaying ? "Mute sound" : "Play sound"}
-      aria-pressed={isPlaying}
+      aria-label={isMuted ? "Unmute sound" : isPlaying ? "Mute sound" : "Retry sound"}
+      aria-pressed={!isMuted}
       className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 ${
         isDarkMode
           ? "bg-[#2d1450] border-[#6f42a7] text-white"
@@ -20,7 +20,7 @@ const SoundToggleButton = () => {
       }`}
       style={{ paddingBottom: "max(0px, env(safe-area-inset-bottom))" }}
     >
-      {!isPlaying ? (
+      {isMuted ? (
         <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M11 5 6 9H3v6h3l5 4V5Z" />
           <path d="m19 9-6 6" />
