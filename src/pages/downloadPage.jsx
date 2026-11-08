@@ -134,7 +134,7 @@ const DownloadPage = () => {
         </label>
       </div>
 
-      <div className="relative isolate min-h-screen flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-[clamp(5rem,12vw,11rem)] pb-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
+      <div className="relative isolate min-h-screen flex lg:items-end md:items-center justify-center px-4 sm:px-6 lg:px-8 pt-[clamp(5rem,12vw,11rem)] pb-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
         {/* Top Gradient */}
         {/* <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div> */}
 
@@ -144,7 +144,7 @@ const DownloadPage = () => {
         {/* Animated Donut Rings */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-4 left-1/2 w-[96%] max-w-[1500px] -translate-x-1/2 sm:top-6"
+          className="pointer-events-none absolute top-4 left-1/2 w-[110%] max-w-[1650px] -translate-x-1/2 sm:top-6"
         >
           <motion.img
             src={full_ring}
@@ -155,11 +155,11 @@ const DownloadPage = () => {
             animate="animate"
           />
         </div>
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "bg-[#2202396d] " : "from-white  to-transparent"}`}/>
         
         {/* Contact Card with glassmorphism */}
         <motion.div
-          className=" relative z-10 max-w-5xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
+          className=" relative z-10 max-w-4xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
           variants={cardVariants}
           initial="hidden"
           animate="visible"
