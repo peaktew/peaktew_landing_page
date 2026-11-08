@@ -135,7 +135,8 @@ const AboutPage = () => {
 
         {/* Paragraphs */}
         <motion.div
-          className="w-full flex flex-col gap-6 font-semibold relative z-10"
+          className="w-full flex flex-col gap-6 relative z-10"
+          style={{ fontWeight: isDarkMode ? '400' : '500' }}
           variants={containerVariants}
         >
           <motion.div
