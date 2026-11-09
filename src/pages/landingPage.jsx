@@ -156,7 +156,7 @@ const LandingPage = () => {
           <GlobeDemo />
         </section>
         {/* Dark Mode Toggle - Top Right */}
-        <div className="absolute top-4 right-4 z-20">
+        <div className="fixed top-20 right-4 z-50 sm:top-24 md:right-10 lg:right-24 xl:top-4 xl:right-4">
           <label className="relative inline-flex items-center cursor-pointer select-none">
             <input
               type="checkbox"
