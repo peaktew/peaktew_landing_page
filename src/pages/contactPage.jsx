@@ -123,7 +123,7 @@ const ContactPage = () => {
   return (
     <>
       {/* Dark Mode Toggle - Top Right (Desktop Only) */}
-      <div className="fixed top-4 right-4 z-50 hidden md:block">
+      <div className="fixed top-4 right-4 z-50 hidden xl:block">
         <label className="relative inline-flex items-center cursor-pointer select-none">
           <input
             type="checkbox"
@@ -168,49 +168,39 @@ const ContactPage = () => {
           <LoadingIndicator isLoading={isLoading}/>
         </div>
       
-      <div className="relative min-h-screen flex items-center justify-center px-4 py-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
-        {/* Top Gradient */}
+      <div className="relative isolate min-h-screen flex items-center justify-center px-4 pt-[clamp(7rem,16vw,14rem)] pb-[clamp(6rem,12vw,11rem)] overflow-hidden transition-colors duration-500 bg-white mb-30">
+        {/* Keep the exposed rings crisp; only the card blurs its backdrop. */}
         <div
-          className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${
-            isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"
-          } z-20 pointer-events-none`}
-        ></div>
-
-        {/* Bottom Gradient */}
+          className="pointer-events-none absolute top-36 -left-[110vw] w-[160vw] aspect-square md:top-[clamp(2rem,5vw,5rem)] md:-left-[8%] md:w-[clamp(16rem,44vw,44rem)]"
+          aria-hidden="true"
+        >
+          <motion.img
+            src={full_ring}
+            alt=""
+            className="block h-auto w-full"
+            variants={ringVariants}
+            initial="initial"
+            animate="animate"
+          />
+        </div>
         <div
-          className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${
-            isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"
-          }t z-20 pointer-events-none`}
-        ></div>
-
-        {/* Animated Donut Rings */}
-        <motion.img
-          src={full_ring}
-          alt="ring"
-          className="absolute top-30 left-20 w-64 opacity-100 scale-[300%]"
-          variants={ringVariants}
-          initial="initial"
-          animate="animate"
-        />
-        <motion.img
-          src={full_ring}
-          alt="ring"
-          className="absolute bottom-40 right-20 w-64 opacity-100 scale-[300%]"
-          variants={ringVariants}
-          initial="initial"
-          animate="animate"
-          style={{ rotate: 180 }} // Start with different rotation
-        />
-        <div
-          className={`absolute inset-0 bg-gradient-to-t ${
-            isDarkMode
-              ? "from-[#2202396d] to-[#220239]"
-              : "from-white  to-transparent"
-          }`}
-        />
+          className="pointer-events-none absolute bottom-[clamp(2rem,4vw,4rem)] -right-[1%] hidden w-[clamp(16rem,44vw,44rem)] aspect-square md:block"
+          aria-hidden="true"
+        >
+          <motion.img
+            src={full_ring}
+            alt=""
+            className="block h-auto w-full"
+            variants={ringVariants}
+            initial="initial"
+            animate="animate"
+            style={{ rotate: 180 }}
+          />
+        </div>
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "bg-[#2202396d] " : "from-white  to-transparent"}`}/>
         {/* Contact Card with glassmorphism */}
         <motion.div
-          className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-10 flex flex-col gap-6 border border-white/30"
+          className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 md:p-10 flex flex-col gap-6 border border-white/30"
           variants={cardVariants}
           initial="hidden"
           animate="visible"
@@ -227,14 +217,14 @@ const ContactPage = () => {
             animate="visible"
           >
             <motion.h2
-              className="text-[min(10vw,100px)] font-metro-600 text-[#6D28B2] mb-0 text-left"
+              className="text-[min(10vw,100px)] font-extrabold font-metro-600 mb-0 text-left bg-[linear-gradient(to_bottom,#A62AD2_0%,#6E1CBF_50%,#470974_100%)] bg-clip-text text-transparent"
               variants={itemVariants}
             >
               Get In Touch
             </motion.h2>
           </motion.div>
 
-          <div className="flex-1 flex flex-col md:flex-row gap- px-5">
+          <div className="flex-1 flex flex-col md:flex-row gap-16 md:gap-2">
             <motion.div
               className="flex-1 flex flex-col pr-6"
               variants={containerVariants}
@@ -265,7 +255,7 @@ const ContactPage = () => {
 
             {/* Form */}
             <motion.form
-              className="flex-1 flex flex-col gap-4"
+              className="flex-1 flex flex-col gap-8 bg-white p-6 rounded-lg"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -277,7 +267,7 @@ const ContactPage = () => {
                 required
                 onChange={handleChange}
                 name="name"
-                className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
+                className="p-3 text-[#220239] rounded-md bg-white/40 border border-black focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
                   scale: 1.02,
@@ -291,7 +281,7 @@ const ContactPage = () => {
                 required
                 name="email"
                 onChange={handleChange}
-                className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
+                className="p-3 text-[#220239] rounded-md bg-white/40 border border-black focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
                   scale: 1.02,
@@ -305,7 +295,7 @@ const ContactPage = () => {
                 minLength={10}
                 onChange={handleChange}
                 rows="4"
-                className="p-3 text-[#220239] rounded-md bg-white/40 border border-white/30 focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
+                className="p-3 text-[#220239] rounded-md bg-white/40 border border-black focus:outline-none focus:ring-2 focus:ring-[#6D28B2]"
                 variants={itemVariants}
                 whileFocus={{
                   scale: 1.02,
@@ -314,7 +304,7 @@ const ContactPage = () => {
               ></motion.textarea>
               <motion.button
                 type="submit"
-                className="bg-black text-white py-2 rounded-md hover:bg-peakPurple transition-colors"
+                className="bg-black text-white py-3 rounded-md hover:bg-peakPurple transition-colors"
                 variants={itemVariants}
                 whileHover={hoverEffect}
                 whileTap={tapEffect}

@@ -109,7 +109,7 @@ const DownloadPage = () => {
   return (
     <>
       {/* Dark Mode Toggle - Top Right (Desktop Only) */}
-      <div className="fixed top-4 right-4 z-50 hidden md:block">
+      <div className="fixed top-4 right-4 z-50 hidden xl:block">
         <label className="relative inline-flex items-center cursor-pointer select-none">
           <input
             type="checkbox"
@@ -134,27 +134,39 @@ const DownloadPage = () => {
         </label>
       </div>
 
-      <div className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
+      <div className="relative isolate flex items-center justify-center px-4 sm:px-28 pt-[clamp(6rem,22vw,15rem)] pb-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
         {/* Top Gradient */}
-        <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
+        {/* <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div> */}
 
         {/* Bottom Gradient */}
-        <div className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
+        <div
+          className={`pointer-events-none absolute bottom-0 left-0 z-10 h-48 w-full ${isDarkMode ? "" : "bg-gradient-to-t from-white/90 via-white/30 to-transparent"}`}
+          style={{
+            background: isDarkMode
+              ? "linear-gradient(to top, #220239 0%, #220239 60%, rgba(34, 2, 57, 0.92) 85%, transparent 100%)"
+              : undefined,
+          }}
+        ></div>
 
         {/* Animated Donut Rings */}
-        <motion.img
-          src={full_ring}
-          alt="ring"
-          className="absolute top-[50%] left-[40%] w-32 sm:w-48 md:w-64 opacity-100 scale-[300%] sm:scale-[400%] md:scale-[500%] lg:scale-[600%]"
-          variants={ringVariants}
-          initial="initial"
-          animate="animate"
-        />
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#2202396d] to-[#220239]" : "from-white  to-transparent"}`}/>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-4 left-1/2 w-[102%] max-w-[1500px] -translate-x-1/2 sm:top-6"
+        >
+          <motion.img
+            src={full_ring}
+            alt=""
+            className="block h-auto w-full"
+            variants={ringVariants}
+            initial="initial"
+            animate="animate"
+          />
+        </div>
+        <div className={`pointer-events-none absolute inset-0 z-0 bg-gradient-to-t ${isDarkMode ? "bg-[#2202396d] " : "from-white  to-transparent"}`}/>
         
         {/* Contact Card with glassmorphism */}
         <motion.div
-          className="relative z-10 max-w-5xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
+          className="relative z-10 max-w-4xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
           variants={cardVariants}
           initial="hidden"
           animate="visible"
@@ -164,22 +176,22 @@ const DownloadPage = () => {
         >
           {/* Text */}
           <motion.div 
-            className="flex-1 text-left justify-items-left"
+            className="text-left justify-items-left"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            <motion.h2 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-metro-600 text-[#6D28B2] mb-0 text-left"
+            <motion.h2
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[100px] font-extrabold font-metro-600 mb-0 text-left bg-[linear-gradient(to_bottom,#A62AD2_0%,#6E1CBF_50%,#470974_100%)] bg-clip-text text-transparent"
               variants={itemVariants}
             >
-              Where Social <br/> Meets Real Life
+              Where Social <br /> Meets Real Life
             </motion.h2>
           </motion.div>
           
-          <div className='flex-1 flex flex-col lg:flex-row'>
+          <div className='flex flex-col'>
             <motion.div 
-              className='flex-1 flex flex-col lg:pr-6'
+              className='flex flex-col lg:pr-6'
               variants={containerVariants}
               initial="hidden"
               animate="visible"

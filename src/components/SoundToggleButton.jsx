@@ -3,14 +3,15 @@ import { useDarkMode } from "./DarkModeContext";
 import { useSound } from "./SoundContext";
 
 const SoundToggleButton = () => {
-  const { isMuted, toggleMute } = useSound();
+  const { isMuted, isPlaying, toggleMute } = useSound();
   const { isDarkMode } = useDarkMode();
 
   return (
     <button
       type="button"
+      data-sound-toggle
       onClick={toggleMute}
-      aria-label={isMuted ? "Unmute sound" : "Mute sound"}
+      aria-label={isMuted ? "Unmute sound" : isPlaying ? "Mute sound" : "Retry sound"}
       aria-pressed={!isMuted}
       className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 ${
         isDarkMode
