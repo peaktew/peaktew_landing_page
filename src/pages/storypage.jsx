@@ -56,7 +56,7 @@ const StoryPage = () => {
       style={{ backgroundColor: isDarkMode ? '#220239' : '#FFFFFF' }}
     >
       {/* Dark Mode Toggle - Top Right */}
-      <div className="fixed top-4 right-4 z-50 hidden md:block">
+      <div className="fixed top-4 right-4 z-50 hidden xl:block">
         <label className="relative inline-flex items-center cursor-pointer select-none">
           <input
             type="checkbox"
