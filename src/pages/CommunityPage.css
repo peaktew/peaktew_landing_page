@@ -191,14 +191,22 @@
   margin-inline: auto;
   text-align: center;
   color: var(--community-ink);
-  -webkit-text-fill-color: currentColor;
-  border-radius: 4px;
+  -webkit-text-fill-color: initial;
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 .home-faq-label {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
+}
+.home-faq-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
 }
 .home-faq-label svg {
   flex: none;
@@ -208,16 +216,24 @@
 .home-faq-hint {
   display: block;
   margin-top: 12px;
-  font-family: Metropolis, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
+  font-family: Metropolis-600, sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #220239;
+  transition: opacity 0.2s ease;
 }
 @media (hover: hover) {
   .community-faq .home-faq-trigger:hover {
-    color: #470974;
+    transform: translateY(-2px);
+  }
+  .community-faq .home-faq-trigger:hover .home-faq-arrow {
+    transform: scale(1.15);
+  }
+  .community-faq .home-faq-trigger:hover .home-faq-hint {
+    opacity: 0.8;
   }
   .dark .community-faq .home-faq-trigger:hover {
-    color: #e2d5f1;
+    transform: translateY(-2px);
   }
 }
 .community-faq .home-faq-trigger:focus-visible {
@@ -230,9 +246,11 @@
 }
 @media (min-width: 640px) {
   .community-page.home-faq .community-faq > h2 { font-size: 36px; line-height: 40px; }
+  .home-faq-hint { font-size: 18px; }
 }
 @media (min-width: 768px) {
   .community-page.home-faq .community-faq > h2 { font-size: 48px; line-height: 1; }
+  .home-faq-hint { font-size: 20px; }
 }
 @media (min-width: 1024px) {
   .community-page.home-faq .community-faq > h2 { font-size: 60px; }

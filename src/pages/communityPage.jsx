@@ -138,11 +138,18 @@ function FaqGroup({ title, items }) {
 export function HomeFaq() {
   const [open, setOpen] = useState(false);
   const id = useId();
+  const reduceMotion = useReducedMotion();
 
   return (
     <div className="community-page home-faq">
       <section className="community-faq" aria-labelledby={`${id}-title`}>
-        <h2 id={`${id}-title`}>
+        <motion.h2
+          id={`${id}-title`}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <button
             type="button"
             className="home-faq-trigger"
@@ -151,14 +158,16 @@ export function HomeFaq() {
             onClick={() => setOpen(value => !value)}
           >
             <span className="home-faq-label">
-              <span>FAQs</span>
-              {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
+              <span className="home-faq-title section-heading-gradient">FAQs</span>
+              <span className="home-faq-arrow">
+                {open ? <FiChevronUp aria-hidden="true" /> : <FiChevronDown aria-hidden="true" />}
+              </span>
             </span>
             <span className="home-faq-hint">
               {open ? 'Hide frequently asked questions' : 'Show frequently asked questions'}
             </span>
           </button>
-        </h2>
+        </motion.h2>
         <div id={`${id}-cards`} className="home-faq-cards" hidden={!open}>
           {FAQ_GROUPS.map(group => (
             <FaqGroup key={group.title} title={group.title} items={group.items} />

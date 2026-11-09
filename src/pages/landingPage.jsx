@@ -685,7 +685,7 @@ const LandingPage = () => {
           <AnimatedText
             text="Real-Time Connection"
             delay={0.3}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 section-heading-solid"
+            className="text-[34px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-metro-600 leading-none mt-2 sm:mt-4 section-heading-solid"
           />
           <AnimatedText
             text="Making Meaningful Friendships Starts Here!"
@@ -790,6 +790,8 @@ const LandingPage = () => {
           )}
         </motion.div>
       </motion.div>
+
+      {/* FAQs Section */}
       <HomeFaq />
     </div>
   );
