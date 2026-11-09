@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Navigate, useLocation } from "react-router-dom"
 import LandingPage from "./pages/landingPage"
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
@@ -14,11 +14,14 @@ const DownloadPage = lazy(() => import("./pages/downloadPage"))
 const ContactPage = lazy(() => import("./pages/contactPage"))
 const AccountDeletionPage = lazy(() => import("./pages/accountDeletionPage"))
 const StoryPage = lazy(() => import("./pages/storypage"))
-const WebtcPage = lazy(() => import("./pages/webtcPage"))
-const WebppPage = lazy(() => import("./pages/webppPage"))
-const AppppPage = lazy(() => import("./pages/appppPage"))
-const ApptcPage = lazy(() => import("./pages/apptcPages"))
+const TermsOfServicePage = lazy(() => import("./pages/termsOfServicePage"))
+const PrivacyPolicyPage = lazy(() => import("./pages/privacyPolicyPage"))
 const CommunityPage = lazy(() => import("./pages/communityPage"))
+
+function LegalRedirect({ to }) {
+  const { search, hash } = useLocation()
+  return <Navigate to={{ pathname: to, search, hash }} replace />
+}
 
 function App() {
 
@@ -37,10 +40,12 @@ function App() {
               <Route path="/account-repression" element={<AccountDeletionPage />} />
               <Route path="/our-team" element={<TeamPage />} />
               <Route path="/our-story" element={<StoryPage />} />
-              <Route path="/web-terms-conditions" element={<WebtcPage />} />
-              <Route path="/web-privacy-policy" element={<WebppPage />} />
-              <Route path="/app-terms-conditions" element={<ApptcPage />} />
-              <Route path="/app-privacy-policy" element={<AppppPage />} />
+              <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/web-terms-conditions" element={<LegalRedirect to="/terms-of-service" />} />
+              <Route path="/web-privacy-policy" element={<LegalRedirect to="/privacy-policy" />} />
+              <Route path="/app-terms-conditions" element={<LegalRedirect to="/terms-of-service" />} />
+              <Route path="/app-privacy-policy" element={<LegalRedirect to="/privacy-policy" />} />
               <Route path="/community-guidelines" element={<CommunityPage />} />
             </Routes>
           </Suspense>

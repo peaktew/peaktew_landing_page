@@ -9,6 +9,13 @@
   src: url("./assets/fonts/Metropolis-SemiBold.ttf");
 }
 
+@font-face {
+  font-family: Metropolis-800;
+  src: url("./assets/fonts/Metropolis-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+
 @font-face{
   font-family: Metropolis-300;
   src: url("./assets/fonts/Metropolis-Light.ttf");
