@@ -189,7 +189,7 @@ const DownloadPage = () => {
             </motion.h2>
           </motion.div>
           
-          <div className='flex flex-col lg:flex-row'>
+          <div className='flex flex-col'>
             <motion.div 
               className='flex flex-col lg:pr-6'
               variants={containerVariants}
