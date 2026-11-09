@@ -171,7 +171,7 @@ const ContactPage = () => {
       <div className="relative isolate min-h-screen flex items-center justify-center px-4 pt-[clamp(7rem,16vw,14rem)] pb-[clamp(6rem,12vw,11rem)] overflow-hidden transition-colors duration-500 bg-white mb-30">
         {/* Keep the exposed rings crisp; only the card blurs its backdrop. */}
         <div
-          className="pointer-events-none absolute top-[clamp(2rem,5vw,5rem)] -left-[8%] w-[clamp(16rem,44vw,44rem)] aspect-square"
+          className="pointer-events-none absolute top-36 -left-[110vw] w-[160vw] aspect-square md:top-[clamp(2rem,5vw,5rem)] md:-left-[8%] md:w-[clamp(16rem,44vw,44rem)]"
           aria-hidden="true"
         >
           <motion.img
@@ -184,7 +184,7 @@ const ContactPage = () => {
           />
         </div>
         <div
-          className="pointer-events-none absolute bottom-[clamp(2rem,4vw,4rem)] -right-[1%] w-[clamp(16rem,44vw,44rem)] aspect-square"
+          className="pointer-events-none absolute bottom-[clamp(2rem,4vw,4rem)] -right-[1%] hidden w-[clamp(16rem,44vw,44rem)] aspect-square md:block"
           aria-hidden="true"
         >
           <motion.img
@@ -197,6 +197,7 @@ const ContactPage = () => {
             style={{ rotate: 180 }}
           />
         </div>
+        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "bg-[#2202396d] " : "from-white  to-transparent"}`}/>
         {/* Contact Card with glassmorphism */}
         <motion.div
           className="relative z-10 max-w-5xl w-full bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 md:p-10 flex flex-col gap-6 border border-white/30"

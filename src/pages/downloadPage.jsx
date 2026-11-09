@@ -134,17 +134,24 @@ const DownloadPage = () => {
         </label>
       </div>
 
-      <div className="relative isolate min-h-screen flex lg:items-end md:items-center justify-center px-4 sm:px-6 lg:px-8 pt-[clamp(5rem,12vw,11rem)] pb-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
+      <div className="relative isolate flex items-center justify-center px-4 sm:px-28 pt-[clamp(6rem,22vw,15rem)] pb-16 overflow-hidden transition-colors duration-500 bg-white mb-30">
         {/* Top Gradient */}
         {/* <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${isDarkMode ? "" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div> */}
 
         {/* Bottom Gradient */}
-        <div className={`absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t ${isDarkMode ? "bg-[linear-gradient(to_top,#220239_0%,#220239_20%,rgba(34,2,57,0.8)_40%,transparent_70%)]" : "from-white/90 via-white/30 to-transparent"} z-20 pointer-events-none`}></div>
+        <div
+          className={`pointer-events-none absolute bottom-0 left-0 z-10 h-48 w-full ${isDarkMode ? "" : "bg-gradient-to-t from-white/90 via-white/30 to-transparent"}`}
+          style={{
+            background: isDarkMode
+              ? "linear-gradient(to top, #220239 0%, #220239 60%, rgba(34, 2, 57, 0.92) 85%, transparent 100%)"
+              : undefined,
+          }}
+        ></div>
 
         {/* Animated Donut Rings */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-4 left-1/2 w-[110%] max-w-[1650px] -translate-x-1/2 sm:top-6"
+          className="pointer-events-none absolute top-4 left-1/2 w-[102%] max-w-[1500px] -translate-x-1/2 sm:top-6"
         >
           <motion.img
             src={full_ring}
@@ -155,11 +162,11 @@ const DownloadPage = () => {
             animate="animate"
           />
         </div>
-        <div className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "bg-[#2202396d] " : "from-white  to-transparent"}`}/>
+        <div className={`pointer-events-none absolute inset-0 z-0 bg-gradient-to-t ${isDarkMode ? "bg-[#2202396d] " : "from-white  to-transparent"}`}/>
         
         {/* Contact Card with glassmorphism */}
         <motion.div
-          className=" relative z-10 max-w-4xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
+          className="relative z-10 max-w-4xl w-full mx-4 sm:mx-6 md:mx-8 bg-white/10 backdrop-blur-xl rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 border border-white/30"
           variants={cardVariants}
           initial="hidden"
           animate="visible"
@@ -169,7 +176,7 @@ const DownloadPage = () => {
         >
           {/* Text */}
           <motion.div 
-            className="flex-1 text-left justify-items-left"
+            className="text-left justify-items-left"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -182,9 +189,9 @@ const DownloadPage = () => {
             </motion.h2>
           </motion.div>
           
-          <div className='flex-1 flex flex-col lg:flex-row'>
+          <div className='flex flex-col lg:flex-row'>
             <motion.div 
-              className='flex-1 flex flex-col lg:pr-6'
+              className='flex flex-col lg:pr-6'
               variants={containerVariants}
               initial="hidden"
               animate="visible"
